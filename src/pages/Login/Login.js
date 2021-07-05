@@ -1,5 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import './Login.scss';
 
-class Login extends React.Component {}
-
-export default Login;
+export default class Login extends Component {
+  render() {
+    return (
+      <div>
+        <div>123</div>
+        <div>123</div>
+        <div>123</div>
+        <div>123</div>
+        <div>123</div>
+      </div>
+    );
+  }
+}

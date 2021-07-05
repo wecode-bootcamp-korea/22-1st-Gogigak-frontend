@@ -1,2 +1,11 @@
+@import '../../styles/variables.scss';
+
 * {
+  background-color: red;
+}
+
+div {
+  flex-direction: row;
+  @include flex-center;
+  justify-content: space-around;
 }
