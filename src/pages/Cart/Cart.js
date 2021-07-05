@@ -1,1 +1,5 @@
-console.log(11);
+import React from "react";
+
+class Cart extends React.Component {}
+
+export default Cart;
