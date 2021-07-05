@@ -21,6 +21,7 @@ export class Login extends Component {
           </section>
         </article>
         <p className="loginSubTitle">SNS 간편 로그인</p>
+
         <article>
           <div>
             <button className="loginWithKakao">
