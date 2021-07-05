@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class ShoppingList extends React.Component {}
+export class shoppingList extends Component {
+  render() {
+    return <div></div>;
+  }
+}
 
-export default ShoppingList;
+export default shoppingList;
