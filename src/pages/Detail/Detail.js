@@ -1,1 +1,5 @@
-console.log(11);
+import React from "react";
+
+class Detail extends React.Component {}
+
+export default Detail;

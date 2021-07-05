@@ -1,1 +1,5 @@
-console.log(11);
+import React from "react";
+
+class Nav extends React.Component {}
+
+export default Nav;
