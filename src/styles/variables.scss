@@ -1,0 +1,19 @@
+$background-color: #ffffff;
+$item-background-color: #f9f7f8;
+$bestItem-title-size: 32px;
+$font-size: 18px;
+$item-priceInfo-size: 16px;
+$item-priceInfo-color: #9b9b9b;
+
+@mixin cart {
+    display: block;
+    width: 68px;
+    height: 68px;
+    background-color: cover;
+}
+
+@mixin flex-center($justify-content: center, $align-items: center) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
