@@ -23,8 +23,8 @@
         margin-left: 34px;
       }
 
-      ul {
-        li {
+      .navigationMenu {
+        .navigationMenuList {
           float: left;
           padding-left: 5px;
           padding-right: 5px;
@@ -40,8 +40,8 @@
       display: flex;
       align-items: center;
       margin-right: 50px;
-      ul {
-        li {
+      .navigationMenu {
+        .navigationMenuList {
           float: left;
           padding-left: 5px;
           padding-right: 5px;
