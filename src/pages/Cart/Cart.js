@@ -19,12 +19,14 @@ export class Cart extends Component {
                   src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-clean-list.png?alt=media"
                   alt="itemIm"
                 />
-                <div>
-                  <p>초신선 무항생제 돼지 삼겹살 구이용</p>
-                  <p>보통(16mm)</p>
+                <div className="infoContainer">
+                  <p className="productName">
+                    초신선 무항생제 돼지 삼겹살 구이용
+                  </p>
+                  <p className="selectOption">보통(16mm)</p>
                 </div>
-                <p>600g 기준</p>
-                <div className="itemCounter">
+                <p className="cartWeight">600g 기준</p>
+                <div className="counterContainer">
                   <div>
                     <i class="fas fa-minus"></i>
                   </div>
@@ -33,8 +35,10 @@ export class Cart extends Component {
                     <i class="fas fa-plus"></i>
                   </div>
                 </div>
-                <p>19,800원</p>
-                <i class="far fa-window-close"></i>
+                <div className="itemPrice">
+                  <p>19,800원</p>
+                </div>
+                <button className="deleteBtn">x</button>
               </li>
             </ul>
           </section>
@@ -50,18 +54,21 @@ export class Cart extends Component {
                   <p>0원</p>
                 </div>
                 <div className="shippingPrice-basic">
-                  <p>기본 배송비</p>
-                  <p>2500원</p>
+                  <span className="basic-text">기본 배송비</span>
+                  <span className="basic-price">2500원</span>
                 </div>
                 <div className="firstPayment">
-                  <p>첫구매 무료배송</p>
-                  <p>-100%</p>
+                  <span className="firstBuyText">첫구매 무료배송</span>
+                  <span>-100%</span>
                 </div>
               </div>
-              <p classNam="paymentMessage">
+              <p className="paymentMessage">
                 첫구매 무료배송 혜택이 적용되었습니다.
               </p>
-              <div className="totalPrice"></div>
+              <div className="totalPrice">
+                <p className="totalPrice-text">예상 결제 금액</p>
+                <p className="totalPrice-won">36,600원</p>
+              </div>
               <button className="paymentBtn">전체상품 주문하기</button>
               <button className="keepShoppingBtn">쇼핑계속하기</button>
             </div>
