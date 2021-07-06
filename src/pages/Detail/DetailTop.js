@@ -22,7 +22,7 @@ export class DetailTop extends Component {
                 <div className="detail-option-wrap info-box">
                   <button>
                     보통(16mm)
-                    <i class="fas fa-chevron-down drop-down-arrow"></i>
+                    <i className="fas fa-chevron-down drop-down-arrow"></i>
                   </button>
                   <div className="option-wrap disable">
                     <ul>
@@ -40,16 +40,16 @@ export class DetailTop extends Component {
                 </div>
               </div>
               <div className="count-wrap">
-                <p class="detail-top-tit">수량</p>
+                <p className="detail-top-tit">수량</p>
                 <div className="count-container info-box">
                   <button className="minus-button button-wrap">
-                    <i class="fas fa-minus"></i>
+                    <i className="fas fa-minus"></i>
                   </button>
                   <div className="count-counter">
                     <span>2</span>
                   </div>
                   <button className="plus-button button-wrap">
-                    <i class="fas fa-plus"></i>
+                    <i className="fas fa-plus"></i>
                   </button>
                 </div>
               </div>

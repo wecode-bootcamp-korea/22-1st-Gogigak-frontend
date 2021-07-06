@@ -6,6 +6,8 @@ import Nav from '../../components/Nav/Nav';
 import Footer from '../../components/Footer/Footer';
 import DetailTop from './DetailTop';
 import DetailTab from './DetailTab';
+import DetailDescContationer from './DetailDescContationer';
+
 export class Detail extends Component {
   render() {
     return (
@@ -13,7 +15,7 @@ export class Detail extends Component {
         <Nav></Nav>
         <DetailTop></DetailTop>
         <DetailTab></DetailTab>
-        {/*<DetailDescContationer></DetailDescContationer> */}
+        <DetailDescContationer></DetailDescContationer>
         <Footer></Footer>
       </div>
     );
