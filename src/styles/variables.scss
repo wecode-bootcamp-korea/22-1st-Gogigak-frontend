@@ -6,7 +6,7 @@ $item-priceInfo-size: 16px;
 $item-priceInfo-color: #9b9b9b;
 
 @mixin cart {
-  display: block;
+  display: absolute;
   width: 68px;
   height: 68px;
   background-color: cover;
