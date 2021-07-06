@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
 import Detail from './pages/Detail/Detail';
 import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
@@ -17,6 +18,7 @@ class Routes extends React.Component {
           <Route exact path="/List" component={ShoppingList} />
           <Route exact path="/Detail" component={Detail} />
         </Switch>
+        <Footer />
       </Router>
     );
   }
