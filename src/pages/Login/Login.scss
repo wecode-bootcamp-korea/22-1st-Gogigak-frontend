@@ -43,9 +43,7 @@
     }
   }
 
-  .loginButton,
-  .loginWithKakao,
-  .loginWithNaver {
+  .loginButton {
     width: 328px;
     height: 48px;
     border: none;
@@ -65,11 +63,25 @@
   }
 
   .loginWithKakao {
+    width: 328px;
+    height: 48px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 4px;
     background-color: #fae100;
     color: black;
   }
 
   .loginWithNaver {
+    width: 328px;
+    height: 48px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 4px;
     background-color: #1ec800;
   }
 
