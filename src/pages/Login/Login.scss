@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-frameElement {
+.login {
   flex-direction: column;
   @include flex-center;
   justify-content: center;
@@ -24,12 +24,16 @@ frameElement {
     // margin-left: auto;
     // margin-right: auto;
   }
+
   .LoginSection {
     @include flex-center;
     flex-direction: column;
   }
-  section {
-    input {
+
+  .LoginSection,
+  .findMyId {
+    .LoginIdInput,
+    .LoginIdPw {
       width: 328px;
       height: 46px;
       border: 1px solid #e1dedf;
@@ -38,7 +42,10 @@ frameElement {
       margin-top: 8px;
     }
   }
-  button {
+
+  .loginButton,
+  .loginWithKakao,
+  .loginWithNaver {
     width: 328px;
     height: 48px;
     border: none;
@@ -49,7 +56,7 @@ frameElement {
     border-radius: 4px;
   }
 
-  article {
+  .findInfo {
     .findMyId {
       margin-top: 20px;
       font-size: 16px;
@@ -73,7 +80,7 @@ frameElement {
     cursor: pointer;
     margin-bottom: 100px;
 
-    span {
+    .goTosignUp {
       color: #e92d44;
     }
   }

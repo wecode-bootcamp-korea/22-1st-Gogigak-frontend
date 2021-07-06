@@ -4,18 +4,21 @@ import './Login.scss';
 export class Login extends Component {
   render() {
     return (
-      <frameElement>
+      <div className="login">
         <div className="loginTitle">로그인</div>
         <p className="loginSubTitle">이메일 로그인</p>
         <form>
           <section className="LoginSection">
-            <input placeholder="아이디(이메일 주소)를 입력하세요" />
-            <input placeholder="비밀번호를 입력하세요" />
+            <input
+              className="LoginIdInput"
+              placeholder="아이디(이메일 주소)를 입력하세요"
+            />
+            <input className="LoginIdPw" placeholder="비밀번호를 입력하세요" />
           </section>
-          <button>로그인</button>
+          <button className="loginButton">로그인</button>
         </form>
 
-        <article>
+        <article class="findInfo">
           <section className="findMyId">
             <p>아이디 / 비밀번호 찾기</p>
           </section>
@@ -43,9 +46,9 @@ export class Login extends Component {
         </article>
         <p className="firstRegister">
           정육각이 처음이신가요? &nbsp;
-          <span>회원가입하기</span>
+          <span className="goTosignUp">회원가입하기</span>
         </p>
-      </frameElement>
+      </div>
     );
   }
 }
