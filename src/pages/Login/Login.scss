@@ -1,2 +1,98 @@
-* {
+@import '../../styles/variables.scss';
+
+.login {
+  flex-direction: column;
+  @include flex-center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 96px;
+  .loginTitle {
+    margin-top: 60px;
+    font-size: 24px;
+    text-align: center;
+    color: #212121;
+    font-weight: 700;
+  }
+
+  .loginSubTitle {
+    margin: 60px auto 10px auto;
+    font-size: 18px;
+    font-weight: 700;
+    width: 328px;
+    text-indent: 10px;
+    // text-align: center;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
+  .LoginSection {
+    @include flex-center;
+    flex-direction: column;
+  }
+  .LoginSection,
+  .findMyId {
+    .LoginIdInput,
+    .LoginIdPw {
+      width: 328px;
+      height: 46px;
+      border: 1px solid #e1dedf;
+      padding-left: 14px;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+  }
+
+  .loginButton {
+    width: 328px;
+    height: 48px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 4px;
+  }
+
+  .findInfo {
+    .findMyId {
+      margin-top: 20px;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+  .loginWithKakao {
+    width: 328px;
+    height: 48px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 4px;
+    background-color: #fae100;
+    color: black;
+  }
+
+  .loginWithNaver {
+    width: 328px;
+    height: 48px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 4px;
+    background-color: #1ec800;
+  }
+
+  .firstRegister {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 100px;
+
+    .goTosignUp {
+      color: #e92d44;
+    }
+  }
 }
