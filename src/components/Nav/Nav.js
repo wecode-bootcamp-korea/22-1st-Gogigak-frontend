@@ -4,7 +4,7 @@ import './Nav.scss';
 export class Nav extends Component {
   render() {
     return (
-      <frameElement>
+      <React.Fragment>
         <div>상단배너</div>
         <header>
           <div className="navigationContainer">
@@ -29,7 +29,7 @@ export class Nav extends Component {
             </div>
           </div>
         </header>
-      </frameElement>
+      </React.Fragment>
     );
   }
 }
