@@ -4,7 +4,7 @@ import './SignUp.scss';
 export class SignUp extends Component {
   render() {
     return (
-      <frameElement>
+      <div className="signUp">
         <div className="signUpTitle">회원가입</div>
         <p className="signUpSubTitle">SNS 계정으로 가입하기</p>
 
@@ -34,7 +34,7 @@ export class SignUp extends Component {
             <span>정육각 회원가입 하기</span>
           </div>
         </button>
-      </frameElement>
+      </div>
     );
   }
 }

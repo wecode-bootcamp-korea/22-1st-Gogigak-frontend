@@ -1,8 +1,8 @@
 @import '../../styles/variables.scss';
 
-frameElement {
-  flex-direction: column;
+.signUp {
   @include flex-center;
+  flex-direction: column;
   justify-content: center;
   height: 100%;
 
