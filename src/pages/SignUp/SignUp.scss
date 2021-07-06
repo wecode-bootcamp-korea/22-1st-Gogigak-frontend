@@ -1,2 +1,65 @@
-* {
+@import '../../styles/variables.scss';
+
+.signUp {
+  @include flex-center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  .signUpTitle {
+    margin-top: 60px;
+    font-size: 24px;
+    text-align: center;
+    color: #212121;
+    font-weight: 700;
+  }
+
+  .signUpSubTitle {
+    margin: 60px auto 10px auto;
+    font-size: 18px;
+    font-weight: 700;
+    width: 328px;
+    text-indent: 10px;
+    // text-align: center;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
+  .signUpWithKakao {
+    background-color: #fae100;
+    color: black;
+    width: 328px;
+    height: 48px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .signUpWithNaver {
+    background-color: #1ec800;
+    width: 328px;
+    height: 48px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .signUpWithEmail {
+    width: 328px;
+    height: 48px;
+    border: 1px solid #e92d44;
+    color: #e92d44;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 8px;
+    background-color: #fff;
+    display: block;
+    cursor: pointer;
+  }
 }
