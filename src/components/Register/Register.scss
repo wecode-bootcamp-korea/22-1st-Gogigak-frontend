@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-frameElement {
+.register {
   flex-direction: column;
   @include flex-center;
   justify-content: center;
@@ -12,12 +12,11 @@ frameElement {
     margin: 100px 0px 50px 0px;
   }
 
-  section {
+  .registerForm {
     .registerInputBox {
       display: flex;
       flex-direction: column;
-      margin-top: 16px;
-      margin-bottom: 34px;
+      margin: 16px 0px 34px 0px;
       width: 778px;
       height: 344px;
       border: 1px solid #e1dedf;
@@ -35,7 +34,7 @@ frameElement {
         font-size: 13px;
         line-height: 68px;
 
-        p {
+        .registerInput {
           margin-left: 29px;
         }
       }
@@ -52,7 +51,7 @@ frameElement {
           border: 1px solid #e1dedf;
         }
 
-        select {
+        .phoneNumberSelect {
           margin-left: 20px;
           margin-top: 15px;
           font-size: 13px;
@@ -117,9 +116,6 @@ frameElement {
   .registerButtonArea {
     margin-top: 6px;
 
-    button {
-      cursor: pointer;
-    }
     .goPrevious {
       width: 50%;
       height: 60px;
@@ -128,6 +124,7 @@ frameElement {
       font-weight: 700;
       color: #fff;
       background: #888;
+      cursor: pointer;
     }
 
     .goResiter {
@@ -137,6 +134,8 @@ frameElement {
       font-size: 16px;
       font-weight: 700;
       color: #fff;
+      background: #000;
+      cursor: pointer;
     }
   }
 }

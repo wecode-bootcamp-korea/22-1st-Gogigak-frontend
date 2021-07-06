@@ -4,14 +4,14 @@ import './Register.scss';
 export class Register extends Component {
   render() {
     return (
-      <frameElement>
+      <div className="register">
         <div className="registerTitle">회원가입</div>
-        <section>
+        <section className="registerForm">
           <p>가입정보 입력</p>
           <div className="registerInputBox">
             <div className="registerInputLine">
               <div className="registerInputTitle">
-                <p>아이디(이메일주소)</p>
+                <p className="registerInput">아이디(이메일주소)</p>
               </div>
               <div className="registerInputContent">
                 <input className="registerInputContentInput" />
@@ -19,7 +19,7 @@ export class Register extends Component {
             </div>
             <div className="registerInputLine">
               <div className="registerInputTitle">
-                <p>비밀번호</p>
+                <p className="registerInput">비밀번호</p>
               </div>
               <div className="registerInputContent">
                 <input className="registerInputContentInput" />
@@ -27,7 +27,7 @@ export class Register extends Component {
             </div>
             <div className="registerInputLine">
               <div className="registerInputTitle">
-                <p>비밀번호 확인</p>
+                <p className="registerInput">비밀번호 확인</p>
               </div>
               <div className="registerInputContent">
                 <input className="registerInputContentInput" />
@@ -35,7 +35,7 @@ export class Register extends Component {
             </div>
             <div className="registerInputLine">
               <div className="registerInputTitle">
-                <p>이름</p>
+                <p className="registerInput">이름</p>
               </div>
               <div className="registerInputContent">
                 <input className="registerInputContentInput" />
@@ -43,10 +43,10 @@ export class Register extends Component {
             </div>
             <div className="registerInputLine">
               <div className="registerInputTitle">
-                <p>휴대폰 번호</p>
+                <p className="registerInput">휴대폰 번호</p>
               </div>
               <div className="registerInputContent registerInputContentPhone ">
-                <select>
+                <select className="phoneNumberSelect">
                   <option value="010">010</option>
                   <option value="011">011</option>
                   <option value="016">016</option>
@@ -63,7 +63,7 @@ export class Register extends Component {
             <button className="goResiter">가입하기</button>
           </div>
         </section>
-      </frameElement>
+      </div>
     );
   }
 }
