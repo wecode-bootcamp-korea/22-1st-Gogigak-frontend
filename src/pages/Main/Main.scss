@@ -1,15 +1,12 @@
-* {
-  border: 1px solid black;
-}
+@import '../../styles/variables.scss';
 
 .mainPage {
   margin-top: 96px;
+  @include flex-center;
+  flex-direction: column;
 
   .mainBannerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    width: 100%;
     .mainBanner {
       background-image: url('https://www.jeongyookgak.com/static/img/main_firstgift.3627763.png');
       background-size: cover;
@@ -24,11 +21,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 1184px;
     .mainEvent,
     .freshPlan {
       @include flex-center;
       width: 576px;
       height: 176px;
     }
+  }
+
+  .bestItemContainer {
+    width: 1184px;
+    .bestItems {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  .shoppingBanner {
+    background-image: url('https://www.jeongyookgak.com/static/img/banner_shop.96086e0.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1184px;
+    height: 208px;
+    margin: 150px auto 0px auto;
   }
 }
