@@ -4,7 +4,7 @@ import Item from '../../components/Item/Item';
 
 import './ShoppingList.scss';
 
-class shoppingList extends Component {
+class ShoppingList extends Component {
   state = {
     items: [],
     name: [
@@ -99,4 +99,4 @@ class shoppingList extends Component {
   }
 }
 
-export default shoppingList;
+export default ShoppingList;
