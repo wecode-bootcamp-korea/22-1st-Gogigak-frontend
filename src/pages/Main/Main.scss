@@ -1,2 +1,34 @@
 * {
+  border: 1px solid black;
+}
+
+.mainPage {
+  margin-top: 96px;
+
+  .mainBannerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mainBanner {
+      background-image: url('https://www.jeongyookgak.com/static/img/main_firstgift.3627763.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100%;
+      height: 560px;
+    }
+  }
+
+  .eventBannerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .mainEvent,
+    .freshPlan {
+      @include flex-center;
+      width: 576px;
+      height: 176px;
+    }
+  }
 }
