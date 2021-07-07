@@ -5,7 +5,7 @@ import Nav from './components/Nav/Nav';
 import Detail from './pages/Detail/Detail';
 import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
-import ShoppingList from './pages/Shopping/shoppingList';
+import ShoppingList from './pages/Shopping/ShoppingList';
 import SignUp from './pages/SignUp/SignUp';
 import './components/Nav/Nav.scss';
 class Routes extends React.Component {
@@ -19,9 +19,10 @@ class Routes extends React.Component {
             <Route exact path="/SignUp" component={SignUp} />
             <Route exact path="/" component={Main} />
             <Route exact path="/List" component={ShoppingList} />
+            <Route exact path="/List/:name" component={ShoppingList} />
             <Route exact path="/Detail" component={Detail} />
           </Switch>
-         <Footer />
+          <Footer />
         </Router>
       </>
     );

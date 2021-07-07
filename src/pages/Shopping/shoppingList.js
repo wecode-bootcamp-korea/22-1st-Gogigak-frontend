@@ -1,37 +1,63 @@
 import React, { Component } from 'react';
-import Item from './Item/Item';
+import Category from './Category/Category';
+import Item from '../../components/Item/Item';
 
-import './shoppingList.scss';
+import './ShoppingList.scss';
 
-export class shoppingList extends Component {
+class shoppingList extends Component {
+  state = {
+    items: [],
+    name: [
+      {
+        id: 1,
+        name: 'allmeat',
+      },
+      {
+        id: 2,
+        name: 'pig',
+      },
+
+      {
+        id: 3,
+        name: 'beef',
+      },
+      {
+        id: 4,
+        name: 'chicken',
+      },
+      {
+        id: 5,
+        name: 'susan',
+      },
+    ],
+  };
+
+  componentDidMount() {
+    fetch('http://localhost:3000/data/itemList.json', {
+      headers: {
+        method: 'GET',
+      },
+    })
+      .then(res => res.json())
+      .then(data => this.setState({ items: data }));
+  }
+
   render() {
+    console.log(this.state.items);
+
     return (
       <section className="shoppingList">
         <div className="categoryImg">
-          <img
-            src="https://lh3.googleusercontent.com/proxy/XnO8ZKm0Rh7o8xnbW6jA-CC0BPGasCGJl_5Gpesc5Wa3AIjDAjmgeOj5g6I0fbHIHIedNJLIobN1XAAtRY2oQQKiclqLZuVtkFJuWzBun9OfhV3LhvViloBwA9oLJe-xSumO9NAisFYhXkr_5j5PIgGuTgauEYWOZ903cNOyjym8qXIsvJp5wLwlbITSV1WVUdW9pg"
-            alt="categoryImg"
-          />
+          {this.props.match.params.name ? (
+            <img
+              src={`/images/${this.props.match.params.name}.png`}
+              alt="categoryImg"
+            />
+          ) : (
+            <img src={`/images/allmeat.png`} alt="categoryImg" />
+          )}
         </div>
-        <section className="categorys">
-          <ul className="categoryContainer">
-            <li className="category all">
-              <p>전체</p>
-            </li>
-            <li className="category pig">
-              <p>돼지</p>
-            </li>
-            <li className="category cow">
-              <p>소</p>
-            </li>
-            <li className="category chicken">
-              <p>닭</p>
-            </li>
-            <li className="category seafood">
-              <p>수산</p>
-            </li>
-          </ul>
-        </section>
+        <Category name={this.state.name} itemList={this.state.items} />
         <form action="">
           <select className="itemFilter" name="filterItem">
             <option value="">필터링</option>
@@ -40,14 +66,29 @@ export class shoppingList extends Component {
             <option value="기타">리뷰순</option>
           </select>
         </form>
-
         <section className="itemContainer">
           <ul className="items">
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            {this.state.items.map(item => {
+              if ('allmeat' === this.props.match.params.name) {
+                return (
+                  <Item
+                    id={item.id}
+                    img={item.img}
+                    price={item.price}
+                    title={item.title}
+                  />
+                );
+              } else if (item.category === this.props.match.params.name) {
+                return (
+                  <Item
+                    id={item.id}
+                    img={item.img}
+                    price={item.price}
+                    title={item.title}
+                  />
+                );
+              }
+            })}
           </ul>
         </section>
       </section>
