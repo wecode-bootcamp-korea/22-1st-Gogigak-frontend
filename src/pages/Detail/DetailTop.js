@@ -2,7 +2,26 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export class DetailTop extends Component {
+  //state초기화
+  constructor(props) {
+    super(props);
+    this.state = {
+      numValue: 1,
+    };
+  }
+  onClickHandler = () => {
+    this.setState({ numValue: this.state.numValue + 1 });
+  };
+  onClickhandlerRemove = () => {
+    //const { numValue } = this.state.numValue;
+    if (this.state.numValue <= 1) {
+      alert('1개 이하는 없습니다.');
+    } else {
+      this.setState({ numValue: this.state.numValue - 1 });
+    }
+  };
   render() {
+    console.log(this.state.numValue);
     return (
       <section className="detail-top-wrap">
         <div className="detail-top-container">
@@ -42,13 +61,21 @@ export class DetailTop extends Component {
               <div className="count-wrap">
                 <p className="detail-top-tit">수량</p>
                 <div className="count-container info-box">
-                  <button className="minus-button button-wrap">
+                  <button
+                    className="minus-button button-wrap"
+                    name="dec"
+                    onClick={this.onClickhandlerRemove}
+                  >
                     <i className="fas fa-minus"></i>
                   </button>
                   <div className="count-counter">
-                    <span>2</span>
+                    <span>{this.state.numValue}</span>
                   </div>
-                  <button className="plus-button button-wrap">
+                  <button
+                    className="plus-button button-wrap"
+                    name="inc"
+                    onClick={this.onClickHandler}
+                  >
                     <i className="fas fa-plus"></i>
                   </button>
                 </div>
