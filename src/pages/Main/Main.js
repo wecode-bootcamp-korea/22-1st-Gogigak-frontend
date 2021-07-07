@@ -66,15 +66,27 @@ export default class Main extends Component {
                 <div className="eventSlide bk"> </div>
               </div>
             </div>
+            <div>
+              <div className="slideBtn" onClick={e => this.slideByNumber(e)}>
+                1
+              </div>
+              <div className="slideBtn" onClick={e => this.slideByNumber(e)}>
+                2
+              </div>
+              <div className="slideBtn" onClick={e => this.slideByNumber(e)}>
+                3
+              </div>
+              <div className="slideBtn" onClick={e => this.slideByNumber(e)}>
+                4
+              </div>
+              <div className="slideBtn" onClick={e => this.slideByNumber(e)}>
+                5
+              </div>
+            </div>
           </div>
           {/* <div onClick={() => this.slideNext()}>슬라이드 버튼</div> */}
           {/* <div onClick={() => this.slidePrevious()}>슬라이드 버튼</div> */}
-          <div onClick={e => this.slideByNumber(e)}>0</div>
-          <div onClick={e => this.slideByNumber(e)}>1</div>
-          <div onClick={e => this.slideByNumber(e)}>2</div>
-          <div onClick={e => this.slideByNumber(e)}>3</div>
-          <div onClick={e => this.slideByNumber(e)}>4</div>
-          <div onClick={e => this.slideByNumber(e)}>5</div>
+
           <div className="freshPlan">신선배송~</div>
         </section>
         <section className="bestItemContainer">

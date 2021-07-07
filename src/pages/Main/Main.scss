@@ -22,17 +22,30 @@
     justify-content: center;
     align-items: center;
     width: 1184px;
-    .mainEvent,
+    .mainEvent {
+      @include flex-center;
+      width: 576px;
+      height: 176px;
+      position: relative;
+    }
+
     .freshPlan {
       @include flex-center;
       width: 576px;
       height: 176px;
     }
 
+    .slideBtn {
+      display: flex;
+    }
+
     .slideOverFlow {
+      display: flex;
+
       overflow: hidden;
       width: 100%;
       height: 100%;
+
       .slideContentContainer {
         display: flex;
         width: 3456px;
