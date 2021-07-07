@@ -1,0 +1,142 @@
+@import '../../styles/variables.scss';
+
+.register {
+  flex-direction: column;
+  @include flex-center;
+  justify-content: center;
+  height: 100%;
+  margin-top: 100px;
+
+  .registerTitle {
+    text-align: center;
+    font-size: 32px;
+    margin: 100px 0px 50px 0px;
+  }
+
+  .registerForm {
+    .registerInputBox {
+      display: flex;
+      flex-direction: column;
+      margin: 16px 0px 34px 0px;
+      width: 778px;
+      height: 344px;
+      border: 1px solid #e1dedf;
+    }
+
+    .registerInputLine {
+      display: flex;
+      overflow: hidden;
+      border-bottom: 1px solid #e1dedf;
+
+      .registerInputTitle {
+        width: 179px;
+        border-right: 1px solid #e1dedf;
+        background-color: #f7f7f7;
+        font-size: 13px;
+        line-height: 68px;
+
+        .registerInput {
+          margin-left: 29px;
+        }
+      }
+      .registerInputContent {
+        display: flex;
+
+        .registerInputContentInput {
+          margin-left: 20px;
+          margin-top: 15px;
+          padding-left: 22px;
+          font-size: 13px;
+          width: 550px;
+          height: 38px;
+          border: 1px solid #e1dedf;
+        }
+
+        .phoneNumberSelect {
+          margin-left: 20px;
+          margin-top: 15px;
+          font-size: 13px;
+          padding-left: 38px;
+          width: 136px;
+          height: 40px;
+          border: 1px solid #e1dedf;
+
+          .option {
+            font-weight: normal;
+            display: block;
+            white-space: nowrap;
+            min-height: 1.2em;
+            padding: 0px 2px 1px;
+          }
+        }
+
+        .registerInputContentPhoneNumber {
+          margin-left: 7px;
+          margin-top: 15px;
+          padding-left: 22px;
+          font-size: 13px;
+          width: 200px;
+          height: 38px;
+          border: 1px solid #e1dedf;
+        }
+      }
+    }
+  }
+
+  .signUpSubTitle {
+    margin: 60px auto 10px auto;
+    font-size: 18px;
+    font-weight: 700;
+    width: 328px;
+    text-indent: 10px;
+    // text-align: center;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
+  .signUpWithKakao {
+    background-color: #fae100;
+    color: black;
+  }
+
+  .signUpWithNaver {
+    background-color: #1ec800;
+  }
+
+  .signUpWithEmail {
+    height: 48px;
+    border: 1px solid #e92d44;
+    color: #e92d44;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-top: 8px;
+    background-color: #fff;
+    display: block;
+  }
+
+  .registerButtonArea {
+    margin-top: 6px;
+
+    .goPrevious {
+      width: 50%;
+      height: 60px;
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      background: #888;
+      cursor: pointer;
+    }
+
+    .goResiter {
+      width: 50%;
+      height: 60px;
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      background: #000;
+      cursor: pointer;
+    }
+  }
+}
