@@ -12,11 +12,11 @@ export class Detail extends Component {
   render() {
     return (
       <div className="detail-wrap">
-        <Nav></Nav>
-        <DetailTop></DetailTop>
-        <DetailTab></DetailTab>
-        <DetailDescContationer></DetailDescContationer>
-        <Footer></Footer>
+        <Nav />
+        <DetailTop />
+        <DetailTab />
+        <DetailDescContationer />
+        <Footer />
       </div>
     );
   }

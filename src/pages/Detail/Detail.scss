@@ -1,17 +1,8 @@
-@mixin verticalAlign{
-  display:flex;
-  flex-direction:row;
-}
-@mixin maxWidth{
-  width:100%;
-}
-@mixin textCenterClear{
-  text-align:center;
-}
-
+@import '../../styles/variables.scss';
 /*detail-wrap*/
 .detail-wrap{
   display: block;
+
   .detail-top-wrap{
     display: flex;
     @include maxWidth;
@@ -19,13 +10,14 @@
     padding-bottom:50px;
     padding-top:60px;
     align-items: center;
+
     .detail-top-container{
       margin:0 auto;
       justify-content:center;
-      @include verticalAlign;
+      @include flex-center;
 
       .detail-top-data{
-        @include verticalAlign;
+        @include flex-center;
         picture{
           display:flex;
           img{
@@ -41,11 +33,13 @@
             line-height:41px;
             word-break:keep-all;
           }
+
           .product-standard{
             color:#9b9b9b;
             margin-top:20px;
             font-size:16px;
           }
+
           .product-price{
             font-size:24px;
             padding-bottom:26px;
@@ -54,20 +48,24 @@
             margin-top:6px;
             border-bottom:1px solid #fff;
           }
+
           .info-box{
               border: 1px solid #fff;
               margin-left:27px;
               width:317px;
               height:50px;
             }
+
           .detail-top-option{
             display:flex;
             padding-top:52px;
+
             .detail-top-tit{
               color:#fff;
               display:flex;
               align-items: center;;
             }
+
             .detail-option-wrap{
               @include textCenterClear;
               button{
@@ -78,12 +76,14 @@
                 @include maxWidth;
                 height:100%;
                 cursor:pointer;
+
                 .drop-down-arrow{
                   position:absolute;
                   right:20px;
                   font-size:20px;
                 }
               }
+
               .option-wrap{
                 width:317px;
                 position:absolute;
@@ -101,14 +101,17 @@
                   }
                 }
               }
+
               .disable{
                 display:none;
               }
             }
           }
+
           .count-wrap{
             display:flex;
             margin-top:19px;
+
             .detail-top-tit{
               color:#fff;
               display:flex;
@@ -116,6 +119,7 @@
               display:flex;
               align-items: center;;
             }
+
             .count-container{
               display:flex;
               border:1px solid #fff;
@@ -123,9 +127,11 @@
               overflow:hidden;
               width:317px;
               height:50px;
+
               .count-counter{
                 color:rgb(32, 26, 26);
               }
+
               .button-wrap{
                 color:#fff;
                 width:50px;
@@ -133,12 +139,15 @@
                 font-size:18px;
                 cursor:pointer;
               }
+
               .minus-button{
                 border-right:1px solid #fff;
               }
+
               .plus-button{
                 border-left:1px solid #fff;
               }
+
               .count-counter{
                 color:#fff;
                 display:flex;
@@ -149,12 +158,16 @@
               }
             }
           }
+          
           .buy-wrap{
             margin-top:40px;
+
             ul{
               display:flex;
               justify-content: space-between;
+
               li{
+
                 .btn{
                   display:flex;
                   font-size:16px;
@@ -167,9 +180,11 @@
                   width:180px;
                   height:60px;
                 }
+
                 .btn-buy{
                   background:#888;
                 }
+                
                 .btn-cart{
                   background:#d0021b;  
                 }
@@ -180,50 +195,62 @@
       }
     }
   }
+
   .detail-tab{
     display:flex;
     justify-content:center;
     height:109px;
     @include maxWidth;
+
     ul{
-       @include verticalAlign;
+       @include flex-center;
        align-items:center;
        justify-content: space-around;
        width:360px;
        max-width:358px;
+
       li{
         a{
+
           color:#c2c2c2;
           text-decoration:none;
           font-size:18px;
           transition: all;
           font-weight:700;
+
           &:hover{
             transition:all 0.2s;
             color:#000;
           }
         }
+
         .active{
           color:#000;
         }
       }
     }
   }
+
   .detail-product-wrap{
+
     .detail-desc-wrap{
       border-top:1px solid #979797;
+
       article{
+
         img{
           @include maxWidth;
         }
       }
       .display-date-wrap{
+
         p{
           @include textCenterClear;
           font-size:24px;
           letter-spacing:-2px;
           white-space:pre-line;
         }
+
         .display-date-box{
           @include maxWidth;
           background:#000;
@@ -233,6 +260,7 @@
           align-items: center;
           display:flex;
           height:121px;
+
           .time-box{
             background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MiIgaGVpZ2h0PSI4MSIgdmlld0JveD0iMCAwIDYyIDgxIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI0U1RTVFNSIgZD0iTTQuNDgyIDBoNTMuMDM2QzU5Ljk5MyAwIDYyIDIuMDA3IDYyIDQuNDgydjM0LjM0N2MwIDEuMjM4LTEuMDAzIDIuMjQxLTIuMjQxIDIuMjQxSDIuMjQxQzEuMDAzIDQxLjA3IDAgNDAuMDY3IDAgMzguODNWNC40ODFDMCAyLjAwNyAyLjAwNyAwIDQuNDgyIDB6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzIzIC0xMDYpIHRyYW5zbGF0ZSg3MjMgMTA2KSIvPgogICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iI0ZGRiIgZD0iTTIuMjQxIDQxLjA3aDU3LjUxOGMxLjIzOCAwIDIuMjQxIDEuMDA0IDIuMjQxIDIuMjQxdjMzLjIwN0M2MiA3OC45OTMgNTkuOTkzIDgxIDU3LjUxOCA4MUg0LjQ4MkMyLjAwNyA4MSAwIDc4Ljk5MyAwIDc2LjUxOFY0My4zMTFjMC0xLjIzNyAxLjAwMy0yLjI0IDIuMjQxLTIuMjR6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNzIzIC0xMDYpIHRyYW5zbGF0ZSg3MjMgMTA2KSIvPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4K') no-repeat;
             background-size:cover;
@@ -248,6 +276,7 @@
             height:81px;
             width:62px;
           }
+
           p{
             font-size:32px;
             color:#fff;
@@ -259,12 +288,15 @@
         }
       }
     }
+
     .detail-review{
       display:flex;
       justify-content: center;
       margin-top:39px;
       flex-direction:column;
+
       ul{
+
         li{
           border:1px solid #e0e0e0;
           margin-bottom:30px;
@@ -273,6 +305,7 @@
           margin:0 auto 30px;
           width:978px;
           height:314px;
+
           a{
             display:flex;
             flex-direction: column;
@@ -280,18 +313,22 @@
             width:100%;
             height:100%;
             .detail-review-box{
+
               display:flex;
               align-items: center;
               width:100%;
+
               .detail-review-info{
                 margin-top:25px;
                 margin-left:30px;
                 width:658px;
+
                 .detail-review-content-wrap{
                   background:#f8f8f8;
                   margin-top:15px;
                   height:150px;
                   width:100%;
+
                   p{
                     word-wrap:break-word;
                     white-space:pre-wrap;
@@ -305,6 +342,7 @@
                   }
                 }
               }
+
               .detail-review-photo-wrap{
                 overflow:hidden;
                 margin-left:30px;
@@ -315,6 +353,7 @@
                 height:236px;
               }
             }
+
             .detail-review-width-product{
               display:flex;
               border-top:1px solid #e0e0e0;
@@ -323,6 +362,7 @@
               bottom:0;
               height:39px;
               width:100%;
+
               .product-wrap-num{
                 display:flex;
                 border-right:1px solid #e0e0e0;
@@ -333,24 +373,29 @@
                 height:100%;
                 width:149px;
               }
+
               .product-name-num{
                 font-size:13px;
                 margin-left:23px;
               }
             }
+
             .detail-review-customer{
               display:flex;
               flex-direction: row;
               margin-top:10px;
+
               p{
                 display:flex;
                 color:#9b9b9b;
                 font-weight:700;
               }
+
               .count{
                 color:#4a90e2;
                 margin-left:20px;
               }
+
               time{
                 display:flex;
                 justify-content: flex-end;
@@ -362,15 +407,19 @@
             }
           }
         }
+
         .detail-review-container{
+
             .detail-review-box{
               width:100%;
+
               .detail-review-info{
                 width:93%;
               }
             }
           }
       }
+
       .detail-review-more{
         background:url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIxLjEuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuugiOydtOyWtF8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiCgkgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzkgNjMuOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzkgNjMuODsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGQ9Ik0zNy41LDE4SDIxVjEuNUMyMSwwLjcsMjAuMywwLDE5LjUsMFMxOCwwLjcsMTgsMS41VjE4SDEuNUMwLjcsMTgsMCwxOC43LDAsMTkuNVMwLjcsMjEsMS41LDIxSDE4djE2LjUKCQljMCwwLjgsMC43LDEuNSwxLjUsMS41czEuNS0wLjcsMS41LTEuNVYyMWgxNi41YzAuOCwwLDEuNS0wLjcsMS41LTEuNVMzOC4zLDE4LDM3LjUsMTh6Ii8+Cgk8cGF0aCBkPSJNMi4xLDU4LjljMC41LDAsMSwwLDEuNCwwYzAuNCwwLDAuOSwwLDEuMy0wLjFjMC40LDAsMC44LTAuMSwxLjItMC4xYzAuNCwwLDAuOC0wLjEsMS4yLTAuMmwwLjIsMS42CgkJYy0wLjUsMC4xLTAuOSwwLjItMS40LDAuMmMtMC41LDAuMS0wLjksMC4xLTEuNCwwLjFzLTEsMC4xLTEuNSwwLjFjLTAuNSwwLTEuMSwwLTEuNywwSDAuMXYtOS4zaDYuM3YxLjZIMi4xVjU4Ljl6IE0xMSw1MHYxMy45aC0yCgkJdi03LjVINS43di0xLjZoMy40VjUwSDExeiBNMjUuOCw2MC42djEuNkgxMy4ydi0xLjZoNS4yVjU4aC0zLjl2LTcuMmgyVjUzaDUuOXYtMi4xaDJWNThoLTMuOXYyLjVIMjUuOHogTTE2LjUsNTYuNWg1Ljl2LTEuOWgtNS45CgkJVjU2LjV6IE0zNC40LDUxLjRjMCwxLjEtMC4xLDIuMS0wLjMsM2MtMC4yLDEtMC41LDEuOS0xLDIuN2MtMC41LDAuOC0xLjEsMS42LTEuOSwyLjRjLTAuOCwwLjctMS44LDEuNC0zLjEsMmwtMS0xLjYKCQljMC45LTAuNCwxLjYtMC45LDIuMy0xLjRjMC42LTAuNSwxLjItMSwxLjYtMS42YzAuNC0wLjYsMC44LTEuMiwxLTEuOGMwLjItMC43LDAuNC0xLjQsMC41LTIuMWgtNC42di0xLjZIMzQuNHogTTM4LjYsNTB2MTMuOGgtMgoJCVY1MEgzOC42eiIvPgo8L2c+Cjwvc3ZnPgo=')no-repeat center center;
         display:flex;
@@ -385,6 +434,7 @@
     }
   }
 }
+
 a{
   color:#000;
   text-decoration:none;
