@@ -1,5 +1,6 @@
 @import '../../styles/variables.scss';
 .shoppingList {
+  overflow: scroll;
   .categoryImg {
     padding-top: 80px;
     img {

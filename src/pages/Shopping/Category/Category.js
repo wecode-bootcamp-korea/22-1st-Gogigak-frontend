@@ -5,7 +5,7 @@ import './Category.scss';
 
 class Category extends React.Component {
   render() {
-    const { name, itemList } = this.props;
+    const { name } = this.props;
 
     return (
       <section className="categorys">

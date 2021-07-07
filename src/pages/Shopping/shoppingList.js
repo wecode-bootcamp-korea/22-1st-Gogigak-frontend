@@ -43,8 +43,6 @@ class shoppingList extends Component {
   }
 
   render() {
-    console.log(this.state.items);
-
     return (
       <section className="shoppingList">
         <div className="categoryImg">
@@ -57,7 +55,7 @@ class shoppingList extends Component {
             <img src={`/images/allmeat.png`} alt="categoryImg" />
           )}
         </div>
-        <Category name={this.state.name} itemList={this.state.items} />
+        <Category name={this.state.name} />
         <form action="">
           <select className="itemFilter" name="filterItem">
             <option value="">필터링</option>
@@ -69,9 +67,13 @@ class shoppingList extends Component {
         <section className="itemContainer">
           <ul className="items">
             {this.state.items.map(item => {
-              if ('allmeat' === this.props.match.params.name) {
+              if (
+                undefined === this.props.match.params.name ||
+                'allmeat' === this.props.match.params.name
+              ) {
                 return (
                   <Item
+                    key={item.title}
                     id={item.id}
                     img={item.img}
                     price={item.price}
@@ -81,6 +83,7 @@ class shoppingList extends Component {
               } else if (item.category === this.props.match.params.name) {
                 return (
                   <Item
+                    key={item.title}
                     id={item.id}
                     img={item.img}
                     price={item.price}
