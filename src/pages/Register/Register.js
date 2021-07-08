@@ -10,6 +10,23 @@ export class Register extends Component {
     phone: '',
   };
 
+  login = () => {
+    console.log(this.state.inputId);
+    console.log(this.state.inputPw);
+
+    fetch('http://10.58.0.244:8000/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.id,
+        password: this.state.password,
+        name: this.state.name,
+        phone_number: this.state.phone,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => console.log(result));
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -129,7 +146,9 @@ export class Register extends Component {
           </div>
           <div className="registerButtonArea">
             <button className="goPrevious">이전으로</button>
-            <button className="goResiter">가입하기</button>
+            <button className="goResiter" onClick={this.login}>
+              가입하기
+            </button>
           </div>
         </section>
       </div>
