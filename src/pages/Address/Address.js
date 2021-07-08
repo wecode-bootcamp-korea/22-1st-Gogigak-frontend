@@ -55,20 +55,26 @@ class Address extends React.Component {
           <span className="text-highlight">확대</span> 중!
           <br /> 지금 우리 집에는 어떤 배송이 오는지 확인해보세요.
         </h3>
-        <div className="searchContainer">
-          <div className="searchbox" onClick={this.handlePost}>
+        <div className="searchContainer" onClick={this.handlePost}>
+          <div className="searchbox">
             <div className="searchWhite">
               <p className="searchText">주소를 입력해주세요.</p>
             </div>
             <div className="searchBtn">
               <i class="fas fa-search"></i>
             </div>
+
             {this.state.isPost && (
-              <DaumPostcode
-                onComplete={this.handleComplete}
-                style={POST_CODE_STYLE}
-                autoClose
-              />
+              <>
+                <div className="cancelBtn">
+                  <i className="far fa-window-close"></i>
+                </div>
+                <DaumPostcode
+                  onComplete={this.handleComplete}
+                  style={POST_CODE_STYLE}
+                  autoClose
+                />
+              </>
             )}
           </div>
           <div className="searchResult">
