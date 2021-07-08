@@ -8,7 +8,8 @@ export class Login extends Component {
     data: [],
   };
 
-  login = () => {
+  login = e => {
+    e.preventDefault();
     fetch('http://10.58.0.244:8000/users/signin', {
       method: 'POST',
       body: JSON.stringify({
@@ -23,6 +24,8 @@ export class Login extends Component {
         var token = result.token;
         localStorage.setItem('token', token);
       });
+
+    this.props.history.push('/');
   };
 
   handleChange = e => {
@@ -70,9 +73,9 @@ export class Login extends Component {
               onChange={this.handleChange}
             />
           </section>
-          <div className="loginButton" onClick={this.login}>
+          <button className="loginButton" onClick={this.login}>
             로그인
-          </div>
+          </button>
         </form>
 
         <article class="findInfo">
