@@ -1,8 +1,8 @@
+@import '../../../styles/variables.scss';
 .categorys {
   display: flex;
   justify-content: center;
   width: 100%;
-  @import '../../../styles/variables.scss';
 
   .categoryContainer {
     display: flex;
