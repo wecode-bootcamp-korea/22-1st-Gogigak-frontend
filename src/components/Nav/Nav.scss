@@ -18,6 +18,18 @@
       align-items: center;
       margin-left: 50px;
 
+      .mainLogo {
+        display: flex;
+        align-items: center;
+        font-size: 28px;
+        margin-right: 15px;
+        cursor: pointer;
+
+        .fas {
+          margin-right: 10px;
+        }
+      }
+
       .navigationMainMenu {
         float: left;
         margin-left: 34px;

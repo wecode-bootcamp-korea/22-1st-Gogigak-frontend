@@ -9,10 +9,13 @@ export class Nav extends Component {
         <header>
           <div className="navigationContainer">
             <div className="navigationLeft">
-              <img alt="네비아이콘" />
+              <div className="mainLogo">
+                <i className="fas fa-drumstick-bite"></i>
+                고기각
+              </div>
               <ul className="navigationMenu">
                 <li className="navigationMenuList">쇼핑하기</li>
-                <li className="navigationMenuList">이용가이드</li>
+                <li className="navigationMenuList">새벽배송가이드</li>
                 <li className="navigationMenuList">이벤트</li>
               </ul>
             </div>
