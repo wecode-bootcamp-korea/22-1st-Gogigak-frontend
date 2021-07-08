@@ -17,3 +17,10 @@ $item-priceInfo-color: #9b9b9b;
   justify-content: center;
   align-items: center;
 }
+
+@mixin maxWidth{
+  width:100%;
+}
+@mixin textCenterClear{
+  text-align:center;
+}
