@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 import './Login.scss';
 
 export class Login extends Component {
+  state = {
+    id: '',
+    password: '',
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+
+    console.log(this.state);
+
+    return console.log(this.state.id, this.state.password);
+  };
+
   render() {
     return (
       <div className="login">
@@ -11,9 +26,16 @@ export class Login extends Component {
           <section className="LoginSection">
             <input
               className="LoginIdInput"
+              name="id"
               placeholder="아이디(이메일 주소)를 입력하세요"
+              onChange={this.handleChange}
             />
-            <input className="LoginIdPw" placeholder="비밀번호를 입력하세요" />
+            <input
+              className="LoginIdPw"
+              name="password"
+              placeholder="비밀번호를 입력하세요"
+              onChange={this.handleChange}
+            />
           </section>
           <button className="loginButton">로그인</button>
         </form>
@@ -28,7 +50,7 @@ export class Login extends Component {
           <div>
             <button className="loginWithKakao">
               <div>
-                <i class="fas fa-comment"></i>
+                <i className="fas fa-comment"></i>
                 <span>&nbsp; 카카오로 시작하기</span>
               </div>
             </button>
@@ -38,7 +60,7 @@ export class Login extends Component {
           <div>
             <button className="loginWithNaver">
               <div>
-                <i class="fas fa-portrait"></i>
+                <i className="fas fa-portrait"></i>
                 <span>&nbsp;&nbsp;네이버로 시작하기</span>
               </div>
             </button>
