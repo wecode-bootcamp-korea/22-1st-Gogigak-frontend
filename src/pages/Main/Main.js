@@ -1,5 +1,5 @@
 import React from 'react';
-import Address from '../Juso/Address';
+import Address from '../Address/Address';
 
 class Main extends React.Component {
   render() {
