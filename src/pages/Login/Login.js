@@ -5,6 +5,24 @@ export class Login extends Component {
   state = {
     id: '',
     password: '',
+    data: [],
+  };
+
+  login = () => {
+    fetch('http://10.58.0.244:8000/users/signin', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.id,
+        password: this.state.password,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+        this.setState({ data: result });
+        var token = result.token;
+        localStorage.setItem('token', token);
+      });
   };
 
   handleChange = e => {
@@ -52,7 +70,9 @@ export class Login extends Component {
               onChange={this.handleChange}
             />
           </section>
-          <button className="loginButton">로그인</button>
+          <div className="loginButton" onClick={this.login}>
+            로그인
+          </div>
         </form>
 
         <article class="findInfo">
