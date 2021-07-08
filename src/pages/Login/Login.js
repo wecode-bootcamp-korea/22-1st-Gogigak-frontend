@@ -12,9 +12,24 @@ export class Login extends Component {
       [e.target.name]: e.target.value,
     });
 
-    console.log(this.state);
+    return (
+      console.log(this.state.id, this.state.password),
+      console.log(
+        this.validateEmail(this.state.id),
+        this.validatePassword(this.state.password)
+      )
+    );
+  };
 
-    return console.log(this.state.id, this.state.password);
+  validateEmail = value => {
+    let regExp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i;
+
+    return regExp.test(value);
+  };
+
+  validatePassword = value => {
+    let regExp = /^[a-zA-Z0-9]{8,20}$/;
+    return regExp.test(value);
   };
 
   render() {
