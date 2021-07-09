@@ -5,19 +5,19 @@ import './Category.scss';
 
 class Category extends React.Component {
   render() {
-    const { name, history } = this.props;
+    const { categoryList, history } = this.props;
 
     return (
       <section className="categorys">
-        {name.map(e => {
+        {categoryList.map(category => {
           return (
             <ul className="categoryContainer">
               <li
-                className={e.title}
-                key={e.title}
-                onClick={() => history.push(`/List/${e.title}`)}
+                className={category.title}
+                key={category.title}
+                onClick={() => history.push(`/List/${category.title}`)}
               >
-                <p>{e.name}</p>
+                <p>{category.name}</p>
               </li>
             </ul>
           );

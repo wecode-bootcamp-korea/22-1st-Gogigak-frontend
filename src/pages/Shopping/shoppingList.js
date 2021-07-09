@@ -36,32 +36,42 @@ const CATEGORY_LIST = [
 class ShoppingList extends Component {
   state = {
     items: [],
+    isClicked: false,
   };
 
   componentDidMount() {
     fetch(
-      `http://10.58.7.59:8000/list?category=${this.props.match.params.name}`,
-      {
-        method: 'GET',
-      }
+      `http://10.58.7.59:8000/list?category=${
+        this.props.match.params.name || 'all'
+      }`
     )
       .then(res => res.json())
       .then(data => this.setState({ items: data.results }));
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.name !== prevProps.match.params.name) {
+      fetch(
+        `http://10.58.7.59:8000/list?category=${
+          this.props.match.params.name || 'all'
+        }`
+      )
+        .then(res => res.json())
+        .then(data => this.setState({ items: data.results }));
+    }
+  }
+
   render() {
-    const { params } = this.props.match;
     const { items } = this.state;
 
     return (
       <section className="shoppingList">
         <div className="categoryImg">
-          <img
-            src={params.name ? items[0]['category_image'] : `/images/all.png`}
-            alt="categoryImg"
-          />
+          {items[0] && (
+            <img src={`${items[0].category_image}`} alt="categoryImg" />
+          )}
         </div>
-        <Category name={CATEGORY_LIST} />
+        <Category categoryList={CATEGORY_LIST} />
         <form action="">
           <select className="itemFilter" name="filterItem">
             <option value="">필터링</option>
@@ -72,20 +82,19 @@ class ShoppingList extends Component {
         </form>
         <section className="itemContainer">
           <ul className="items">
-            {items.map(item => {
-              const allowedPath = [undefined, 'all', item.category];
-              if (allowedPath.includes(params.name)) {
+            {items[1] &&
+              items[1].map((item, idx) => {
                 return (
                   <Item
-                    key={item.name}
+                    key={idx}
                     id={item.id}
                     img={item.thumbnail}
                     price={item.price}
+                    gram={item.grams}
                     title={item.name}
                   />
                 );
-              }
-            })}
+              })}
           </ul>
         </section>
       </section>
