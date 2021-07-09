@@ -3,19 +3,19 @@ import './Item.scss';
 
 class Item extends React.Component {
   render() {
+    const { title, img, gram, price } = this.props;
     return (
       <li className="item">
         <div className="imgContainer">
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fmanilaclam-water-detail.png?alt=media"
-            alt="itemImg"
-          />
+          <img src={img} alt="itemImg" />
           <div className="cartBackground">
             <i class="fas fa-shopping-cart"></i>
           </div>
         </div>
-        <h6 className="itemTitlte">초신선 왕바지락</h6>
-        <p className="priceInfo">기준가 6,500원/500g</p>
+        <h6 className="itemTitlte">{title}</h6>
+        <p className="priceInfo">
+          기준가 {price}원/{gram}g
+        </p>
       </li>
     );
   }

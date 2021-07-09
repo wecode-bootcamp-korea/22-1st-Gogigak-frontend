@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "category": "pig",
+    "img": "/images/sam.png",
+    "title": "신선한 돼지고기",
+    "price": "8400원/500g"
+  },
+  {
+    "id": 2,
+    "category": "pig",
+    "img": "/images/sam.png",
+    "title": "신선한 삼겹살",
+    "price": "8400원/500g"
+  },
+  {
+    "id": 3,
+    "category": "pig",
+    "img": "/images/sam.png",
+    "title": "신선한 항정살",
+    "price": "8400원/500g"
+  },
+
+  {
+    "id": 4,
+    "category": "beef",
+
+    "img": "/images/beef.png",
+    "title": "신선한 살치살",
+    "price": "8400원/500g"
+  },
+
+  {
+    "item_id": 5,
+    "category": "beef",
+    "img": "/images/beef.png",
+    "title": "신선한 꽃등심",
+    "price": "8400원/500g"
+  }
+]
