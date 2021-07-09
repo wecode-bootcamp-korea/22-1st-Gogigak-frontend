@@ -96,10 +96,19 @@
   }
 
   .bestItemContainer {
-    width: 1184px;
+    width: 1296px;
+
+    .bestItemList {
+      font-size: 32px;
+    }
     .bestItems {
       display: flex;
       flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .item {
+      margin: 0px 28px 62px 28px;
     }
   }
 
@@ -111,5 +120,6 @@
     width: 1184px;
     height: 208px;
     margin: 150px auto 0px auto;
+    cursor: pointer;
   }
 }
