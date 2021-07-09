@@ -1,0 +1,92 @@
+@import '../../styles/variables.scss';
+
+.delivery {
+  margin-top: 100px;
+  text-align: center;
+
+  .deliveryImg {
+    width: 259px;
+    height: 172px;
+  }
+
+  .title {
+    margin-top: 40px;
+    font-size: 59px;
+    font-weight: 700;
+  }
+
+  .subTitle {
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .delievery_desc {
+    margin-top: 24px;
+    color: $item-priceInfo-color;
+    font-size: $font-size;
+  }
+
+  .searchText {
+    margin-top: 86px;
+    font-size: 24px;
+    font-weight: 700;
+
+    .text-highlight {
+      color: rgb(104, 209, 230);
+    }
+  }
+
+  .searchContainer {
+    position: relative;
+    width: 780px;
+    margin: 0 auto;
+
+    .searchbox {
+      margin-top: 16px;
+      height: 80px;
+      background-color: black;
+      cursor: pointer;
+
+      .searchWhite {
+        float: left;
+        width: 669px;
+        height: 72px;
+        margin: 4px 0 0 4px;
+        padding-left: 27px;
+        text-align: left;
+        line-height: 72px;
+        background-color: #fff;
+
+        .searchText {
+          position: absolute;
+          top: -80px;
+          color: #bbb;
+        }
+      }
+
+      .fa-search {
+        position: absolute;
+        top: 18px;
+        right: 25px;
+        color: white;
+        font-size: 50px;
+      }
+      .cancelBtn {
+        position: absolute;
+        right: 0px;
+        font-size: 18px;
+
+        color: white;
+      }
+    }
+    .searchResult {
+      margin-top: 16px;
+      font-size: $font-size;
+
+      .text-bold {
+        font-weight: 700;
+      }
+    }
+  }
+}

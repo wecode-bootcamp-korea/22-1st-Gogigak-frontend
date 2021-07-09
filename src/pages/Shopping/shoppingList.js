@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Category from './Category/Category';
 import Item from '../../components/Item/Item';
+import { API } from '../../config';
 
 import './ShoppingList.scss';
 
@@ -39,25 +40,22 @@ class ShoppingList extends Component {
     isClicked: false,
   };
 
-  componentDidMount() {
-    fetch(
-      `http://10.58.7.59:8000/list?category=${
-        this.props.match.params.name || 'all'
-      }`
-    )
+  fetchData = apiAddress => {
+    fetch(apiAddress)
       .then(res => res.json())
       .then(data => this.setState({ items: data.results }));
+  };
+  componentDidMount() {
+    this.fetchData(
+      `${API.LIST}?category=${this.props.match.params.name || 'all'}`
+    );
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.name !== prevProps.match.params.name) {
-      fetch(
-        `http://10.58.7.59:8000/list?category=${
-          this.props.match.params.name || 'all'
-        }`
-      )
-        .then(res => res.json())
-        .then(data => this.setState({ items: data.results }));
+      this.fetchData(
+        `${API.LIST}?category=${this.props.match.params.name || 'all'}`
+      );
     }
   }
 
@@ -75,9 +73,9 @@ class ShoppingList extends Component {
         <form action="">
           <select className="itemFilter" name="filterItem">
             <option value="">필터링</option>
-            <option value="학생">판매순</option>
-            <option value="회사원">가격순</option>
-            <option value="기타">리뷰순</option>
+            <option value="sell">판매순</option>
+            <option value="price">가격순</option>
+            <option value="review">리뷰순</option>
           </select>
         </form>
         <section className="itemContainer">
