@@ -10,7 +10,7 @@ export class Register extends Component {
     phone: '',
   };
 
-  login = () => {
+  register = () => {
     console.log(this.state.inputId);
     console.log(this.state.inputPw);
 
@@ -133,6 +133,8 @@ export class Register extends Component {
                   value={this.state.phone}
                   onChange={this.handleChange}
                 ></input>
+
+                {/* 추가 구현사항 */}
                 {/* <select className="phoneNumberSelect">
                   <option value="010">010</option>
                   <option value="011">011</option>
@@ -146,8 +148,13 @@ export class Register extends Component {
             </div>
           </div>
           <div className="registerButtonArea">
-            <button className="goPrevious">이전으로</button>
-            <button className="goResiter" onClick={this.login}>
+            <button
+              className="goPrevious"
+              onClick={() => this.props.history.push('./sign-up')}
+            >
+              이전으로
+            </button>
+            <button className="goResiter" onClick={this.register}>
               가입하기
             </button>
           </div>
