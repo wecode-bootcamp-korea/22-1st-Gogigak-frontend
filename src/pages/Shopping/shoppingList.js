@@ -3,7 +3,7 @@ import Category from './Category/Category';
 import Item from '../../components/Item/Item';
 import { API } from '../../config';
 
-import './ShoppingList.scss';
+import './ShoppingList';
 
 const CATEGORY_LIST = [
   {

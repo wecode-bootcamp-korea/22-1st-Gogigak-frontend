@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Item from '../Shopping/Item/Item';
+import Item from '../../components/Item/Item';
 import './Main.scss';
 
 export default class Main extends Component {
