@@ -17,9 +17,7 @@ class Address extends React.Component {
     isPost: false,
   };
   handleComplete = data => {
-    let fullAddress = data.address;
-
-    console.log(fullAddress);
+    let zonecode = data.zonecode;
   };
 
   handlePost = () => {
