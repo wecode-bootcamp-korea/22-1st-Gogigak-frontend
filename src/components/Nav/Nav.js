@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 export class Nav extends Component {
@@ -10,27 +10,31 @@ export class Nav extends Component {
         <header>
           <div className="navigationContainer">
             <div className="navigationLeft">
-              <div
-                className="mainLogo"
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                  this.props.history.push('./');
-                }}
-              >
-                <i className="fas fa-drumstick-bite"></i>
-                고기각
-              </div>
-              <ul className="navigationMenu">
-                <li
-                  className="navigationMenuList"
+              <Link to="/" className="moveOtherPages">
+                <div
                   onClick={() => {
                     window.scrollTo(0, 0);
-                    this.props.history.push('./list');
                   }}
+                  className="mainLogo"
                 >
-                  쇼핑하기
-                </li>
-                <li className="navigationMenuList">새벽배송가이드</li>
+                  <i className="fas fa-drumstick-bite"></i>
+                  고기각
+                </div>
+              </Link>
+              <ul className="navigationMenu">
+                <Link to="/list" className="moveOtherPages">
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    쇼핑하기
+                  </li>
+                </Link>
+                <Link to="/Address" className="moveOtherPages">
+                  <li className="navigationMenuList">새벽배송가이드</li>
+                </Link>
                 <li className="navigationMenuList">이벤트</li>
               </ul>
             </div>
@@ -41,15 +45,16 @@ export class Nav extends Component {
               </ul>
               <div className="navigationSubMenuSplit"></div>
               <ul className="navigationMenu">
-                <li
-                  className="navigationMenuList"
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                    this.props.history.push('./login');
-                  }}
-                >
-                  로그인
-                </li>
+                <Link to="/login" className="moveOtherPages">
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    로그인
+                  </li>
+                </Link>
                 <li
                   className="navigationMenuList"
                   onClick={() => {
@@ -68,4 +73,4 @@ export class Nav extends Component {
   }
 }
 
-export default withRouter(Nav);
+export default Nav;
