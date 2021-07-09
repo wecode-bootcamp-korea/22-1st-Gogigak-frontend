@@ -1,0 +1,17 @@
+{
+  "data": [
+    {
+      "key": 1,
+      "productImg": "https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-fresh-detail.png?alt=media",
+      "productName": "존나게맛있는삼겹살이에유",
+      "productStandard": "1,3000",
+      "productPrice": "9,500",
+      "productOption": [
+        "보통(14mm)",
+        "얇게(12mm)",
+        "두껍게(16mm)",
+        "거지같이두껍게(24mm)"
+      ]
+    }
+  ]
+}

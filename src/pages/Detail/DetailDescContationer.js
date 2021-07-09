@@ -18,6 +18,45 @@ export class DetailDescContationer extends Component {
         </section>
         <section className="detail-review">
           <ul>
+            <li className="detail-review-photo-container review-write">
+              <div class="detail-review-wrtie-wrap">
+                <div className="detail-review-box">
+                  <form>
+                    <div className="detail-review-info">
+                      <label>
+                        <input type="text" name="nickName"></input>
+                      </label>
+                      <div className="detail-review-content-wrap">
+                        <textarea></textarea>
+                      </div>
+                      <div className="detail-review-customer">
+                        <p>심익현</p>
+                        <p className="count">1회 구매</p>
+                        <time dateTime="2021-07-06">2021-07-06</time>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div className="detail-review-photo-wrap">
+                  <div className="img-wrap">
+                    <img
+                      src="http://placehold.it/235x236"
+                      alt="업로드 이미지"
+                    />
+                  </div>
+                  <input type="file" />
+                </div>
+              </div>
+              <div className="detail-review-width-product">
+                <div className="product-wrap-num">
+                  함께 구매하신 상품<span className="num">(3)</span>
+                </div>
+                <div className="product-name-num">초신선 돼지고기 x 3</div>
+                <div className="btn-wrap">
+                  <button>후기 등록</button>
+                </div>
+              </div>
+            </li>
             <li className="detail-review-photo-container">
               <Link to="#!">
                 <div className="detail-review-box">

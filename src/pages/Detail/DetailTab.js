@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom';
 import './Detail.scss';
 
 export class DetailTab extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabOn: false,
+    };
+  }
   render() {
     return (
       <div className="detail-tab">

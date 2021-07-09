@@ -1,59 +1,99 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import AmountOption from './AmountOption';
+
+// select -> state
+// 함수를 만들어서 자식한테 전달
+// 자식에서 함수기 실행되면은 select된 값을 변경
+
 export class DetailTop extends Component {
   //state초기화
   constructor(props) {
     super(props);
     this.state = {
       numValue: 1,
+      isOn: false,
+      amountOption: [],
+      selectedOption: this.props.productOption[0],
+      productOption: '',
+      option: '',
     };
+    this.onClickToggleHandler = this.onClickToggleHandler.bind(this);
   }
+  //수량 증가 감소
   onClickHandler = () => {
     this.setState({ numValue: this.state.numValue + 1 });
   };
   onClickhandlerRemove = () => {
     //const { numValue } = this.state.numValue;
-    if (this.state.numValue <= 1) {
-      alert('1개 이하는 없습니다.');
-    } else {
+    if (this.state.numValue > 1) {
       this.setState({ numValue: this.state.numValue - 1 });
     }
   };
+  //종류 추가
+  onClickToggleHandler = () => {
+    //const { isOn } = this.state.isOn;
+    //console.log(isOn);
+    this.setState({
+      isOn: !this.state.isOn,
+    });
+  };
+
+  selectOption = option => {
+    this.setState({
+      selectedOption: option,
+    });
+    this.onClickToggleHandler();
+  };
+
   render() {
-    console.log(this.state.numValue);
+    const productInfo = this.props;
+    const selectedOption = this.state.selectedOption;
+    //console.log(productInfo.productOption);
+    //console.log(this.state.productOption);
+    console.log(selectedOption, 'dfdfd');
     return (
-      <section className="detail-top-wrap">
+      <section className="detail-top-wrap" key="{productInfo.key}">
         <div className="detail-top-container">
           <div className="detail-top-data">
             <picture>
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fmanilaclam-water-detail.png?alt=media"
-                alt="제품 이미지"
-              />
+              <img src={productInfo.productImg} alt="제품 이미지" />
             </picture>
             <article className="detail-top-info-wrap">
-              <h2>초신선 왕바지락</h2>
-              <p className="product-standard">100g당 1,300원</p>
-              <p className="product-price">기준가 6,500원 (500g)</p>
+              <h2>{productInfo.productName}</h2>
+              <p className="product-standard">
+                100g당 {productInfo.productStandard}원
+              </p>
+              <p className="product-price">
+                기준가 {productInfo.productPrice}원 (500g)
+              </p>
               <div className="detail-top-option">
                 <p className="detail-top-tit">옵션</p>
                 <div className="detail-option-wrap info-box">
-                  <button>
-                    보통(16mm)
+                  <button
+                    onClick={this.onClickToggleHandler}
+                    className={this.state.isOn ? 'active' : ''}
+                  >
+                    {selectedOption}
                     <i className="fas fa-chevron-down drop-down-arrow"></i>
                   </button>
-                  <div className="option-wrap disable">
+                  <div
+                    className={
+                      this.state.isOn ? 'option-wrap' : 'option-wrap disable'
+                    }
+                  >
                     <ul>
-                      <li>
-                        <button> 보통(16mm)</button>
-                      </li>
-                      <li>
-                        <button> 보통(16mm)</button>
-                      </li>
-                      <li>
-                        <button> 보통(16mm)</button>
-                      </li>
+                      {productInfo.productOption.map(el => {
+                        return (
+                          <AmountOption
+                            key={el.key}
+                            productOption={el}
+                            selectOption={this.selectOption}
+                            // onClick={this.onClickToggleHandler}
+                          />
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>
