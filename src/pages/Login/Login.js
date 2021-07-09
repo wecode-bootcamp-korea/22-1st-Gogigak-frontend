@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './Login.scss';
+import { SIGNIN_API } from '../../config';
 
 export class Login extends Component {
   state = {
     id: '',
     password: '',
-    data: [],
   };
 
   login = e => {
     e.preventDefault();
-    fetch('http://10.58.0.244:8000/users/signin', {
+    fetch(SIGNIN_API, {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.id,
@@ -19,12 +19,8 @@ export class Login extends Component {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result);
-        this.setState({ data: result });
-        var token = result.token;
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', result.token);
       });
-
     this.props.history.push('/');
   };
 
@@ -32,24 +28,16 @@ export class Login extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
-
-    return (
-      console.log(this.state.id, this.state.password),
-      console.log(
-        this.validateEmail(this.state.id),
-        this.validatePassword(this.state.password)
-      )
-    );
   };
 
   validateEmail = value => {
-    let regExp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i;
+    const regExp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i;
 
     return regExp.test(value);
   };
 
   validatePassword = value => {
-    let regExp = /^[a-zA-Z0-9]{8,20}$/;
+    const regExp = /^[a-zA-Z0-9]{8,20}$/;
     return regExp.test(value);
   };
 
