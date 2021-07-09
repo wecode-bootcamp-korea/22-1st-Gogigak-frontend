@@ -8,8 +8,3 @@ class Main extends React.Component {
 }
 
 export default Main;
-
-// onClick={() => {
-//   window.scrollTo(0, 0);
-//   this.props.history.push('./register');
-// }}
