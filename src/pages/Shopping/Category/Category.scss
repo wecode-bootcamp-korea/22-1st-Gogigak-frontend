@@ -1,0 +1,32 @@
+@import '../../../styles/variables.scss';
+.categorys {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .categoryContainer {
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      margin-top: 72px;
+      margin-right: 5px;
+
+      p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 143px;
+        height: 56px;
+        background-color: $item-background-color;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:hover {
+          background-color: black;
+          color: white;
+        }
+      }
+    }
+  }
+}
