@@ -55,15 +55,16 @@ export class Nav extends Component {
                     로그인
                   </li>
                 </Link>
-                <li
-                  className="navigationMenuList"
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                    this.props.history.push('./sign-up');
-                  }}
-                >
-                  회원가입
-                </li>
+                <Link to="/sign-up" className="moveOtherPages">
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    회원가입
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>
