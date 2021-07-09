@@ -20,8 +20,8 @@ export class Login extends Component {
       .then(res => res.json())
       .then(result => {
         localStorage.setItem('token', result.token);
+        this.props.history.push('/');
       });
-    this.props.history.push('/');
   };
 
   handleChange = e => {
