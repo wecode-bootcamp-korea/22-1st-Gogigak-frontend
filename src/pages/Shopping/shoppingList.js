@@ -7,12 +7,12 @@ import './ShoppingList.scss';
 const CATEGORY_LIST = [
   {
     id: 1,
-    title: 'allmeat',
+    title: 'all',
     name: '전체',
   },
   {
     id: 2,
-    title: 'pig',
+    title: 'pork',
     name: '돼지',
   },
 
@@ -28,7 +28,7 @@ const CATEGORY_LIST = [
   },
   {
     id: 5,
-    title: 'susan',
+    title: 'seafood',
     name: '수산',
   },
 ];
@@ -39,25 +39,25 @@ class ShoppingList extends Component {
   };
 
   componentDidMount() {
-    fetch('/data/itemList.json', {
-      headers: {
+    fetch(
+      `http://10.58.7.59:8000/list?category=${this.props.match.params.name}`,
+      {
         method: 'GET',
-      },
-    })
+      }
+    )
       .then(res => res.json())
-      .then(data => this.setState({ items: data }));
+      .then(data => this.setState({ items: data.results }));
   }
 
   render() {
     const { params } = this.props.match;
     const { items } = this.state;
+
     return (
       <section className="shoppingList">
         <div className="categoryImg">
           <img
-            src={
-              params.name ? `/images/${params.name}.png` : `/images/allmeat.png`
-            }
+            src={params.name ? items[0]['category_image'] : `/images/all.png`}
             alt="categoryImg"
           />
         </div>
@@ -73,15 +73,15 @@ class ShoppingList extends Component {
         <section className="itemContainer">
           <ul className="items">
             {items.map(item => {
-              const allowedPath = [undefined, 'allmeat', item.category];
+              const allowedPath = [undefined, 'all', item.category];
               if (allowedPath.includes(params.name)) {
                 return (
                   <Item
-                    key={item.title}
+                    key={item.name}
                     id={item.id}
-                    img={item.img}
+                    img={item.thumbnail}
                     price={item.price}
-                    title={item.title}
+                    title={item.name}
                   />
                 );
               }
