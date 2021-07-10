@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import './Cart.scss';
 
 export class Cart extends Component {
+  state = {
+    cartData: '',
+  };
+
+  componentDidMount() {
+    fetch('http://localhost:3000/data/cartdata.json')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          cartData: data,
+        });
+      });
+  }
+
   render() {
+    console.log(this.state.cartData);
     return (
       <div className="cart">
         <p className="cartTitle">장바구니</p>
