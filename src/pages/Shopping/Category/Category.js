@@ -4,25 +4,23 @@ import { withRouter } from 'react-router';
 import './Category.scss';
 
 class Category extends React.Component {
+  handleClick = () => {
+    this.props.history.push(`/List/${this.props.title}`);
+  };
+
   render() {
-    const { categoryList, history } = this.props;
+    const { title, name, selectedIdx, isSelected, handleCategoryClick } =
+      this.props;
 
     return (
-      <section className="categorys">
-        {categoryList.map(category => {
-          return (
-            <ul className="categoryContainer">
-              <li
-                className={category.title}
-                key={category.title}
-                onClick={() => history.push(`/List/${category.title}`)}
-              >
-                <p>{category.name}</p>
-              </li>
-            </ul>
-          );
-        })}
-      </section>
+      <li className={title} key={title} onClick={() => this.handleClick()}>
+        <p
+          className={`${isSelected ? 'category-activated' : 'category'}`}
+          onClick={() => handleCategoryClick(selectedIdx)}
+        >
+          {name}
+        </p>
+      </li>
     );
   }
 }

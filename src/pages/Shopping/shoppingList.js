@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Category from './Category/Category';
 import Item from '../../components/Item/Item';
+
 import { API } from '../../config';
 
 import './ShoppingList.scss';
@@ -37,7 +38,8 @@ const CATEGORY_LIST = [
 class ShoppingList extends Component {
   state = {
     items: [],
-    isClicked: false,
+    orderingValue: 'all',
+    selectedCategory: Array(CATEGORY_LIST.length).fill(false),
   };
 
   fetchData = apiAddress => {
@@ -47,20 +49,37 @@ class ShoppingList extends Component {
   };
   componentDidMount() {
     this.fetchData(
-      `${API.LIST}?category=${this.props.match.params.name || 'all'}`
+      `http://${API.LIST}?category=${
+        this.props.match.params.name || 'all'
+      }&sort=${this.state.orderingValue}`
     );
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.name !== prevProps.match.params.name) {
       this.fetchData(
-        `${API.LIST}?category=${this.props.match.params.name || 'all'}`
+        `http://${API.LIST}?category=${this.props.match.params.name}&sort=${this.state.orderingValue}`
+      );
+    }
+    if (this.state.orderingValue !== prevState.orderingValue) {
+      this.fetchData(
+        `http://${API.LIST}?category=${this.props.match.params.name}&sort=${this.state.orderingValue}`
       );
     }
   }
 
+  handleChange = event => {
+    this.setState({ orderingValue: event.target.value });
+  };
+
+  handleCategoryClick = idx => {
+    const newArr = Array(CATEGORY_LIST.length).fill(false);
+    newArr[idx] = true;
+    this.setState({ selectedCategory: newArr });
+  };
+
   render() {
-    const { items } = this.state;
+    const { items, selectedCategory } = this.state;
 
     return (
       <section className="shoppingList">
@@ -69,13 +88,35 @@ class ShoppingList extends Component {
             <img src={`${items[0].category_image}`} alt="categoryImg" />
           )}
         </div>
-        <Category categoryList={CATEGORY_LIST} />
+        <section className="categorys">
+          <ul className="categoryContainer">
+            {CATEGORY_LIST.map((category, idx) => {
+              return (
+                <Category
+                  categoryIdx={idx}
+                  key={category.id}
+                  id={category.id}
+                  title={category.title}
+                  name={category.name}
+                  isSelected={selectedCategory[idx]}
+                  handleCategoryClick={() => this.handleCategoryClick(idx)}
+                />
+              );
+            })}
+          </ul>
+        </section>
+
         <form action="">
-          <select className="itemFilter" name="filterItem">
-            <option value="">필터링</option>
-            <option value="sell">판매순</option>
-            <option value="price">가격순</option>
-            <option value="review">리뷰순</option>
+          <select
+            className="itemFilter"
+            name="filterItem"
+            onChange={this.handleChange}
+          >
+            <option value="all">최신순</option>
+            <option value="sales">판매량 기준</option>
+            <option value="price-desc">높은 가격순 </option>
+            <option value="price-asc">낮은 가격순 </option>
+            <option value="reviews">리뷰순</option>
           </select>
         </form>
         <section className="itemContainer">
@@ -90,6 +131,7 @@ class ShoppingList extends Component {
                     price={item.price}
                     gram={item.grams}
                     title={item.name}
+                    options={item.options}
                   />
                 );
               })}
