@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import './Detail.scss';
-
 import DetailTop from './DetailTop';
 import DetailTab from './DetailTab';
 import DetailDescContationer from './DetailDescContationer';
+
+import './Detail.scss';
 
 export class Detail extends Component {
   constructor(props) {
@@ -19,34 +19,30 @@ export class Detail extends Component {
     fetch('http://localhost:3000/data/detailProduct.json', {
       method: 'GET',
     })
-      .then(res => {
-        return res.json();
+      .then(results => {
+        return results.json();
       })
-      .then(res => {
+      .then(results => {
         this.setState({
-          productInfo: res.data,
+          productInfo: results.results,
         });
+        //console.log(this.state.productInfo);
       });
   }
   render() {
-    const { productInfo } = this.state;
+    const productInfo = this.state;
     return (
       <div className="detail-wrap">
-        {productInfo.map(el => {
-          return (
-            <DetailTop
-              key={el.key}
-              productImg={el.productImg}
-              productName={el.productName}
-              productStandard={el.productStandard}
-              productPrice={el.productPrice}
-              productOption={el.productOption}
-            />
-          );
-        })}
-        {/* <DetailTop /> */}
+        <DetailTop
+          productImg={productInfo.productInfo.thumbnail}
+          productName={productInfo.productInfo.name}
+          productStandard={productInfo.productInfo.grams}
+          productPrice={productInfo.productInfo.price}
+          productOption={productInfo.productInfo.options}
+          //productInfo={productInfo.productInfo}
+        />
         <DetailTab />
-        <DetailDescContationer />
+        <DetailDescContationer DesImg={productInfo.productInfo.images} />
       </div>
     );
   }

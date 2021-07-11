@@ -323,31 +323,41 @@
               display:flex;
               align-items: center;
               width:100%;
+              .detail-review-top-wrap{
+                display:flex;
+                justify-content: space-between;
 
-              .detail-review-info{
-                margin-top:25px;
-                margin-left:30px;
-                width:658px;
-
-                .detail-review-content-wrap{
-                  background:#f8f8f8;
-                  margin-top:15px;
-                  height:150px;
-                  width:100%;
-
-                  p{
-                    word-wrap:break-word;
-                    white-space:pre-wrap;
-                    word-break:break-all;
-                    font-size:15px;
-                    line-height:23px;
-                    position:relative;
-                    top:20px;
-                    margin-left:20px;
-                    margin-right:20px;
-                  }
+                button{
+                  font-size:24px;
+                  color:#d0021b;
+                  cursor:pointer;
                 }
               }
+
+                .detail-review-info{
+                  margin-top:25px;
+                  margin-left:30px;
+                  width:658px;
+
+                  .detail-review-content-wrap{
+                    background:#f8f8f8;
+                    margin-top:15px;
+                    height:150px;
+                    width:100%;
+
+                    p{
+                      word-wrap:break-word;
+                      white-space:pre-wrap;
+                      word-break:break-all;
+                      font-size:15px;
+                      line-height:23px;
+                      position:relative;
+                      top:20px;
+                      margin-left:20px;
+                      margin-right:20px;
+                    }
+                  }
+                }
 
               .detail-review-photo-wrap{
                 overflow:hidden;

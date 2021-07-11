@@ -12,88 +12,87 @@ export class DetailTop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numValue: 1,
-      isOn: false,
+      itemCountNumValue: 1,
+      isLoginModalOn: false,
       amountOption: [],
-      selectedOption: this.props.productOption[0],
+      selectedOption: this.props.productOption,
       productOption: '',
-      option: '',
+      options: '',
     };
-    this.onClickToggleHandler = this.onClickToggleHandler.bind(this);
   }
   //수량 증가 감소
-  onClickHandler = () => {
-    this.setState({ numValue: this.state.numValue + 1 });
+  increaseCount = () => {
+    this.setState({ itemCountNumValue: this.state.itemCountNumValue + 1 });
   };
-  onClickhandlerRemove = () => {
-    //const { numValue } = this.state.numValue;
-    if (this.state.numValue > 1) {
-      this.setState({ numValue: this.state.numValue - 1 });
+  increaseCountRemove = () => {
+    //const { itemCountNumValue } = this.state.itemCountNumValue;
+    if (this.state.itemCountNumValue > 1) {
+      this.setState({ itemCountNumValue: this.state.itemCountNumValue - 1 });
     }
   };
   //종류 추가
   onClickToggleHandler = () => {
-    //const { isOn } = this.state.isOn;
-    //console.log(isOn);
+    //const { isLoginModalOn } = this.state.isLoginModalOn;
+    //console.log(isLoginModalOn);
     this.setState({
-      isOn: !this.state.isOn,
+      isLoginModalOn: !this.state.isLoginModalOn,
     });
   };
 
-  selectOption = option => {
+  selectOption = options => {
     this.setState({
-      selectedOption: option,
+      selectedOption: options,
     });
     this.onClickToggleHandler();
   };
 
   render() {
-    const productInfo = this.props;
     const selectedOption = this.state.selectedOption;
-    //console.log(productInfo.productOption);
-    //console.log(this.state.productOption);
-    console.log(selectedOption, 'dfdfd');
+    //console.log(this.state.selectedOption, '선택option');
     return (
-      <section className="detail-top-wrap" key="{productInfo.key}">
+      <section className="detail-top-wrap">
         <div className="detail-top-container">
           <div className="detail-top-data">
             <picture>
-              <img src={productInfo.productImg} alt="제품 이미지" />
+              <img src={this.props.productImg} alt="제품 이미지" />
             </picture>
             <article className="detail-top-info-wrap">
-              <h2>{productInfo.productName}</h2>
+              <h2>{this.props.productName}</h2>
               <p className="product-standard">
-                100g당 {productInfo.productStandard}원
+                100g당 {this.props.productStandard}원
               </p>
               <p className="product-price">
-                기준가 {productInfo.productPrice}원 (500g)
+                기준가 {this.props.productPrice}원 (500g)
               </p>
               <div className="detail-top-option">
                 <p className="detail-top-tit">옵션</p>
                 <div className="detail-option-wrap info-box">
                   <button
                     onClick={this.onClickToggleHandler}
-                    className={this.state.isOn ? 'active' : ''}
+                    className={this.state.isLoginModalOn ? 'active' : ''}
                   >
-                    {selectedOption}
+                    {selectedOption && selectedOption}
                     <i className="fas fa-chevron-down drop-down-arrow"></i>
                   </button>
                   <div
                     className={
-                      this.state.isOn ? 'option-wrap' : 'option-wrap disable'
+                      this.state.isLoginModalOn
+                        ? 'option-wrap'
+                        : 'option-wrap disable'
                     }
                   >
                     <ul>
-                      {productInfo.productOption.map(el => {
-                        return (
-                          <AmountOption
-                            key={el.key}
-                            productOption={el}
-                            selectOption={this.selectOption}
-                            // onClick={this.onClickToggleHandler}
-                          />
-                        );
-                      })}
+                      {this.props.productOption &&
+                        this.props.productOption.map(el => {
+                          console.log(this.props.productOption);
+                          return (
+                            <AmountOption
+                              key={el.key}
+                              productOption={el}
+                              selectOption={this.selectedOption}
+                            />
+                          );
+                        })}
                     </ul>
                   </div>
                 </div>
@@ -104,17 +103,17 @@ export class DetailTop extends Component {
                   <button
                     className="minus-button button-wrap"
                     name="dec"
-                    onClick={this.onClickhandlerRemove}
+                    onClick={this.increaseCountRemove}
                   >
                     <i className="fas fa-minus"></i>
                   </button>
                   <div className="count-counter">
-                    <span>{this.state.numValue}</span>
+                    <span>{this.state.itemCountNumValue}</span>
                   </div>
                   <button
                     className="plus-button button-wrap"
                     name="inc"
-                    onClick={this.onClickHandler}
+                    onClick={this.increaseCount}
                   >
                     <i className="fas fa-plus"></i>
                   </button>

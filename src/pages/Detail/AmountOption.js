@@ -8,10 +8,8 @@ export class AmountOption extends Component {
       isOn: false,
       option: '',
     };
-    //this.onClickToggleHandler = this.onClickToggleHandler.bind(this);
-    //() => console.log('asdasdas')
   }
-  //option = React.createRef();
+  // option = React.createRef();
   // handleClick = option => {
   //   this.props.selectOption(this.props.amountOption);
   //   console.log(this.props.amountOption);
@@ -19,6 +17,7 @@ export class AmountOption extends Component {
 
   render() {
     const amountOption = this.props.productOption;
+    console.log(this.props.selectOption);
     return (
       <li>
         <button onClick={() => this.props.selectOption(amountOption)}>
