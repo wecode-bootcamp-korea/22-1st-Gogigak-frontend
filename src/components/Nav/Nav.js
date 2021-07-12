@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 export class Nav extends Component {
@@ -9,10 +10,31 @@ export class Nav extends Component {
         <header>
           <div className="navigationContainer">
             <div className="navigationLeft">
-              <img alt="네비아이콘" />
+              <Link to="/" className="moveOtherPages">
+                <div
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                  }}
+                  className="mainLogo"
+                >
+                  <i className="fas fa-drumstick-bite"></i>
+                  고기각
+                </div>
+              </Link>
               <ul className="navigationMenu">
-                <li className="navigationMenuList">쇼핑하기</li>
-                <li className="navigationMenuList">이용가이드</li>
+                <Link to="/list" className="moveOtherPages">
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    쇼핑하기
+                  </li>
+                </Link>
+                <Link to="/Address" className="moveOtherPages">
+                  <li className="navigationMenuList">새벽배송가이드</li>
+                </Link>
                 <li className="navigationMenuList">이벤트</li>
               </ul>
             </div>
@@ -23,8 +45,26 @@ export class Nav extends Component {
               </ul>
               <div className="navigationSubMenuSplit"></div>
               <ul className="navigationMenu">
-                <li className="navigationMenuList">공지사항</li>
-                <li className="navigationMenuList">고객센터</li>
+                <Link to="/login" className="moveOtherPages">
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    로그인
+                  </li>
+                </Link>
+                <Link to="/sign-up" className="moveOtherPages">
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    회원가입
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>

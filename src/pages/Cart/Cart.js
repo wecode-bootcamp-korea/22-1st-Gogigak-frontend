@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CART_API } from '../../config';
 import './Cart.scss';
 import CartList from './CartList';
 
@@ -8,17 +9,17 @@ export class Cart extends Component {
   };
 
   componentDidMount() {
-    fetch('http://ambitiouskyle.iptime.org:6389/orders/cart ')
+    fetch(CART_API.CART)
       .then(res => res.json())
       .then(data => {
         this.setState({
-          cartData: data,
+          cartData: data.cartItems,
         });
+        // console.log(this.state, '컴디마');
       });
   }
 
   render() {
-    // console.log(this.state);
     return (
       <div className="cart">
         <p className="cartTitle">장바구니</p>
@@ -31,9 +32,10 @@ export class Cart extends Component {
                   <div className="header-count">수량</div>
                   <div className="header-price">가격</div>
                 </div>
-                {this.state.cartData.cartItems.map(x => (
-                  <CartList cartData={this.state.cartData.cartItems} />
-                ))}
+                {this.state.cartData &&
+                  this.state.cartData.map(x => (
+                    <CartList thumbnail={this.state.cartData.thumbnail} />
+                  ))}
               </section>
               <section className="paymentContainer">
                 <div className="paymentBox">
