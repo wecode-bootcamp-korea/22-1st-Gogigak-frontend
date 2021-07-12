@@ -21,7 +21,7 @@ export class Cart extends Component {
                 />
                 <div className="infoContainer">
                   <p className="productName">
-                    초신선 무항생제 돼지 삼겹살 구이용
+                    초신선 무항생제 돼지 삼겹살 구이 용
                   </p>
                   <p className="selectOption">보통(16mm)</p>
                 </div>
