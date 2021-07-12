@@ -22,9 +22,6 @@ export class DetailTab extends Component {
           <li>
             <Link to="#!">상품리뷰</Link>
           </li>
-          {/* <li>
-            <Link to="#!">상품정보안내</Link>
-          </li> */}
         </ul>
       </div>
     );

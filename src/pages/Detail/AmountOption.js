@@ -9,11 +9,6 @@ export class AmountOption extends Component {
       option: '',
     };
   }
-  // option = React.createRef();
-  // handleClick = option => {
-  //   this.props.selectOption(this.props.amountOption);
-  //   console.log(this.props.amountOption);
-  // };
 
   render() {
     const amountOption = this.props.productOption;

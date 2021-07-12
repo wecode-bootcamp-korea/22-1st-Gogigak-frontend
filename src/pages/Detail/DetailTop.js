@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom';
 
 import AmountOption from './AmountOption';
 
-// select -> state
-// 함수를 만들어서 자식한테 전달
-// 자식에서 함수기 실행되면은 select된 값을 변경
-
 export class DetailTop extends Component {
   //state초기화
   constructor(props) {
@@ -25,15 +21,12 @@ export class DetailTop extends Component {
     this.setState({ itemCountNumValue: this.state.itemCountNumValue + 1 });
   };
   increaseCountRemove = () => {
-    //const { itemCountNumValue } = this.state.itemCountNumValue;
     if (this.state.itemCountNumValue > 1) {
       this.setState({ itemCountNumValue: this.state.itemCountNumValue - 1 });
     }
   };
   //종류 추가
   onClickToggleHandler = () => {
-    //const { isLoginModalOn } = this.state.isLoginModalOn;
-    //console.log(isLoginModalOn);
     this.setState({
       isLoginModalOn: !this.state.isLoginModalOn,
     });
@@ -48,7 +41,6 @@ export class DetailTop extends Component {
 
   render() {
     const selectedOption = this.state.selectedOption;
-    //console.log(this.state.selectedOption, '선택option');
     return (
       <section className="detail-top-wrap">
         <div className="detail-top-container">
@@ -84,7 +76,6 @@ export class DetailTop extends Component {
                     <ul>
                       {this.props.productOption &&
                         this.props.productOption.map(el => {
-                          //console.log(this.props.productOption);
                           return (
                             <AmountOption
                               key={el.key}

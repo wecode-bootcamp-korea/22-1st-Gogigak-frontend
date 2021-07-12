@@ -18,21 +18,6 @@ export class DetailDescContationer extends Component {
       value: '',
     };
   }
-  //버튼 클릭 이벤트와 함수 생성
-  // addComment = e => {
-  //   const { commentList } = this.state; //구조분해할당
-  //   this.setState({
-  //     commentList: commentList.concat({
-  //       content: this.state.textAreaValue,
-  //       title: this.state.titleValue,
-  //     }),
-  //     textAreaValue: '',
-  //     titleValue: '',
-  //     value: '',
-  //   });
-  //   console.log(commentList);
-  //   e.preventDefault();
-  // };
 
   //버튼 클릭 이벤트와 함수 생성 서버 연결
   addComment = e => {
@@ -46,7 +31,6 @@ export class DetailDescContationer extends Component {
     })
       .then(res => res.json())
       .then(res => {
-        //console.log(res);'
         const { commentList } = this.state; //구조분해할당
         this.setState({
           commentList: commentList.concat({
@@ -57,7 +41,6 @@ export class DetailDescContationer extends Component {
           titleValue: '',
           value: '',
         });
-        e.preventDefault();
       });
     e.preventDefault();
   };
@@ -75,7 +58,7 @@ export class DetailDescContationer extends Component {
     });
   };
   //commentList목데이터
-  componentDidMount() {
+  componentDidMount = () => {
     fetch('http://ambitiouskyle.iptime.org:6389/products/12/reviews', {
       method: 'GET',
     })
@@ -87,7 +70,7 @@ export class DetailDescContationer extends Component {
           commentList: results.results,
         });
       });
-  }
+  };
   //deleteComment리뷰삭제
   deleteComment = id => {
     this.setState({
@@ -98,10 +81,6 @@ export class DetailDescContationer extends Component {
   render() {
     const imgUrl = this.props.DesImg;
     const commentList = this.state;
-    //console.log(this.props.DesImg[0].imageUrl);
-    // console.log(commentList.titleValue);
-    // console.log(commentList.textAreaValue);
-    // console.log(commentList.commentList);
 
     return (
       <div className="detail-product-wrap">

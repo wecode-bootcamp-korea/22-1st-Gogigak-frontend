@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 
 export class CommnetList extends Component {
   render() {
-    //const commentList = this.props;
-    //const { title, comment, key } = commentList;
-    //console.log(this.props.commentList);
     return (
       <li className="detail-review-container">
         <Link to="#!">
@@ -14,9 +11,7 @@ export class CommnetList extends Component {
               <div className="detail-review-top-wrap">
                 <h6>{this.props.title}</h6>
                 <button
-                  onClick={() =>
-                    this.props.deleteComment(this.props.comments.id)
-                  }
+                  onClick={() => this.props.deleteComment(this.props.key)}
                 >
                   <i class="fas fa-times"></i>
                 </button>

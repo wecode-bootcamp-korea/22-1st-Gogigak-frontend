@@ -16,7 +16,7 @@ export class Detail extends Component {
   }
   //mockdata받기
   componentDidMount() {
-    fetch('http://localhost:3000/data/detailProduct.json', {
+    fetch('http://ambitiouskyle.iptime.org:6389/products/12', {
       method: 'GET',
     })
       .then(results => {
@@ -26,7 +26,6 @@ export class Detail extends Component {
         this.setState({
           productInfo: results.results,
         });
-        //console.log(this.state.productInfo);
       });
   }
   render() {
@@ -39,7 +38,6 @@ export class Detail extends Component {
           productStandard={productInfo.productInfo.grams}
           productPrice={productInfo.productInfo.price}
           productOption={productInfo.productInfo.options}
-          //productInfo={productInfo.productInfo}
         />
         <DetailTab />
         <DetailDescContationer DesImg={productInfo.productInfo.images} />
