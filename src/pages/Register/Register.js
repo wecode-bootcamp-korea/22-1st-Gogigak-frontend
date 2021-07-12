@@ -11,9 +11,6 @@ export class Register extends Component {
   };
 
   register = () => {
-    console.log(this.state.inputId);
-    console.log(this.state.inputPw);
-
     fetch('http://10.58.0.244:8000/users/signup', {
       method: 'POST',
       body: JSON.stringify({
@@ -24,16 +21,13 @@ export class Register extends Component {
       }),
     })
       .then(res => res.json())
-      .then(result => console.log(result));
-    this.props.history.push('./login');
+      .then(this.props.history.push('./login'));
   };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-
-    console.log(this.state);
 
     return console.log(
       this.validateEmail(this.state.id) &&

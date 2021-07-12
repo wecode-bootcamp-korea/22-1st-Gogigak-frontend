@@ -1,7 +1,46 @@
 import React, { Component } from 'react';
 import './Login.scss';
+import { LOGIN_API } from '../../config';
 
 export class Login extends Component {
+  state = {
+    id: '',
+    password: '',
+  };
+
+  login = e => {
+    e.preventDefault();
+    fetch(LOGIN_API.LOGIN, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: this.state.id,
+        password: this.state.password,
+      }),
+    })
+      .then(res => res.json())
+      .then(result => {
+        localStorage.setItem('token', result.token);
+        this.props.history.push('/');
+      });
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  validateEmail = value => {
+    const regExp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i;
+
+    return regExp.test(value);
+  };
+
+  validatePassword = value => {
+    const regExp = /^[a-zA-Z0-9]{8,20}$/;
+    return regExp.test(value);
+  };
+
   render() {
     return (
       <div className="login">
@@ -11,11 +50,20 @@ export class Login extends Component {
           <section className="LoginSection">
             <input
               className="LoginIdInput"
+              name="id"
               placeholder="아이디(이메일 주소)를 입력하세요"
+              onChange={this.handleChange}
             />
-            <input className="LoginIdPw" placeholder="비밀번호를 입력하세요" />
+            <input
+              className="LoginIdPw"
+              name="password"
+              placeholder="비밀번호를 입력하세요"
+              onChange={this.handleChange}
+            />
           </section>
-          <button className="loginButton">로그인</button>
+          <button className="loginButton" onClick={this.login}>
+            로그인
+          </button>
         </form>
 
         <article class="findInfo">
@@ -28,7 +76,7 @@ export class Login extends Component {
           <div>
             <button className="loginWithKakao">
               <div>
-                <i class="fas fa-comment"></i>
+                <i className="fas fa-comment"></i>
                 <span>&nbsp; 카카오로 시작하기</span>
               </div>
             </button>
@@ -38,7 +86,7 @@ export class Login extends Component {
           <div>
             <button className="loginWithNaver">
               <div>
-                <i class="fas fa-portrait"></i>
+                <i className="fas fa-portrait"></i>
                 <span>&nbsp;&nbsp;네이버로 시작하기</span>
               </div>
             </button>

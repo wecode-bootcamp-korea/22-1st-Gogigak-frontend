@@ -9,6 +9,7 @@ import Main from './pages/Main/Main';
 import ShoppingList from './pages/Shopping/ShoppingList';
 import SignUp from './pages/SignUp/SignUp';
 import Register from './pages/Register/Register';
+import Address from './pages/Address/Address';
 
 import './components/Nav/Nav.scss';
 class Routes extends React.Component {
@@ -25,6 +26,7 @@ class Routes extends React.Component {
           <Route exact path="/detail" component={Detail} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/address" component={Address} />
         </Switch>
         <Footer />
       </Router>
