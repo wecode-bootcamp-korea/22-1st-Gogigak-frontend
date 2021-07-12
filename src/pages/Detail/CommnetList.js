@@ -13,7 +13,11 @@ export class CommnetList extends Component {
             <div className="detail-review-info">
               <div className="detail-review-top-wrap">
                 <h6>{this.props.title}</h6>
-                <button onClick={this.props.deleteComment}>
+                <button
+                  onClick={() =>
+                    this.props.deleteComment(this.props.comments.id)
+                  }
+                >
                   <i class="fas fa-times"></i>
                 </button>
               </div>

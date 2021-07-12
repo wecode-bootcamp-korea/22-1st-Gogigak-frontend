@@ -84,12 +84,12 @@ export class DetailTop extends Component {
                     <ul>
                       {this.props.productOption &&
                         this.props.productOption.map(el => {
-                          console.log(this.props.productOption);
+                          //console.log(this.props.productOption);
                           return (
                             <AmountOption
                               key={el.key}
                               productOption={el}
-                              selectOption={this.selectedOption}
+                              selectOption={this.selectOption}
                             />
                           );
                         })}
