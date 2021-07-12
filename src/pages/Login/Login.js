@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Login.scss';
-import { LOGIN_API } from '../../config';
+import { JUNYOUNG_URL } from '../../config';
 
 export class Login extends Component {
   state = {
@@ -10,7 +10,7 @@ export class Login extends Component {
 
   login = e => {
     e.preventDefault();
-    fetch(LOGIN_API.LOGIN, {
+    fetch(JUNYOUNG_URL.LOGIN, {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.id,

@@ -4,8 +4,9 @@ export const API = {
   LIST: `${BASE_URL}/products/list`,
 };
 
-const LOGIN_URL = 'http://ambitiouskyle.iptime.org:6389';
+const JUNYOUNGURL = 'http://ambitiouskyle.iptime.org:6389';
 
-export const LOGIN_API = {
-  LOGIN: `${LOGIN_URL}/users/signin`,
+export const JUNYOUNG_URL = {
+  LOGIN: `${JUNYOUNGURL}/users/signin`,
+  SIGNUP: `${JUNYOUNGURL}/users/signup`,
 };
