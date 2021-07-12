@@ -58,7 +58,7 @@ export class Register extends Component {
         <div className="registerTitle">회원가입</div>
         <section className="registerForm">
           <p>가입정보 입력</p>
-          
+
           <div className="registerInputBox">
             <div className="registerInputLine">
               <div className="registerInputTitle">
