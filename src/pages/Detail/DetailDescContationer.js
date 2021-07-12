@@ -31,6 +31,7 @@ export class DetailDescContationer extends Component {
     })
       .then(res => res.json())
       .then(res => {
+        e.preventDefault();
         const { commentList } = this.state; //구조분해할당
         this.setState({
           commentList: commentList.concat({
@@ -42,7 +43,6 @@ export class DetailDescContationer extends Component {
           value: '',
         });
       });
-    e.preventDefault();
   };
   //state 상태 핸들러
   handleCommentInput = e => {
@@ -72,25 +72,24 @@ export class DetailDescContationer extends Component {
       });
   };
   //deleteComment리뷰삭제
-  deleteComment = id => {
+  deletedComment = id => {
     this.setState({
       commentList: this.state.commentList.filter(el => el.id !== id),
     });
-    console.log('deleted');
   };
   render() {
-    const imgUrl = this.props.DesImg;
-    const commentList = this.state;
+    const { DesImg } = this.props;
+    const { commentList } = this.state;
 
     return (
       <div className="detail-product-wrap">
         <section className="detail-desc-wrap">
           <article>
-            {imgUrl && <img src={this.props.DesImg[0].imageUrl} />}
+            {DesImg && <img src={this.props.DesImg[0].imageUrl} />}
           </article>
           <DetailDateDisplay />
           <article>
-            {imgUrl && <img src={this.props.DesImg[1].imageUrl} />}
+            {DesImg && <img src={this.props.DesImg[1].imageUrl} s />}
           </article>
         </section>
         <section className="detail-review">
@@ -171,8 +170,8 @@ export class DetailDescContationer extends Component {
               </Link>
             </li> */}
               {/* <CommnetList /> */}
-              {commentList.commentList &&
-                commentList.commentList.map(el => {
+              {commentList &&
+                commentList.map(el => {
                   console.log(el.purchase_count);
                   return (
                     <CommnetList
@@ -181,7 +180,7 @@ export class DetailDescContationer extends Component {
                       comment={el.content}
                       created_at={el.created_at}
                       puserchase_count={el.purchase_count}
-                      deletedComment={this.deleteComment}
+                      deletedComment={this.deletedComment}
                     />
                   );
                 })}

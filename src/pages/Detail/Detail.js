@@ -19,9 +19,7 @@ export class Detail extends Component {
     fetch('http://ambitiouskyle.iptime.org:6389/products/12', {
       method: 'GET',
     })
-      .then(results => {
-        return results.json();
-      })
+      .then(results => results.json())
       .then(results => {
         this.setState({
           productInfo: results.results,
