@@ -38,7 +38,7 @@ const CATEGORY_LIST = [
 class ShoppingList extends Component {
   state = {
     items: [],
-    orderingValue: 'all',
+    orderingValue: '',
     selectedCategory: Array(CATEGORY_LIST.length).fill(false),
   };
 
@@ -47,23 +47,26 @@ class ShoppingList extends Component {
       .then(res => res.json())
       .then(data => this.setState({ items: data.results }));
   };
+
   componentDidMount() {
     this.fetchData(
-      `http://${API.LIST}?category=${
-        this.props.match.params.name || 'all'
-      }&sort=${this.state.orderingValue}`
+      `${API.LIST}?category=${this.props.match.params.name || 'all'}&sort=${
+        this.state.orderingValue || ''
+      }`
     );
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.match.params.name !== prevProps.match.params.name) {
       this.fetchData(
-        `http://${API.LIST}?category=${this.props.match.params.name}&sort=${this.state.orderingValue}`
+        `${API.LIST}?category=${this.props.match.params.name}&sort=${this.state.orderingValue}`
       );
     }
     if (this.state.orderingValue !== prevState.orderingValue) {
       this.fetchData(
-        `http://${API.LIST}?category=${this.props.match.params.name}&sort=${this.state.orderingValue}`
+        `${API.LIST}?category=${this.props.match.params.name || 'all'}&sort=${
+          this.state.orderingValue
+        } `
       );
     }
   }
@@ -84,9 +87,7 @@ class ShoppingList extends Component {
     return (
       <section className="shoppingList">
         <div className="categoryImg">
-          {items[0] && (
-            <img src={`${items[0].category_image}`} alt="categoryImg" />
-          )}
+          {items && <img src={`${items.category_image}`} alt="categoryImg" />}
         </div>
         <section className="categorys">
           <ul className="categoryContainer">
@@ -121,8 +122,8 @@ class ShoppingList extends Component {
         </form>
         <section className="itemContainer">
           <ul className="items">
-            {items[1] &&
-              items[1].map((item, idx) => {
+            {items.items &&
+              items.items.map((item, idx) => {
                 return (
                   <Item
                     key={idx}

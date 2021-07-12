@@ -1,4 +1,4 @@
-const BASE_URL = 'ambitiouskyle.iptime.org:6389';
+const BASE_URL = 'http://ambitiouskyle.iptime.org:6389';
 
 export const API = {
   LIST: `${BASE_URL}/products/list`,
