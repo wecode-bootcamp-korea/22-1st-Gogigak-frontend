@@ -8,12 +8,65 @@ export class Cart extends Component {
     cartData: '',
   };
 
+  quantityPlus = (cartIndex, cartItemId) => {
+    let newCartData = [...this.state.cartData];
+    if (newCartData[cartIndex - 1].quantity < 100) {
+      newCartData[cartIndex - 1].quantity =
+        newCartData[cartIndex - 1].quantity + 1;
+      this.setState({ cartData: newCartData });
+    } else {
+      this.setState({ cartData: newCartData });
+    }
+
+    fetch(`${API.CART}/${cartItemId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ changeQuantity: +1 }),
+    });
+  };
+
+  quantityMinus = (cartIndex, cartItemId) => {
+    let newCartData = [...this.state.cartData];
+    if (newCartData[cartIndex - 1].quantity > 1) {
+      newCartData[cartIndex - 1].quantity =
+        newCartData[cartIndex - 1].quantity - 1;
+      this.setState({ cartData: newCartData });
+    } else {
+      this.setState({ cartData: newCartData });
+    }
+
+    fetch(`${API.CART}/${cartItemId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ changeQuantity: -1 }),
+    });
+  };
+
+  deleteCartItem = cartIndex => {
+    let newCartData = [...this.state.cartData];
+    console.log(newCartData);
+    newCartData = newCartData.filter(
+      cartItem => cartItem.cartItemId !== cartIndex
+    );
+    this.setState({ cartData: newCartData });
+
+    fetch(`${API.CART}/${cartIndex}`, {
+      method: 'DELETE',
+      body: cartIndex,
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          cartData: data.cartItems,
+        });
+      });
+    console.log(this.state.cartData, '장바구니 삭제');
+  };
+
   componentDidMount() {
     fetch(API.CART)
       .then(res => res.json())
       .then(data => {
         this.setState({
-          cartData: data,
+          cartData: data.cartItems,
         });
         console.log(this.state.cartData, '컨디마');
       });
@@ -32,8 +85,21 @@ export class Cart extends Component {
                   <div className="header-count">수량</div>
                   <div className="header-price">가격</div>
                 </div>
-                {this.state.cartData.cartItems.map(x => (
-                  <CartList cartData={this.state.cartData.cartItems} />
+                {this.state.cartData.map((cartData, idx) => (
+                  <CartList
+                    cartIndex={idx + 1}
+                    cartItemId={cartData.cartItemId}
+                    cartData={cartData.thumbnail}
+                    grams={cartData.grams}
+                    thumbnail={cartData.thumbnail}
+                    name={cartData.name}
+                    option={cartData.option}
+                    price={cartData.price}
+                    quantity={cartData.quantity}
+                    quantityPlus={this.quantityPlus}
+                    quantityMinus={this.quantityMinus}
+                    deleteCartItem={this.deleteCartItem}
+                  />
                 ))}
               </section>
               <section className="paymentContainer">
@@ -59,6 +125,9 @@ export class Cart extends Component {
                   <p className="paymentMessage">
                     첫구매 무료배송 혜택이 적용되었습니다.
                   </p>
+                  <div>
+                    쿠폰 사용하기 <i class="far fa-check-circle"></i>
+                  </div>
                   <div className="totalPrice">
                     <p className="totalPrice-text">예상 결제 금액</p>
                     <p className="totalPrice-won">36,600원</p>
@@ -69,7 +138,9 @@ export class Cart extends Component {
               </section>
             </>
           ) : (
-            <div> 장바구니에 담은 상품이 없습니다.</div>
+            <>
+              <div className="emptyCart"> 장바구니에 담은 상품이 없습니다.</div>
+            </>
           )}
         </div>
       </div>

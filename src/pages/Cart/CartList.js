@@ -3,30 +3,50 @@ import React, { Component } from 'react';
 export default class CartList extends Component {
   render() {
     // console.log(this.props.thumbnail, '디스프랍스섬네일');
-    // console.log(this.props, '디스프랍스통째로');
     return (
       <div>
         <ul>
           <li className="itemList">
-            <img src="asd" alt="itemIm" />
+            <img src={this.props.thumbnail} alt="itemIm" />
             <div className="infoContainer">
-              <p className="productName">초신선 무항생제 돼지 삼겹살 구이용</p>
-              <p className="selectOption">보통(16mm)</p>
+              <p className="productName">{this.props.name}</p>
+              <p className="selectOption">{this.props.option}</p>
             </div>
-            <p className="cartWeight">600g 기주운</p>
+            <p className="cartWeight">{Math.floor(this.props.grams)}g 기준</p>
             <div className="counterContainer">
               <div>
-                <i className="fas fa-minus"></i>
+                <i
+                  className="fas fa-minus"
+                  onClick={() =>
+                    this.props.quantityMinus(
+                      this.props.cartIndex,
+                      this.props.cartItemId
+                    )
+                  }
+                ></i>
               </div>
-              <p>1</p>
+              <p>{this.props.quantity}</p>
               <div>
-                <i className="fas fa-plus"></i>
+                <i
+                  className="fas fa-plus"
+                  onClick={() =>
+                    this.props.quantityPlus(
+                      this.props.cartIndex,
+                      this.props.cartItemId
+                    )
+                  }
+                ></i>
               </div>
             </div>
             <div className="itemPrice">
-              <p>19,800원</p>
+              <p>{Math.floor(this.props.price).toLocaleString()}</p>
             </div>
-            <button className="deleteBtn">x</button>
+            <button
+              className="deleteBtn"
+              onClick={() => this.props.deleteCartItem(this.props.cartIndex)}
+            >
+              x
+            </button>
           </li>
         </ul>
       </div>
