@@ -31,7 +31,14 @@ export class SignUp extends Component {
         <p className="signUpSubTitle">이메일로 가입하기</p>
         <button className="signUpWithEmail">
           <div>
-            <span>정육각 회원가입 하기</span>
+            <span
+              onClick={() => {
+                window.scrollTo(0, 0);
+                this.props.history.push('./register');
+              }}
+            >
+              정육각 회원가입 하기
+            </span>
           </div>
         </button>
       </div>
