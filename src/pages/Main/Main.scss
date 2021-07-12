@@ -10,16 +10,15 @@
     overflow: hidden;
     width: 1184px;
     height: 100%;
-    border: 1px solid blue;
 
     .slideContentContainer {
       display: flex;
       width: 3456px;
 
       .eventSlide {
-        width: 576px;
-        height: 176px;
-        @include flex-center;
+        width: 1184px;
+        height: 500px;
+        object-fit: fill;
       }
 
       .red {
@@ -52,6 +51,10 @@
         background-image: url('https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/events%2Fassets%2Fbanner_assets%2Fbaby-giftcube-mainbanner-pc.png?alt=media');
       }
     }
+  }
+
+  .slideIndexBar {
+    margin-bottom: 50px;
   }
 
   .slideIndexBar {

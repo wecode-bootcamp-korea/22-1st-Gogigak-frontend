@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Item from '../../components/Item/Item';
-import './Main.scss';
+import { API } from '../../config';
+import SlideImg from './SlideImg';
 
+import './Main.scss';
 export default class Main extends Component {
   state = {
     slideIndex: 0,
@@ -13,20 +15,27 @@ export default class Main extends Component {
   btn = React.createRef();
 
   componentDidMount() {
-    fetch('http://10.58.7.59:8000/products/list?category=all', {
+    fetch(API.SLIDE, {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(result => this.setState({ mainSlideImage: result }));
+      .then(result =>
+        this.setState(
+          { mainSlideImage: result },
+          console.log(this.state, '컴디마')
+        )
+      );
   }
 
   slideNext = () => {
-    this.setState({ slideIndex: this.state.slideIndex + 1 }, () => {
-      this.slideContainer.current.style.transition = '  transform 2s';
-      this.slideContainer.current.style.transform = `translateX(-${
-        1184 * this.state.slideIndex
-      }px)`;
-    });
+    if (this.state.slideIndex < 4) {
+      this.setState({ slideIndex: this.state.slideIndex + 1 }, () => {
+        this.slideContainer.current.style.transition = '  transform 2s';
+        this.slideContainer.current.style.transform = `translateX(-${
+          1184 * this.state.slideIndex
+        }px)`;
+      });
+    }
   };
 
   slidePrevious = () => {
@@ -43,17 +52,16 @@ export default class Main extends Component {
   };
 
   render() {
-    console.log(this.state.mainSlideImage);
+    this.state.mainSlideImage.results &&
+      console.log(this.state.mainSlideImage.results, '렌더');
     return (
       <div className="mainPage">
         <div className="slideOverFlow">
           <div className="slideContentContainer" ref={this.slideContainer}>
-            <div className="eventSlide red"> </div>
-            <div className="eventSlide blue"> </div>
-            <div className="eventSlide yellow"> </div>
-            <div className="eventSlide gr"> </div>
-            <div className="eventSlide wh"> </div>
-            <div className="eventSlide bk"> </div>
+            {this.state.mainSlideImage.results &&
+              this.state.mainSlideImage.results.map(img => (
+                <SlideImg image={img.image} />
+              ))}
           </div>
         </div>
         <div className="slideIndexBar">
@@ -65,9 +73,7 @@ export default class Main extends Component {
             <i className="fas fa-arrow-right"></i>
           </div>
         </div>
-        <section className="eventBannerContainer">
-          <div className="mainEvent"></div>
-        </section>
+
         <section className="bestItemContainer">
           <div className="bestItemList">정육각 베스트 상품</div>
           <ul className="bestItems">
