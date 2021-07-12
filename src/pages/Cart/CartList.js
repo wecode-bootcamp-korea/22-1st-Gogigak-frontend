@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 export default class CartList extends Component {
   render() {
-    console.log(this.props.thumbnail, '디스프랍스섬네일');
-    console.log(this.props, '디스프랍스통째로');
+    // console.log(this.props.thumbnail, '디스프랍스섬네일');
+    // console.log(this.props, '디스프랍스통째로');
     return (
       <div>
         <ul>

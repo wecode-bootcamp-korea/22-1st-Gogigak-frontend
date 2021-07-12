@@ -6,7 +6,3 @@ export const API = {
   SIGN_IN: `${BASE_URL}/users/signin`,
   SIGN_UP: `${BASE_URL}/users/signup`,
 };
-
-export const SIGNINAPI = {
-  LIST: `${BASE_URL}/products/list`,
-};

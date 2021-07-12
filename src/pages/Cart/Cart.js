@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { API } from '../../config';
 import './Cart.scss';
 import CartList from './CartList';
 
@@ -8,17 +9,17 @@ export class Cart extends Component {
   };
 
   componentDidMount() {
-    fetch('http://ambitiouskyle.iptime.org:6389/orders/cart ')
+    fetch(API.CART)
       .then(res => res.json())
       .then(data => {
         this.setState({
           cartData: data,
         });
+        console.log(this.state.cartData, '컨디마');
       });
   }
 
   render() {
-    // console.log(this.state);
     return (
       <div className="cart">
         <p className="cartTitle">장바구니</p>
