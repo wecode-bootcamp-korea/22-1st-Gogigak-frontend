@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Login.scss';
-import { SIGNIN_API } from '../../config';
+import { API } from '../../config';
 
 export class Login extends Component {
   state = {
@@ -10,7 +10,7 @@ export class Login extends Component {
 
   login = e => {
     e.preventDefault();
-    fetch(SIGNIN_API, {
+    fetch(API, {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.id,
