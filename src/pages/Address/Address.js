@@ -59,7 +59,7 @@ class Address extends React.Component {
               <p className="searchText">주소를 입력해주세요.</p>
             </div>
             <div className="searchBtn">
-              <i class="fas fa-search"></i>
+              <i className="fas fa-search"></i>
             </div>
 
             {this.state.isPost && (

@@ -16,11 +16,11 @@ export default class CartList extends Component {
             <p className="cartWeight">600g 기주운</p>
             <div className="counterContainer">
               <div>
-                <i class="fas fa-minus"></i>
+                <i className="fas fa-minus"></i>
               </div>
               <p>1</p>
               <div>
-                <i class="fas fa-plus"></i>
+                <i className="fas fa-plus"></i>
               </div>
             </div>
             <div className="itemPrice">
