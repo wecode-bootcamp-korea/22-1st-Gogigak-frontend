@@ -1,24 +1,149 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import DetailDateDisplay from './DetailDateDisplay';
+import CommnetList from './CommnetList';
 
 export class DetailDescContationer extends Component {
+  //
+  constructor(props) {
+    super(props);
+    this.state = {
+      titleValue: '',
+      textAreaValue: '',
+      commentList: [],
+      blankValue: '',
+      detailImgUrl: '',
+      imgUrl: '',
+      commentValue: '',
+      value: '',
+    };
+  }
+
+  //버튼 클릭 이벤트와 함수 생성 서버 연결
+  addComment = e => {
+    fetch('http://ambitiouskyle.iptime.org:6389/products/12/reviews', {
+      method: 'POST',
+      body: JSON.stringify({
+        image_url: '',
+        title: this.state.titleValue,
+        content: this.state.textAreaValue,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        e.preventDefault();
+        const { commentList } = this.state; //구조분해할당
+        this.setState({
+          commentList: commentList.concat({
+            content: this.state.textAreaValue,
+            title: this.state.titleValue,
+          }),
+          textAreaValue: '',
+          titleValue: '',
+          value: '',
+        });
+      });
+  };
+  //state 상태 핸들러
+  handleCommentInput = e => {
+    this.setState({
+      titleValue: e.target.value,
+      value: e.target.value, //this.state를 다시 빈 분자열로
+    });
+  };
+  handleCommentTextArea = e => {
+    this.setState({
+      textAreaValue: e.target.value,
+      value: e.target.value, //this.state를 다시 빈 분자열로
+    });
+  };
+  //commentList목데이터
+  componentDidMount = () => {
+    fetch('http://ambitiouskyle.iptime.org:6389/products/12/reviews', {
+      method: 'GET',
+    })
+      .then(results => {
+        return results.json();
+      })
+      .then(results => {
+        this.setState({
+          commentList: results.results,
+        });
+      });
+  };
+  //deleteComment리뷰삭제
+  deletedComment = id => {
+    this.setState({
+      commentList: this.state.commentList.filter(el => el.id !== id),
+    });
+  };
   render() {
+    const { DesImg } = this.props;
+    const { commentList } = this.state;
+
     return (
       <div className="detail-product-wrap">
         <section className="detail-desc-wrap">
           <article>
-            <img src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fdescriptions%2Fweb%2Fporkbelly-fresh1.png?alt=media"></img>
+            {DesImg && <img src={this.props.DesImg[0].imageUrl} />}
           </article>
           <DetailDateDisplay />
           <article>
-            <img src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fdescriptions%2Fweb%2Fporkbelly-fresh2.png?alt=media" />
+            {DesImg && <img src={this.props.DesImg[1].imageUrl} s />}
           </article>
         </section>
         <section className="detail-review">
-          <ul>
-            <li className="detail-review-photo-container">
+          <form onSubmit={this.addComment}>
+            <ul>
+              <li className="detail-review-photo-container review-write">
+                <div className="detail-review-wrtie-wrap">
+                  <div className="detail-review-box">
+                    <form>
+                      <div className="detail-review-info">
+                        <label>
+                          <input
+                            type="text"
+                            name="title"
+                            value={this.state.titleValue}
+                            onChange={this.handleCommentInput}
+                          ></input>
+                        </label>
+                        <div className="detail-review-content-wrap">
+                          <textarea
+                            value={this.state.textAreaValue}
+                            onChange={this.handleCommentTextArea}
+                          ></textarea>
+                        </div>
+                        <div className="detail-review-customer">
+                          <p>심익현</p>
+                          <p className="count">1회 구매</p>
+                          <time dateTime="2021-07-06">2021-07-06</time>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div className="detail-review-photo-wrap">
+                    <div className="img-wrap">
+                      <img
+                        src="http://placehold.it/235x236"
+                        alt="업로드 이미지"
+                      />
+                    </div>
+                    <input type="file" />
+                  </div>
+                </div>
+                <div className="detail-review-width-product">
+                  <div className="product-wrap-num">
+                    함께 구매하신 상품<span className="num">(3)</span>
+                  </div>
+                  <div className="product-name-num">초신선 돼지고기 x 3</div>
+                  <div className="btn-wrap">
+                    <button onClick="addComment">후기 등록</button>
+                  </div>
+                </div>
+              </li>
+              {/* 사진이 있는 코멘트 진행할떄 주척 풀기
+             <li className="detail-review-photo-container">
               <Link to="#!">
                 <div className="detail-review-box">
                   <div className="detail-review-info">
@@ -43,31 +168,24 @@ export class DetailDescContationer extends Component {
                   <div className="product-name-num">초신선 돼지고기 x 3</div>
                 </div>
               </Link>
-            </li>
-            <li className="detail-review-container">
-              <Link to="#!">
-                <div className="detail-review-box">
-                  <div className="detail-review-info">
-                    <h6>맛있어요~~</h6>
-                    <div className="detail-review-content-wrap">
-                      <p>잘 먹었습니당...</p>
-                    </div>
-                    <div className="detail-review-customer">
-                      <p>심익현</p>
-                      <p className="count">1회 구매</p>
-                      <time dateTime="2021-07-06">2021-07-06</time>
-                    </div>
-                  </div>
-                </div>
-                <div className="detail-review-width-product">
-                  <div className="product-wrap-num">
-                    함께 구매하신 상품<span className="num">(3)</span>
-                  </div>
-                  <div className="product-name-num">초신선 돼지고기 x 3</div>
-                </div>
-              </Link>
-            </li>
-          </ul>
+            </li> */}
+              {/* <CommnetList /> */}
+              {commentList &&
+                commentList.map(el => {
+                  console.log(el.purchase_count);
+                  return (
+                    <CommnetList
+                      key={el.id}
+                      title={el.title}
+                      comment={el.content}
+                      created_at={el.created_at}
+                      puserchase_count={el.purchase_count}
+                      deletedComment={this.deletedComment}
+                    />
+                  );
+                })}
+            </ul>
+          </form>
           <button className="detail-review-more"></button>
         </section>
         <section className="detail-info"></section>
