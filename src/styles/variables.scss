@@ -6,7 +6,7 @@ $item-priceInfo-size: 16px;
 $item-priceInfo-color: #9b9b9b;
 
 @mixin cart {
-  display: block;
+  display: absolute;
   width: 68px;
   height: 68px;
   background-color: cover;
@@ -16,4 +16,11 @@ $item-priceInfo-color: #9b9b9b;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@mixin maxWidth{
+  width:100%;
+}
+@mixin textCenterClear{
+  text-align:center;
 }

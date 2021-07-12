@@ -1,2 +1,36 @@
-* {
+@import '../../styles/variables.scss';
+.shoppingList {
+  overflow: scroll;
+  .categoryImg {
+    padding-top: 80px;
+    img {
+      width: 100%;
+      height: 520px;
+    }
+  }
+
+  .itemFilter {
+    float: right;
+    margin-right: 200px;
+    margin-top: 20px;
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #999;
+    outline: none;
+    color: $item-priceInfo-color;
+    font-size: $item-priceInfo-size;
+  }
+
+  .itemContainer {
+    margin: 72px 198px 0 198px;
+
+    .items {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 72px 20px 0 20px;
+      width: 100%;
+      height: 1088px;
+    }
+  }
 }

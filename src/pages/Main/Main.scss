@@ -1,2 +1,125 @@
-* {
+@import '../../styles/variables.scss';
+
+.mainPage {
+  margin-top: 96px;
+  @include flex-center;
+  flex-direction: column;
+
+  .slideOverFlow {
+    display: flex;
+    overflow: hidden;
+    width: 1184px;
+    height: 100%;
+    border: 1px solid blue;
+
+    .slideContentContainer {
+      display: flex;
+      width: 3456px;
+
+      .eventSlide {
+        width: 576px;
+        height: 176px;
+        @include flex-center;
+      }
+
+      .red {
+        background-size: cover;
+        background-image: url('https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/events%2Fassets%2Ftemplete_assets%2F2021-07-chickenday-PC-banner.png?alt=media');
+      }
+
+      .blue {
+        background-size: cover;
+        background-image: url('https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/events%2Fassets%2Fbanner_assets%2F%EB%8B%B9%EC%9D%BC%EB%B0%B0%EC%86%A1%20%EA%B2%BD%EA%B8%B0%EB%8F%84%20%ED%99%95%EB%8C%80%20-%20PC.png?alt=media');
+      }
+
+      .yellow {
+        background-size: cover;
+        background-image: url('https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/events%2Fassets%2Fbanner_assets%2FPC_%EC%A0%84%EB%B3%B5.png?alt=media');
+      }
+
+      .gr {
+        background-size: cover;
+        background-image: url('https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/events%2Fassets%2Fbanner_assets%2Fapp-coupon-mainbanner-pc.png?alt=media');
+      }
+
+      .wh {
+        background-size: cover;
+        background-image: url('https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/events%2Fassets%2Fbanner_assets%2Finstagram-points-mainbanner-pc.png?alt=media');
+      }
+
+      .bk {
+        background-size: cover;
+        background-image: url('https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/events%2Fassets%2Fbanner_assets%2Fbaby-giftcube-mainbanner-pc.png?alt=media');
+      }
+    }
+  }
+
+  .slideIndexBar {
+    @include flex-center;
+  }
+
+  .mainBannerContainer {
+    width: 100%;
+    .mainBanner {
+      background-image: url('https://www.jeongyookgak.com/static/img/main_firstgift.3627763.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100%;
+      height: 560px;
+    }
+  }
+
+  .eventBannerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1184px;
+
+    .mainEvent {
+      @include flex-center;
+      width: 576px;
+      height: 176px;
+      position: relative;
+
+      .slideIndexBar {
+        @include flex-center;
+        position: absolute;
+        top: 140px;
+        left: 260px;
+      }
+    }
+
+    .slideBtn {
+      display: flex;
+    }
+  }
+
+  .bestItemContainer {
+    width: 1296px;
+
+    .bestItemList {
+      font-size: 32px;
+    }
+    .bestItems {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .item {
+      margin: 0px 28px 62px 28px;
+    }
+  }
+
+  .shoppingBanner {
+    background-image: url('https://www.jeongyookgak.com/static/img/banner_shop.96086e0.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1184px;
+    height: 208px;
+    margin: 150px auto 0px auto;
+    cursor: pointer;
+  }
 }
