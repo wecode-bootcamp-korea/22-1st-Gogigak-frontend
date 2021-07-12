@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { JUNYOUNG_URL } from '../../config';
+import { API } from '../../config';
 import './Register.scss';
 
 export class Register extends Component {
@@ -12,7 +12,7 @@ export class Register extends Component {
   };
 
   register = () => {
-    fetch(JUNYOUNG_URL.SIGNUP, {
+    fetch(API.SIGN_UP, {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.id,
@@ -22,8 +22,8 @@ export class Register extends Component {
       }),
     })
       .then(res => res.json())
-      .then(res => console.log(res))
-      .then(this.props.history.push('./login'));
+      .then(res => console.log(res));
+    // .then(this.props.history.push('./login'));
   };
 
   handleChange = e => {

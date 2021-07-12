@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { CART_API } from '../../config';
 import './Cart.scss';
 import CartList from './CartList';
 
@@ -9,43 +8,32 @@ export class Cart extends Component {
   };
 
   componentDidMount() {
-    fetch(CART_API.CART)
+    fetch('http://ambitiouskyle.iptime.org:6389/orders/cart ')
       .then(res => res.json())
       .then(data => {
         this.setState({
-          cartData: data.cartItems,
+          cartData: data,
         });
-        // console.log(this.state, '컴디마');
       });
   }
 
   render() {
+    // console.log(this.state);
     return (
       <div className="cart">
         <p className="cartTitle">장바구니</p>
         <div className="sectionWrap">
-          <section className="cartContainer">
-            <div className="listHeader">
-              <div className="header-info">상품정보</div>
-              <div className="header-count">수량</div>
-              <div className="header-price">가격</div>
-            </div>
-            <ul>
-              <li className="itemList">
-                <img
-                  src="https://firebasestorage.googleapis.com/v0/b/jyg-custom-seoul-app/o/frontend%2Fthumbnails%2Ftransparent_background%2Fporkbelly-clean-list.png?alt=media"
-                  alt="itemIm"
-                />
-                <div className="infoContainer">
-                  <p className="productName">
-                    초신선 무항생제 돼지 삼겹살 구이 용
-                  </p>
-                  <p className="selectOption">보통(16mm)</p>
+          {this.state.cartData ? (
+            <>
+              <section className="cartContainer">
+                <div className="listHeader">
+                  <div className="header-info">상품정보</div>
+                  <div className="header-count">수량</div>
+                  <div className="header-price">가격</div>
                 </div>
-                {this.state.cartData &&
-                  this.state.cartData.map(x => (
-                    <CartList thumbnail={this.state.cartData.thumbnail} />
-                  ))}
+                {this.state.cartData.cartItems.map(x => (
+                  <CartList cartData={this.state.cartData.cartItems} />
+                ))}
               </section>
               <section className="paymentContainer">
                 <div className="paymentBox">
