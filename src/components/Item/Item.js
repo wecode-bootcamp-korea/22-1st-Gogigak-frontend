@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import CartModal from '../Modal/CartModal';
 import './Item.scss';
 
@@ -11,12 +12,17 @@ class Item extends React.Component {
     this.setState({ isModal: !this.state.isModal });
   };
 
+  goToDetail = () => {
+    this.props.history.push(`/Detail/${this.props.id}`);
+    console.log('click');
+  };
+
   render() {
     const { title, img, gram, price, options, id } = this.props;
     const { isModal } = this.state;
 
     return (
-      <li className="item">
+      <li className="item" onClick={this.goToDetail}>
         <div className="imgContainer">
           <img src={img} alt="itemImg" />
           <div className="cartBackground" onClick={this.handleClick}>
@@ -40,4 +46,4 @@ class Item extends React.Component {
   }
 }
 
-export default Item;
+export default withRouter(Item);
