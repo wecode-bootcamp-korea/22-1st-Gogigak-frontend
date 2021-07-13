@@ -21,7 +21,6 @@ class Address extends React.Component {
 
   handleComplete = data => {
     let zonecode = data.zonecode;
-    this.setState({ isPost: !this.state.isPost });
 
     fetch(`${API.ADDRESS}`, {
       method: 'POST',
@@ -30,7 +29,12 @@ class Address extends React.Component {
       }),
     })
       .then(res => res.json())
-      .then(result => this.setState({ isDelivery: result.message }));
+      .then(result =>
+        this.setState({
+          isDelivery: result.message,
+          isPost: !this.state.isPost,
+        })
+      );
   };
 
   handlePost = () => {
