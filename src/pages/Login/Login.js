@@ -21,8 +21,10 @@ export class Login extends Component {
       .then(result => {
         if (result.message === 'INVALID_USER') {
           alert('INVALID_USER');
+        } else {
+          localStorage.setItem('token', result.token);
+          window.location.replace('/');
         }
-        localStorage.setItem('token', result.token);
       });
   };
 
