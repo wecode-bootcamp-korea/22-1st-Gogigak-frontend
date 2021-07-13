@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 export class Nav extends Component {
+  state = { token: '' };
+
   render() {
     return (
       <div className="Navigation">
@@ -43,29 +45,38 @@ export class Nav extends Component {
                 <li className="navigationMenuList">공지사항</li>
                 <li className="navigationMenuList">고객센터</li>
               </ul>
+
               <div className="navigationSubMenuSplit"></div>
-              <ul className="navigationMenu">
-                <Link to="/login" className="moveOtherPages">
-                  <li
-                    className="navigationMenuList"
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    로그인
-                  </li>
-                </Link>
-                <Link to="/sign-up" className="moveOtherPages">
-                  <li
-                    className="navigationMenuList"
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    회원가입
-                  </li>
-                </Link>
-              </ul>
+
+              {localStorage.getItem('token') ? (
+                <ul className="navigationMenu">
+                  <li className="navigationMenuList">장바구니아이콘</li>
+                  <li className="navigationMenuList">마이페이지</li>
+                </ul>
+              ) : (
+                <ul className="navigationMenu">
+                  <Link to="/login" className="moveOtherPages">
+                    <li
+                      className="navigationMenuList"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      로그인
+                    </li>
+                  </Link>
+                  <Link to="/sign-up" className="moveOtherPages">
+                    <li
+                      className="navigationMenuList"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      회원가입
+                    </li>
+                  </Link>
+                </ul>
+              )}
             </div>
           </div>
         </header>
