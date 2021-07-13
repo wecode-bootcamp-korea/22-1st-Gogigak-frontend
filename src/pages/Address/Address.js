@@ -90,16 +90,14 @@ class Address extends React.Component {
             )}
           </div>
           <div className="searchResult">
-            {isDelivery ? (
+            {isDelivery && (
               <p>
                 고객님은 <span className="text-bold">당일배송</span>,
                 <span className="text-bold">새벽배송</span>으로
                 <br /> 받아보실 수 있습니다.
               </p>
-            ) : (
-              ''
             )}
-            {isDelivery === false ? (
+            {!isDelivery ? (
               <p>
                 <span className="text-bold">신선배송 불가지역이므로 </span>,
                 <span className="red">우체국 택배</span>로
