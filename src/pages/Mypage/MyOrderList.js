@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 
 import './MyOrderList.scss';
 
 class MyOrderList extends Component {
   render() {
-    const { id, orderNum, productName, totalPrice, arrivalDate } = this.props;
+    const { id, orderNum, productName, totalPrice, arrivalDate, orderCount } =
+      this.props;
+
     return (
       <>
         <li className="listContent">
@@ -19,7 +20,9 @@ class MyOrderList extends Component {
               <div className="orderList-summary">
                 <p className="orderDataTitle">주문요약</p>
                 <div className="orderDataContent">
-                  <p>{productName}</p>
+                  <span>
+                    {productName}( 외 &nbsp;{orderCount - 1} )
+                  </span>
                 </div>
               </div>
               <div className="totalPrice">

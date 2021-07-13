@@ -7,7 +7,10 @@ import './Mypage.scss';
 import Coupon from './Coupon/Coupon';
 
 class Mypage extends Component {
-  state = { userInfo: [] };
+  state = {
+    userInfo: [],
+    selectedCategory: Array(ORDERDATA_LIST.length).fill(false),
+  };
 
   componentDidMount() {
     fetch(`${API.MYPAGE}`)
@@ -15,16 +18,14 @@ class Mypage extends Component {
       .then(data => this.setState({ userInfo: data.result }));
   }
 
-  changeList = listName => {
-    const data = this.props.match.params.myData;
-
-    if (data === 'orderList' || data === undefined) {
-      return;
-    }
+  handleCategoryClick = idx => {
+    const newArr = Array(ORDERDATA_LIST.length).fill(false);
+    newArr[idx] = true;
+    this.setState({ selectedCategory: newArr });
   };
 
   render() {
-    const { userInfo } = this.state;
+    const { userInfo, selectedCategory } = this.state;
     const { myData } = this.props.match.params;
     console.log(userInfo);
 
@@ -75,13 +76,15 @@ class Mypage extends Component {
           </section>
           <div className="categoryContainer">
             <div className="categorys">
-              {ORDERDATA_LIST.map(category => {
+              {ORDERDATA_LIST.map((category, idx) => {
                 return (
                   <UserInfoCategory
                     key={category.id}
                     id={category.id}
                     title={category.name}
                     category={category.category}
+                    selectedCategory={selectedCategory[idx]}
+                    handleCategoryClick={() => this.handleCategoryClick(idx)}
                   />
                 );
               })}
@@ -100,17 +103,18 @@ class Mypage extends Component {
                         key={order.orderNumber}
                         productName={order.orderSummary}
                         totalPrice={order.totalPrice}
+                        orderCount={order.totalAmount}
                         arrivalDate={order.deliveryDate}
                       />
                     );
                   })
                 : ''}
-              {myData === 'coupon'
+              {/* {myData === 'coupon'
                 ? userInfo.view &&
-                  userInfo.view.map((order, idx) => {
+                  userInfo.coupons.map((order, idx) => {
                     return <Coupon />;
                   })
-                : ''}
+                : ''} */}
             </ul>
           </section>
         </div>
