@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 export class Nav extends Component {
-  state = { token: '' };
-
   render() {
     return (
       <div className="Navigation">
