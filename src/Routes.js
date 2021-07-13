@@ -24,6 +24,7 @@ class Routes extends React.Component {
           <Route exact path="/list" component={ShoppingList} />
           <Route exact path="/list/:name" component={ShoppingList} />
           <Route exact path="/detail" component={Detail} />
+          <Route exact path="/detail/:product" component={Detail} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/address" component={Address} />
@@ -33,5 +34,4 @@ class Routes extends React.Component {
     );
   }
 }
-
 export default Routes;
