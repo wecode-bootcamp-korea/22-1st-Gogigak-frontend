@@ -50,8 +50,10 @@ export class Nav extends Component {
 
               {localStorage.getItem('token') ? (
                 <ul className="navigationMenu">
-                  <li className="navigationMenuList">장바구니아이콘</li>
                   <li className="navigationMenuList">마이페이지</li>
+                  <li className="navigationMenuList">
+                    <i className="fas fa-shopping-cart"></i>
+                  </li>
                 </ul>
               ) : (
                 <ul className="navigationMenu">
