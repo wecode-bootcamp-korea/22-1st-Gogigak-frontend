@@ -172,7 +172,7 @@ export class DetailDescContationer extends Component {
               {/* <CommnetList /> */}
               {commentList &&
                 commentList.map(el => {
-                  console.log(el.purchase_count);
+                  //console.log(this.props.productCloseBtn);
                   return (
                     <CommnetList
                       key={el.id}
@@ -181,6 +181,7 @@ export class DetailDescContationer extends Component {
                       created_at={el.created_at}
                       puserchase_count={el.purchase_count}
                       deletedComment={this.deletedComment}
+                      productCloseBtn={this.productCloseBtn}
                     />
                   );
                 })}

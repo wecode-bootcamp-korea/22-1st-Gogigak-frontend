@@ -28,6 +28,7 @@ export class Detail extends Component {
   }
   render() {
     const productInfo = this.state;
+    console.log(productInfo.productInfo.isOrganic);
     return (
       <div className="detail-wrap">
         <DetailTop
@@ -36,9 +37,13 @@ export class Detail extends Component {
           productStandard={productInfo.productInfo.grams}
           productPrice={productInfo.productInfo.price}
           productOption={productInfo.productInfo.options}
+          productCloseBtn={productInfo.productInfo.isOrganic}
         />
         <DetailTab />
-        <DetailDescContationer DesImg={productInfo.productInfo.images} />
+        <DetailDescContationer
+          DesImg={productInfo.productInfo.images}
+          DesDate={productInfo.productInfo.butcheredDate}
+        />
       </div>
     );
   }
