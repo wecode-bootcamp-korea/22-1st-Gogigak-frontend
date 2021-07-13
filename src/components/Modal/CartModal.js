@@ -32,7 +32,7 @@ export class CartModal extends React.Component {
   };
 
   keepShoppingBtn = () => {
-    fetch(`http://${API.CART}`, {
+    fetch(`${API.CART}`, {
       method: 'POST',
       body: JSON.stringify({
         productId: this.props.productId,
@@ -51,7 +51,7 @@ export class CartModal extends React.Component {
   };
 
   moveToCart = () => {
-    fetch(`http://${API.CART}`, {
+    fetch(`${API.CART}`, {
       method: 'POST',
       body: JSON.stringify({
         productId: this.props.productId,

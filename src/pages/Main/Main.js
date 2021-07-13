@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Item from '../../components/Item/Item';
+import { API } from '../../../src/config';
 import './Main.scss';
 
 export default class Main extends Component {
   state = {
     slideIndex: 0,
     mainSlideImage: [],
+    items: [],
   };
 
   slideContainer = React.createRef();
   btn = React.createRef();
 
   componentDidMount() {
-    fetch('http://10.58.7.59:8000/products/list?category=all', {
-      method: 'GET',
-    })
+    fetch(`${API.MAIN}?category=all&sort=sales`)
       .then(res => res.json())
-      .then(result => this.setState({ mainSlideImage: result }));
+      .then(result => this.setState({ items: result.results }));
   }
 
   slideNext = () => {
@@ -43,7 +43,8 @@ export default class Main extends Component {
   };
 
   render() {
-    console.log(this.state.mainSlideImage);
+    const { items } = this.state;
+
     return (
       <div className="mainPage">
         <div className="slideOverFlow">
@@ -71,12 +72,20 @@ export default class Main extends Component {
         <section className="bestItemContainer">
           <div className="bestItemList">정육각 베스트 상품</div>
           <ul className="bestItems">
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            {items.items &&
+              items.items.map((item, idx) => {
+                return (
+                  <Item
+                    key={idx}
+                    id={item.id}
+                    img={item.thumbnail}
+                    price={item.price}
+                    gram={item.grams}
+                    title={item.name}
+                    options={item.options}
+                  />
+                );
+              })}
           </ul>
         </section>
         <div
