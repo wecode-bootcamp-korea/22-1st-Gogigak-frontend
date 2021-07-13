@@ -40,7 +40,7 @@ export class Cart extends Component {
     });
   };
 
-  deleteCartItem = cartIndex => {
+  deleteCartItem = (cartIndex, cartItemId) => {
     let newCartData = [...this.state.cartData];
     console.log(newCartData);
     newCartData = newCartData.filter(
@@ -48,9 +48,9 @@ export class Cart extends Component {
     );
     this.setState({ cartData: newCartData });
 
-    fetch(`${API.CART}/${cartIndex}`, {
+    fetch(`${API.CART}/${cartItemId}`, {
       method: 'DELETE',
-      body: cartIndex,
+      body: cartItemId,
     })
       .then(res => res.json())
       .then(data => {
@@ -102,6 +102,7 @@ export class Cart extends Component {
                   />
                 ))}
               </section>
+
               <section className="paymentContainer">
                 <div className="paymentBox">
                   <div className="productPrice">

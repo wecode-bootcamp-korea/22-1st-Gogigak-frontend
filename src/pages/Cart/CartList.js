@@ -43,7 +43,12 @@ export default class CartList extends Component {
             </div>
             <button
               className="deleteBtn"
-              onClick={() => this.props.deleteCartItem(this.props.cartIndex)}
+              onClick={() =>
+                this.props.deleteCartItem(
+                  this.props.cartIndex,
+                  this.props.cartItemId
+                )
+              }
             >
               x
             </button>
