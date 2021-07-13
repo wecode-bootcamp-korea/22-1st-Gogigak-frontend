@@ -57,6 +57,17 @@
 
   .footerMainInfo {
     margin: 16px 0px 0px 50px;
+
+    .footerLogo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .footerInfo {
+      margin-bottom: 5px;
+    }
   }
   .footerCs {
     margin: 16px 50px 0px 0px;

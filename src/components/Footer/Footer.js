@@ -12,8 +12,8 @@ export class Footer extends Component {
               <p className="footerNavigationMenu">개인정보처리방침</p>
             </section>
             <section className="footerNavigationRight">
-              <i class="fas fa-comment"></i>
-              <i class="fab fa-instagram"></i>
+              <i className="fas fa-comment"></i>
+              <i className="fab fa-instagram"></i>
             </section>
           </div>
         </div>
@@ -21,10 +21,12 @@ export class Footer extends Component {
         <section className="footerMain">
           <article className="footerMainInfo">
             <div>
-              <div>푸터 인포</div>
-              <div>푸터 인포</div>
-              <div>푸터 인포</div>
-              <p>카피라이트 어쩌구</p>
+              <div className="footerLogo">
+                <i className="fas fa-drumstick-bite"></i> 고기각
+              </div>
+              <div className="footerInfo">(주) 고기각</div>
+              <div className="footerInfo">사업자등록번호 : 12345678</div>
+              <div className="footerInfo">개인정보관리책임자 : 이재현</div>
             </div>
           </article>
           <article className="footerCs">
@@ -40,7 +42,7 @@ export class Footer extends Component {
             <div className="footerCsContact">
               <p>
                 카카오톡: <span>@정육각</span>
-                <p>이메일:1234 </p>
+                <span>이메일:1234 </span>
               </p>
             </div>
           </article>
