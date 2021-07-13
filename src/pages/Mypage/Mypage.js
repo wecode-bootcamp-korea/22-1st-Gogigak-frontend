@@ -109,12 +109,20 @@ class Mypage extends Component {
                     );
                   })
                 : ''}
-              {/* {myData === 'coupon'
-                ? userInfo.view &&
-                  userInfo.coupons.map((order, idx) => {
-                    return <Coupon />;
+              {myData === 'coupon'
+                ? userInfo.coupons &&
+                  userInfo.coupons.map((coupon, idx) => {
+                    return (
+                      <Coupon
+                        key={coupon.id}
+                        id={coupon.id}
+                        order={idx}
+                        couponName={coupon.name}
+                        couponValue={coupon.couponValue}
+                      />
+                    );
                   })
-                : ''} */}
+                : ''}
             </ul>
           </section>
         </div>

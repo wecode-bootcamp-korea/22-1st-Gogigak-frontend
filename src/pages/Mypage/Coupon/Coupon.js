@@ -5,13 +5,12 @@ import './Coupon.scss';
 
 export class Coupon extends Component {
   render() {
+    const { couponName, order } = this.props;
     return (
       <li className="Mycoupon">
-        <div className="coupon-index">
-          <span>0</span>1
-        </div>
+        <div className="coupon-index">{order + 1}</div>
         <div className="orderList-number">
-          <p className="orderDataTitle">회원가입 축하 쿠폰</p>
+          <p className="orderDataTitle">{couponName}</p>
         </div>
       </li>
     );
