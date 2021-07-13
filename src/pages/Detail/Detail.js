@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import DetailTop from './DetailTop';
 import DetailTab from './DetailTab';
 import DetailDescContationer from './DetailDescContationer';
+import { API } from '../../config';
 
 import './Detail.scss';
 
