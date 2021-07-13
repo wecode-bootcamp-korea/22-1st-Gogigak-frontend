@@ -19,7 +19,6 @@ export class Login extends Component {
     })
       .then(res => res.json())
       .then(result => {
-        console.log(result.message);
         if (result.message === 'INVALID_USER') {
           alert('INVALID_USER');
         }
