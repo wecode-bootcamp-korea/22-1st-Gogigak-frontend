@@ -74,17 +74,19 @@ export default class Main extends Component {
           <ul className="bestItems">
             {items.items &&
               items.items.map((item, idx) => {
-                return (
-                  <Item
-                    key={idx}
-                    id={item.id}
-                    img={item.thumbnail}
-                    price={item.price}
-                    gram={item.grams}
-                    title={item.name}
-                    options={item.options}
-                  />
-                );
+                if (idx < 6) {
+                  return (
+                    <Item
+                      key={idx}
+                      id={item.id}
+                      img={item.thumbnail}
+                      price={item.price}
+                      gram={item.grams}
+                      title={item.name}
+                      options={item.options}
+                    />
+                  );
+                }
               })}
           </ul>
         </section>
