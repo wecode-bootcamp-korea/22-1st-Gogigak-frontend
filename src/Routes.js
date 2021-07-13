@@ -12,6 +12,7 @@ import Register from './pages/Register/Register';
 import Address from './pages/Address/Address';
 
 import './components/Nav/Nav.scss';
+import Mypage from './pages/Mypage/Mypage';
 class Routes extends React.Component {
   render() {
     return (
@@ -26,6 +27,8 @@ class Routes extends React.Component {
           <Route exact path="/detail" component={Detail} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/mypage" component={Mypage} />
+          <Route exact path="/mypage/:myData" component={Mypage} />
           <Route exact path="/address" component={Address} />
         </Switch>
         <Footer />

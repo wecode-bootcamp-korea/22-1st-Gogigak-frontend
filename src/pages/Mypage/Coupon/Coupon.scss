@@ -1,0 +1,11 @@
+.Mycoupon {
+  display: flex;
+  justify-content: space-evenly;
+  width: 250px;
+  margin-left: 31px;
+
+  .coupon-index {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}

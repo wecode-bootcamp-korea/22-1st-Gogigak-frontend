@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.orderList {
+  @include flex-center;
+
+  justify-content: space-evenly;
+  margin-bottom: 24px;
+  border-bottom: 1px dashed #dddada;
+
+  .orderList-index {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .orderDataTitle {
+    font-size: 13px;
+    color: #c2c2c2;
+  }
+
+  .orderDataContent {
+    width: 150px;
+    line-height: 24px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
