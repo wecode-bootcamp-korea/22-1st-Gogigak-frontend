@@ -19,8 +19,8 @@ export default class CartList extends Component {
                   className="fas fa-minus"
                   onClick={() =>
                     this.props.quantityMinus(
-                      this.props.cartIndex,
-                      this.props.cartItemId
+                      this.props.cartItemId,
+                      this.props.cartIndex
                     )
                   }
                 ></i>
@@ -31,8 +31,8 @@ export default class CartList extends Component {
                   className="fas fa-plus"
                   onClick={() =>
                     this.props.quantityPlus(
-                      this.props.cartIndex,
-                      this.props.cartItemId
+                      this.props.cartItemId,
+                      this.props.cartIndex
                     )
                   }
                 ></i>
@@ -43,12 +43,7 @@ export default class CartList extends Component {
             </div>
             <button
               className="deleteBtn"
-              onClick={() =>
-                this.props.deleteCartItem(
-                  this.props.cartIndex,
-                  this.props.cartItemId
-                )
-              }
+              onClick={() => this.props.deleteCartItem(this.props.cartItemId)}
             >
               x
             </button>
