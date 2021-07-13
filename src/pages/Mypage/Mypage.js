@@ -20,6 +20,7 @@ class Mypage extends Component {
 
   handleCategoryClick = idx => {
     const newArr = Array(ORDERDATA_LIST.length).fill(false);
+
     newArr[idx] = true;
     this.setState({ selectedCategory: newArr });
   };
@@ -27,7 +28,6 @@ class Mypage extends Component {
   render() {
     const { userInfo, selectedCategory } = this.state;
     const { myData } = this.props.match.params;
-    console.log(userInfo);
 
     return (
       <div className="mypageWrapper">
@@ -84,6 +84,7 @@ class Mypage extends Component {
                     title={category.name}
                     category={category.category}
                     selectedCategory={selectedCategory[idx]}
+                    categorys={selectedCategory}
                     handleCategoryClick={() => this.handleCategoryClick(idx)}
                   />
                 );

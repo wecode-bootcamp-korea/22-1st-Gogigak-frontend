@@ -9,11 +9,14 @@ class UserInfoCategory extends Component {
   };
 
   render() {
-    const { selectedCategory, handleCategoryClick } = this.props;
+    let { selectedCategory, handleCategoryClick } = this.props;
+    let arr = this.props.categorys;
+    arr[0] = true;
+
     return (
       <div onClick={this.handleClick}>
         <div
-          className={`${selectedCategory ? 'mypageCategory' : 'category'}`}
+          className={` ${selectedCategory ? 'mypageCategory' : 'category'}`}
           onClick={() => handleCategoryClick()}
         >
           {this.props.title}
