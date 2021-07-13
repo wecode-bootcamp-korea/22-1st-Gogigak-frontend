@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { API } from '../../config';
 import './Cart.scss';
 import CartList from './CartList';
+import CouponModal from '../../components/Modal/CouponModal';
+import { withRouter } from 'react-router-dom';
 
 export class Cart extends Component {
   state = {
@@ -9,6 +11,7 @@ export class Cart extends Component {
     id: '',
     user: '',
     isCoupon: false,
+    couponValue: '',
   };
 
   quantityPlus = (cartItemId, cartIndex) => {
@@ -55,6 +58,10 @@ export class Cart extends Component {
     this.setState({ cartData: newCartData });
   };
 
+  selectCoupon = value => {
+    this.setState({ couponValue: value });
+  };
+
   componentDidMount() {
     fetch(API.CART)
       .then(res => res.json())
@@ -76,8 +83,6 @@ export class Cart extends Component {
   };
 
   render() {
-    console.log(this.state, '렌더');
-
     const { cartData } = this.state;
     const totalValue =
       cartData &&
@@ -85,7 +90,7 @@ export class Cart extends Component {
         .map(cart => cart.price * cart.quantity)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const isFirstPayment = false;
-
+    console.log(totalValue.toLocaleString());
     return (
       <div className="cart">
         <p className="cartTitle">장바구니</p>
@@ -145,24 +150,29 @@ export class Cart extends Component {
                       첫구매 무료배송 혜택이 적용되었습니다.
                     </p>
                   )}
+                  <div className="shippingPrice">
+                    <div className="shippingPrice-total">
+                      <p>쿠폰 적용금액</p>
+                      <p>{this.state.couponValue}원</p>
+                    </div>
+                  </div>
                   <div className="useCoupon dropbtn">
                     <div onClick={this.toggleCoupon}>
                       쿠폰 사용하기 <i class="far fa-check-circle"></i>
                     </div>
                   </div>
-
                   {this.state.isCoupon && (
-                    <>
-                      <div className="useCoupon dropbtn">쿠폰쓰지마세요</div>
-                      <div className="useCoupon dropbtn">쿠폰쓰지마세요</div>
-                      <div className="useCoupon dropbtn">쿠폰쓰지마세요</div>
-                    </>
+                    <CouponModal
+                      couponData={this.state.user.coupons}
+                      couponQuantity={this.state.user.coupon}
+                      selectCoupon={this.selectCoupon}
+                      toggleCoupon={this.toggleCoupon}
+                    />
                   )}
-
                   <div className="totalPrice">
                     <p className="totalPrice-text">예상 결제 금액</p>
                     <p className="totalPrice-won">
-                      {totalValue.toLocaleString()}원
+                      {(totalValue - this.state.couponValue).toLocaleString()}원
                     </p>
                   </div>
                   <button className="paymentBtn">전체상품 주문하기</button>
@@ -172,11 +182,23 @@ export class Cart extends Component {
             </>
           )}
 
-          {this.state.cartData.length === 0 && <div> 장바구니 없어요 </div>}
+          {this.state.cartData.length === 0 && (
+            <section className="cartItemNone">
+              <div className="emptyCart">장바구니에 담은 상품이 없습니다.</div>
+              <div
+                className="continueShopping"
+                onClick={() => {
+                  this.props.history.push('/list');
+                }}
+              >
+                쇼핑 계속하기
+              </div>
+            </section>
+          )}
         </div>
       </div>
     );
   }
 }
 
-export default Cart;
+export default withRouter(Cart);
