@@ -26,7 +26,7 @@ export default class Main extends Component {
         )
       );
 
-    setInterval(this.slideNext, 1000);
+    setInterval(this.slideNext, 3000);
   }
 
   slideNext = () => {
@@ -37,6 +37,8 @@ export default class Main extends Component {
           1184 * this.state.slideIndex
         }px)`;
       });
+    } else {
+      this.setState({ slideIndex: -1 });
     }
   };
 
@@ -66,7 +68,7 @@ export default class Main extends Component {
               ))}
           </div>
         </div>
-        <div className="slideIndexBar">
+        {/* <div className="slideIndexBar">
           <div className="slideBtn" onClick={() => this.slidePrevious()}>
             <i className="fas fa-arrow-left"></i>
           </div>
@@ -74,7 +76,7 @@ export default class Main extends Component {
           <div className="slideBtn" onClick={() => this.slideNext()}>
             <i className="fas fa-arrow-right"></i>
           </div>
-        </div>
+        </div> */}
 
         <section className="bestItemContainer">
           <div className="bestItemList">정육각 베스트 상품</div>
