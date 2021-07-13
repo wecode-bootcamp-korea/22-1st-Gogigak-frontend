@@ -10,7 +10,7 @@ export class Login extends Component {
 
   login = e => {
     e.preventDefault();
-    fetch(API, {
+    fetch(API.SIGN_IN, {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.id,
@@ -19,8 +19,11 @@ export class Login extends Component {
     })
       .then(res => res.json())
       .then(result => {
+        console.log(result.message);
+        if (result.message === 'INVALID_USER') {
+          alert('INVALID_USER');
+        }
         localStorage.setItem('token', result.token);
-        this.props.history.push('/');
       });
   };
 
@@ -94,7 +97,12 @@ export class Login extends Component {
         </article>
         <p className="firstRegister">
           정육각이 처음이신가요? &nbsp;
-          <span className="goTosignUp">회원가입하기</span>
+          <span
+            className="goTosignUp"
+            onClick={() => this.props.history.push('/sign-up')}
+          >
+            회원가입하기
+          </span>
         </p>
       </div>
     );
