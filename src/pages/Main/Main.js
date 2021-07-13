@@ -25,6 +25,8 @@ export default class Main extends Component {
           console.log(this.state, '컴디마')
         )
       );
+
+    setInterval(this.slideNext, 1000);
   }
 
   slideNext = () => {
