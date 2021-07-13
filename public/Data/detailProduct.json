@@ -1,0 +1,26 @@
+{
+  "results": {
+    "name": "돼지고기",
+    "butcheredDate": "2021-07-07",
+    "price": 6300,
+    "grams": 350,
+    "pricePer100g": 1800,
+    "isOrganic": true,
+    "thumbnail": "https://topclass.chosun.com/news_img/1807/1807_008_1.jpg",
+    "options": [
+      "1미리",
+      "2미리",
+      "3미리"
+    ],
+    "images": [
+      {
+        "imageUrl": "https://topclass.chosun.com/news_img/1807/1807_008_1.jpg",
+        "sequence": 1
+      },
+      {
+        "imageUrl": "https://topclass.chosun.com/news_img/1807/1807_008_2.jpg",
+        "sequence": 2
+      }
+    ]
+  }
+}

@@ -13,12 +13,9 @@ export default class CouponList extends Component {
           <span className="coupons">{this.props.couponName}</span>
         </div>
         <div className="couponListRight">
-          <div>
-            <i
-              className="fas fa-plus-circle"
-              onClick={() => this.seletcAndClose()}
-            ></i>
-          </div>
+          <button className="useCoupon" onClick={() => this.seletcAndClose()}>
+            사용하기
+          </button>
         </div>
       </div>
     );
