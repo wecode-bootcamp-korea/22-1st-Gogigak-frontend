@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './Nav.scss';
 
 export class Nav extends Component {
+  state = {
+    isLogin: '',
+  };
+
   render() {
     return (
       <div className="Navigation">
@@ -85,4 +89,4 @@ export class Nav extends Component {
   }
 }
 
-export default Nav;
+export default withRouter(Nav);
