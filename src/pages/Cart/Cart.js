@@ -13,6 +13,7 @@ export class Cart extends Component {
     isCoupon: false,
     couponValue: '',
     couponId: '',
+    isloaded: '',
   };
 
   quantityPlus = (cartItemId, cartIndex) => {
