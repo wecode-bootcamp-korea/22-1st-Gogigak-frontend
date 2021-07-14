@@ -12,10 +12,11 @@ export class Cart extends Component {
     user: '',
     isCoupon: false,
     couponValue: '',
+    couponId: '',
   };
 
   quantityPlus = (cartItemId, cartIndex) => {
-    let newCartData = [...this.state.cartData];
+    const newCartData = [...this.state.cartData];
     if (newCartData[cartIndex].quantity < 100) {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity + 1;
       this.setState({ cartData: newCartData });
@@ -30,7 +31,7 @@ export class Cart extends Component {
   };
 
   quantityMinus = (cartItemId, cartIndex) => {
-    let newCartData = [...this.state.cartData];
+    const newCartData = [...this.state.cartData];
     if (newCartData[cartIndex].quantity > 1) {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity - 1;
       this.setState({ cartData: newCartData });
@@ -50,7 +51,7 @@ export class Cart extends Component {
       body: cartItemId,
     });
 
-    let newCartData = [...this.state.cartData];
+    const newCartData = [...this.state.cartData];
     console.log(newCartData);
     newCartData = newCartData.filter(
       cartItem => cartItem.cartItemId !== cartItemId
@@ -58,8 +59,9 @@ export class Cart extends Component {
     this.setState({ cartData: newCartData });
   };
 
-  selectCoupon = value => {
+  selectCoupon = (value, Id) => {
     this.setState({ couponValue: value });
+    this.setState({ couponId: Id });
   };
 
   componentDidMount() {
@@ -82,6 +84,12 @@ export class Cart extends Component {
     this.setState({ isCoupon: !this.state.isCoupon });
   };
 
+  doBuy = () => {
+    fetch(`${API.PURCHASE}`, {
+      method: 'POST',
+      body: { couponId: this.state.couponId, point: this.state.user.point },
+    });
+  };
   render() {
     const { cartData } = this.state;
     const totalValue =
@@ -90,7 +98,7 @@ export class Cart extends Component {
         .map(cart => cart.price * cart.quantity)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const isFirstPayment = false;
-    console.log(totalValue.toLocaleString());
+    console.log(this.state.user);
     return (
       <div className="cart">
         <p className="cartTitle">장바구니</p>
@@ -175,7 +183,9 @@ export class Cart extends Component {
                       {(totalValue - this.state.couponValue).toLocaleString()}원
                     </p>
                   </div>
-                  <button className="paymentBtn">전체상품 주문하기</button>
+                  <button className="paymentBtn" onClick={() => this.doBuy()}>
+                    전체상품 주문하기
+                  </button>
                   <button className="keepShoppingBtn">쇼핑계속하기</button>
                 </div>
               </section>

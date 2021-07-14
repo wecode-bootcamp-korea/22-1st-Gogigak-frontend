@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './CouponModal.scss';
 export default class CouponList extends Component {
   seletcAndClose = () => {
-    this.props.selectCoupon(this.props.couponValue);
+    this.props.selectCoupon(this.props.couponValue, this.props.couponId);
     this.props.toggleCoupon();
   };
   render() {
