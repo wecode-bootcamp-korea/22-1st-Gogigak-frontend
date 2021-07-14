@@ -12,13 +12,6 @@ export class Nav extends Component {
       this.setState({
         isLogin: localStorage.getItem('token') !== null,
       });
-      // if (localStorage.getItem('token') !== null) {
-      //   this.setState({ isLogin: true });
-      //   // console.log(localStorage.getItem('token'), '컴디업 위');
-      // } else if (localStorage.getItem('token') === null) {
-      //   this.setState({ isLogin: false });
-      //   // console.log(localStorage.getItem('token'), '컴디업 아래');
-      // }
     }
   }
 
