@@ -1,5 +1,6 @@
 import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
+import { API } from '../../../src/config';
 
 import './Address.scss';
 const POST_CODE_STYLE = {
@@ -15,9 +16,25 @@ const POST_CODE_STYLE = {
 class Address extends React.Component {
   state = {
     isPost: false,
+    isDelivery: '',
   };
+
   handleComplete = data => {
     let zonecode = data.zonecode;
+
+    fetch(`${API.ADDRESS}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        zipCode: zonecode,
+      }),
+    })
+      .then(res => res.json())
+      .then(result =>
+        this.setState({
+          isDelivery: result.message,
+          isPost: !this.state.isPost,
+        })
+      );
   };
 
   handlePost = () => {
@@ -27,6 +44,7 @@ class Address extends React.Component {
   };
 
   render() {
+    const { isDelivery } = this.state;
     return (
       <section className="delivery">
         <img
@@ -76,11 +94,22 @@ class Address extends React.Component {
             )}
           </div>
           <div className="searchResult">
-            <p>
-              고객님은 <span className="text-bold">당일배송</span>,
-              <span className="text-bold">새벽배송</span>으로
-              <br /> 받아보실 수 있습니다.
-            </p>
+            {isDelivery && (
+              <p>
+                고객님은 <span className="text-bold">당일배송</span>,
+                <span className="text-bold">새벽배송</span>으로
+                <br /> 받아보실 수 있습니다.
+              </p>
+            )}
+            {!isDelivery ? (
+              <p>
+                <span className="text-bold">신선배송 불가지역이므로 </span>,
+                <span className="red">우체국 택배</span>로
+                <br /> 받아보실 수 있습니다.
+              </p>
+            ) : (
+              ''
+            )}
           </div>
         </div>
       </section>
