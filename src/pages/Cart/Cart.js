@@ -113,6 +113,7 @@ export class Cart extends Component {
     const orderCount = this.state.user.orderCount;
     const shippingFee = 2500;
     console.log(this.state.user);
+
     return (
       <div className="cart">
         <p className="cartTitle">장바구니</p>
