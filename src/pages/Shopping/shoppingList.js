@@ -9,7 +9,7 @@ import './ShoppingList.scss';
 const CATEGORY_LIST = [
   {
     id: 1,
-    title: 'all',
+    title: '',
     name: '전체',
   },
   {
@@ -50,7 +50,7 @@ class ShoppingList extends Component {
 
   componentDidMount() {
     this.fetchData(
-      `${API.LIST}?category=${this.props.match.params.name || 'all'}&sort=${
+      `${API.LIST}?category=${this.props.match.params.name || ''}&sort=${
         this.state.orderingValue || ''
       }`
     );
@@ -64,7 +64,7 @@ class ShoppingList extends Component {
     }
     if (this.state.orderingValue !== prevState.orderingValue) {
       this.fetchData(
-        `${API.LIST}?category=${this.props.match.params.name || 'all'}&sort=${
+        `${API.LIST}?category=${this.props.match.params.name || ''}&sort=${
           this.state.orderingValue
         } `
       );
@@ -83,11 +83,21 @@ class ShoppingList extends Component {
 
   render() {
     const { items, selectedCategory } = this.state;
+    const { name } = this.props.match.params;
 
     return (
       <section className="shoppingList">
         <div className="categoryImg">
-          {items && <img src={`${items.category_image}`} alt="categoryImg" />}
+          {items && (
+            <img
+              src={
+                name === undefined
+                  ? '/images/mainImage.jpeg'
+                  : `${items.category_image}`
+              }
+              alt="categoryImg"
+            />
+          )}
         </div>
         <section className="categorys">
           <ul className="categoryContainer">
