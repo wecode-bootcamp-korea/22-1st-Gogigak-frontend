@@ -13,7 +13,7 @@ class Mypage extends Component {
   };
 
   componentDidMount() {
-    fetch(`${API.MYPAGE}`)
+    fetch(`${API.USERS_ME}`)
       .then(res => res.json())
       .then(data => this.setState({ userInfo: data.result }));
   }
