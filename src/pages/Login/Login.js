@@ -23,7 +23,7 @@ export class Login extends Component {
           alert('INVALID_USER');
         } else {
           localStorage.setItem('token', result.token);
-          window.location.replace('/');
+          this.props.history.push('/');
         }
       });
   };
