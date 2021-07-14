@@ -22,8 +22,8 @@ export class Register extends Component {
       }),
     })
       .then(res => res.json())
-      .then(res => console.log(res))
-      .then(this.props.history.push('./login'));
+      .then(res => console.log(res));
+    // .then(this.props.history.push('./login'));
   };
 
   handleChange = e => {
@@ -143,7 +143,7 @@ export class Register extends Component {
                 <input className="registerInputContentPhoneNumber"></input> */}
               </div>
             </div>
-            {/* <div className="registerInputLine">
+            <div className="registerInputLine">
               <div className="registerInputTitle">
                 <p className="registerInput">주소</p>
               </div>
@@ -156,7 +156,7 @@ export class Register extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-            </div> */}
+            </div>
           </div>
           <div className="registerButtonArea">
             <button
