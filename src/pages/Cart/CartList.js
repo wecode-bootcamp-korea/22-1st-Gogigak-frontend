@@ -39,7 +39,11 @@ export default class CartList extends Component {
               </div>
             </div>
             <div className="itemPrice">
-              <p>{Math.floor(this.props.price).toLocaleString()}</p>
+              <p>
+                {Math.floor(
+                  this.props.price * this.props.quantity
+                ).toLocaleString()}
+              </p>
             </div>
             <button
               className="deleteBtn"
