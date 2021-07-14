@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Item from '../../components/Item/Item';
-import { API } from '../../config';
 import SlideImg from './SlideImg';
-
+import { API } from '../../config';
 import './Main.scss';
+
 export default class Main extends Component {
   state = {
     slideIndex: 0,
     mainSlideImage: [],
+    items: [],
   };
 
   slideContainer = React.createRef();
@@ -19,14 +19,12 @@ export default class Main extends Component {
       method: 'GET',
     })
       .then(res => res.json())
-      .then(result =>
-        this.setState(
-          { mainSlideImage: result },
-          console.log(this.state, '컴디마')
-        )
-      );
+      .then(result => this.setState({ mainSlideImage: result }));
 
     setInterval(this.slideNext, 3000);
+    fetch(`${API.LIST}?category=all&sort=sales`)
+      .then(res => res.json())
+      .then(result => this.setState({ items: result.results }));
   }
 
   slideNext = () => {
@@ -56,8 +54,8 @@ export default class Main extends Component {
   };
 
   render() {
-    this.state.mainSlideImage.results &&
-      console.log(this.state.mainSlideImage.results, '렌더');
+    const { items } = this.state;
+
     return (
       <div className="mainPage">
         <div className="slideOverFlow">
@@ -81,12 +79,22 @@ export default class Main extends Component {
         <section className="bestItemContainer">
           <div className="bestItemList">정육각 베스트 상품</div>
           <ul className="bestItems">
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            {items.items &&
+              items.items.map((item, idx) => {
+                if (idx < 6) {
+                  return (
+                    <Item
+                      key={idx}
+                      id={item.id}
+                      img={item.thumbnail}
+                      price={item.price}
+                      gram={item.grams}
+                      title={item.name}
+                      options={item.options}
+                    />
+                  );
+                }
+              })}
           </ul>
         </section>
         <div

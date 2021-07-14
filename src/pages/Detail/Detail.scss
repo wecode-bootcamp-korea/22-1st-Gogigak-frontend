@@ -242,7 +242,8 @@
       border-top:1px solid #979797;
 
       article{
-
+        max-width:1280px;
+        margin:0 auto;
         img{
           @include maxWidth;
         }
@@ -331,6 +332,9 @@
                   font-size:24px;
                   color:#d0021b;
                   cursor:pointer;
+                }
+                .off{
+                  display:none;
                 }
               }
 
