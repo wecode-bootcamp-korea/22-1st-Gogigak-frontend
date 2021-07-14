@@ -6,4 +6,5 @@ export const API = {
   SIGN_IN: `${BASE_URL}/users/signin`,
   SIGN_UP: `${BASE_URL}/users/signup`,
   USERS_ME: `${BASE_URL}/users/me`,
+  PURCHASE: `${BASE_URL}/orders/purchase`,
 };
