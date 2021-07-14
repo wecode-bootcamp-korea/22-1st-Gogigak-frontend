@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { API } from '../../config';
-import './Cart.scss';
 import CartList from './CartList';
 import CouponModal from '../../components/Modal/CouponModal';
 import { withRouter } from 'react-router-dom';
 
+import './Cart.scss';
 const authToken = localStorage.getItem('Token');
 
 export class Cart extends Component {
@@ -106,20 +106,10 @@ export class Cart extends Component {
       body: JSON.stringify({
         couponId: this.state.couponId,
       }),
-    }).then(res => res.json());
-
-    fetch(API.CART, {
-      headers: {
-        authorization: authToken,
-      },
     })
       .then(res => res.json())
-      .then(data => {
-        this.setState({
-          cartData: data.cartItems,
-        });
-      })
-      .then(console.log('카트 구매 뒤 셋스테이트 다시'));
+      .then(data => console.log(data, '바이'));
+    // .then(this.props.history.push('/mypage'));
   };
 
   render() {
@@ -130,7 +120,8 @@ export class Cart extends Component {
         .map(cart => cart.price * cart.quantity)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const orderCount = this.state.user.orderCount;
-    const shippingFee = 2500;
+    let shippingFee = 2500;
+    shippingFee = totalValue > 50000 || orderCount === 0 ? 0 : 2500;
     console.log(this.state.user);
 
     return (
@@ -174,12 +165,27 @@ export class Cart extends Component {
                   <div className="shippingPrice">
                     <div className="shippingPrice-total">
                       <p>총 배송비</p>
-                      <p>{shippingFee}원</p>
+                      <p>{shippingFee.toLocaleString()}원</p>
                     </div>
-                    <div className="shippingPrice-basic">
-                      <span className="basic-text">기본 배송비</span>
-                      <span className="basic-price">{shippingFee}원</span>
-                    </div>
+                    {totalValue < 50000 && (
+                      <div className="shippingPrice-basic">
+                        <span className="shippingFeeText">기본 배송비</span>
+                        <span className="basic-price">
+                          {shippingFee.toLocaleString()}원
+                        </span>
+                      </div>
+                    )}
+
+                    {totalValue && orderCount !== 0 > 50000 && (
+                      <div className="shippingPrice-basic">
+                        <span className="shippingFeeText">
+                          50,000 이상 구매시 배송비 무료
+                        </span>
+                        {/* <span className="basic-price">
+                        -{shippingFee.toLocaleString()}원
+                      </span> */}
+                      </div>
+                    )}
                     {orderCount === 0 && (
                       <div className="firstPayment">
                         <span className="firstBuyText">첫구매 무료배송</span>
@@ -197,7 +203,7 @@ export class Cart extends Component {
                     <div className="shippingPrice">
                       <div className="shippingPrice-total">
                         <p>쿠폰 적용금액</p>
-                        <p>{this.state.couponValue}원</p>
+                        <p>{this.state.couponValue.toLocaleString()}원</p>
                       </div>
                     </div>
                   )}
