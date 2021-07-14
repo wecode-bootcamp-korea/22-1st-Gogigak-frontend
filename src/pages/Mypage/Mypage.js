@@ -13,7 +13,11 @@ class Mypage extends Component {
   };
 
   componentDidMount() {
-    fetch(`${API.USERS_ME}`)
+    fetch(`${API.USERS_ME}`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
       .then(res => res.json())
       .then(data => this.setState({ userInfo: data.result }));
   }
@@ -37,6 +41,10 @@ class Mypage extends Component {
             <div className="userInfoData">
               <div className="userInfo-head">
                 <p className="userName"> Hello,{userInfo.name}</p>
+                {userInfo.isAvailable && (
+                  <i className="fas fa-rocket">신선배송 가능 지역</i>
+                )}
+
                 <button className="logout"> 로그아웃</button>
               </div>
               <div className="splitLine"></div>
