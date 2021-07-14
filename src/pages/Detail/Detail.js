@@ -28,7 +28,6 @@ export class Detail extends Component {
       });
   }
   render() {
-    //조건부 렌더링 필수
     const { productInfo } = this.state;
     return (
       <div className="detail-wrap">
