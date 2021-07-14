@@ -8,8 +8,9 @@ class Item extends React.Component {
     isModal: false,
   };
 
-  handleClick = () => {
+  handleClick = e => {
     this.setState({ isModal: !this.state.isModal });
+    e.stopPropagation();
   };
 
   goToDetail = () => {
