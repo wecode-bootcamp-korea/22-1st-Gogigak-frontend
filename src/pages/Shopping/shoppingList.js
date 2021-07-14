@@ -40,6 +40,7 @@ class ShoppingList extends Component {
     items: [],
     orderingValue: '',
     selectedCategory: Array(CATEGORY_LIST.length).fill(false),
+    selectedIdx: 0,
   };
 
   fetchData = apiAddress => {
@@ -50,21 +51,26 @@ class ShoppingList extends Component {
 
   componentDidMount() {
     this.fetchData(
-      `${API.LIST}?category=${this.props.match.params.name || ''}&sort=${
-        this.state.orderingValue || ''
-      }`
+      `${API.LIST}?category=${
+        this.props.location.search.slice(10) || ''
+      }&sort=${this.state.orderingValue || ''}`
     );
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.match.params.name !== prevProps.match.params.name) {
+    if (
+      this.props.location.search.slice(10) !==
+      prevProps.location.search.slice(10)
+    ) {
       this.fetchData(
-        `${API.LIST}?category=${this.props.match.params.name}&sort=${this.state.orderingValue}`
+        `${API.LIST}?category=${this.props.location.search.slice(10)}&sort=${
+          this.state.orderingValue
+        }`
       );
     }
     if (this.state.orderingValue !== prevState.orderingValue) {
       this.fetchData(
-        `${API.LIST}?category=${this.props.match.params.name || ''}&sort=${
+        `${API.LIST}?category=${this.props.location.search.slice(10)}&sort=${
           this.state.orderingValue
         } `
       );
@@ -75,17 +81,9 @@ class ShoppingList extends Component {
     this.setState({ orderingValue: event.target.value });
   };
 
-  handleCategoryClick = idx => {
-    const newArr = Array(CATEGORY_LIST.length).fill(false);
-    newArr[idx] = true;
-    this.setState({ selectedCategory: newArr });
-  };
-
   render() {
     const { items, selectedCategory } = this.state;
-    const { name } = this.props.match.params;
-
-    console.log(items);
+    const { search } = this.props.location;
 
     return (
       <section className="shoppingList">
@@ -93,7 +91,7 @@ class ShoppingList extends Component {
           {items && (
             <img
               src={
-                name === undefined
+                search.slice(10) === ''
                   ? '/images/mainImage.jpeg'
                   : `${items.category_image}`
               }
@@ -111,8 +109,7 @@ class ShoppingList extends Component {
                   id={category.id}
                   title={category.title}
                   name={category.name}
-                  isSelected={selectedCategory[idx]}
-                  handleCategoryClick={() => this.handleCategoryClick(idx)}
+                  categorys={selectedCategory}
                 />
               );
             })}
