@@ -89,7 +89,7 @@ export class Register extends Component {
                 <input
                   className="registerInputContentInput"
                   name="passwordCheck"
-                  type="passwordCheck"
+                  type="password"
                   value={this.state.passwordCheck}
                   onChange={this.handleChange}
                 />
