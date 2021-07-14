@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API } from '../../config';
 import './Register.scss';
-
 export class Register extends Component {
   state = {
     id: '',
@@ -10,7 +9,6 @@ export class Register extends Component {
     name: '',
     phone: '',
   };
-
   register = () => {
     fetch(API.SIGN_UP, {
       method: 'POST',
@@ -20,26 +18,32 @@ export class Register extends Component {
         name: this.state.name,
         phone_number: this.state.phone,
       }),
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
+    // .then(this.props.history.push('./login'));
   };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
+
+    return console.log(
+      this.validateEmail(this.state.id) &&
+        this.validatePassword(this.state.password) &&
+        this.validatephone(this.state.phone)
+    );
   };
 
   validateEmail = value => {
     let regExp = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/i;
-
     return regExp.test(value);
   };
-
   validatePassword = value => {
     let regExp = /^[a-zA-Z0-9]{8,20}$/;
     return regExp.test(value);
   };
-
   validatephone = value => {
     let regExp = /^01([0|1|6|7|8|9])([0-9]{3,4})([0-9]{4})$/;
     return regExp.test(value);
@@ -51,7 +55,6 @@ export class Register extends Component {
         <div className="registerTitle">회원가입</div>
         <section className="registerForm">
           <p>가입정보 입력</p>
-
           <div className="registerInputBox">
             <div className="registerInputLine">
               <div className="registerInputTitle">
@@ -89,7 +92,7 @@ export class Register extends Component {
                 <input
                   className="registerInputContentInput"
                   name="passwordCheck"
-                  type="password"
+                  type="passwordCheck"
                   value={this.state.passwordCheck}
                   onChange={this.handleChange}
                 />
@@ -121,7 +124,6 @@ export class Register extends Component {
                   value={this.state.phone}
                   onChange={this.handleChange}
                 ></input>
-
                 {/* 추가 구현사항 */}
                 {/* <select className="phoneNumberSelect">
                   <option value="010">010</option>
@@ -134,6 +136,20 @@ export class Register extends Component {
                 <input className="registerInputContentPhoneNumber"></input> */}
               </div>
             </div>
+            {/* <div className="registerInputLine">
+              <div className="registerInputTitle">
+                <p className="registerInput">주소</p>
+              </div>
+              <div className="registerInputContent">
+                <input
+                  className="registerInputContentInput"
+                  name="address"
+                  type="address"
+                  value={this.state.address}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div> */}
           </div>
           <div className="registerButtonArea">
             <button
@@ -151,5 +167,4 @@ export class Register extends Component {
     );
   }
 }
-
 export default Register;
