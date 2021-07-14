@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import CartModal from '../Modal/CartModal';
 import './Item.scss';
 
@@ -7,8 +8,14 @@ class Item extends React.Component {
     isModal: false,
   };
 
-  handleClick = () => {
+  handleClick = e => {
     this.setState({ isModal: !this.state.isModal });
+    e.stopPropagation();
+  };
+
+  goToDetail = () => {
+    this.props.history.push(`/Detail/${this.props.id}`);
+    console.log('click');
   };
 
   render() {
@@ -16,7 +23,7 @@ class Item extends React.Component {
     const { isModal } = this.state;
 
     return (
-      <li className="item">
+      <li className="item" onClick={this.goToDetail}>
         <div className="imgContainer">
           <img src={img} alt="itemImg" />
           <div className="cartBackground" onClick={this.handleClick}>
@@ -40,4 +47,4 @@ class Item extends React.Component {
   }
 }
 
-export default Item;
+export default withRouter(Item);

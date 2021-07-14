@@ -17,9 +17,12 @@ export class Detail extends Component {
   }
   //mockdata받기
   componentDidMount() {
-    fetch('http://ambitiouskyle.iptime.org:6389/products/12', {
-      method: 'GET',
-    })
+    fetch(
+      `http://ambitiouskyle.iptime.org:6389/products/${this.props.match.params.product}`,
+      {
+        method: 'GET',
+      }
+    )
       .then(results => results.json())
       .then(results => {
         this.setState({
