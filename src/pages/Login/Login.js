@@ -10,7 +10,7 @@ export class Login extends Component {
 
   login = e => {
     e.preventDefault();
-    fetch(API, {
+    fetch(`${API.LOGIN}`, {
       method: 'POST',
       body: JSON.stringify({
         email: this.state.id,

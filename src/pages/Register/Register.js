@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API, JUNYOUNG_URL } from '../../config';
+import { API } from '../../config';
 import './Register.scss';
 
 export class Register extends Component {
