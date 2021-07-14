@@ -1,9 +1,38 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { API } from '../../config';
 import './Nav.scss';
 
 export class Nav extends Component {
+  state = { cartList: [], cartCount: 0 };
+
+  componentDidMount() {
+    fetch(`${API.CART}`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(result => this.setState({ cartList: result.cartItems }));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.cartCount !== this.state.cartCount) {
+      for (let n of this.statecartList) {
+        console.log(n.quantity);
+
+        // return acc + current;
+      }
+    }
+  }
+
   render() {
+    const { cartList, cartCount } = this.state;
+
+    const totalCount = cartList
+      .map(e => e.quantity)
+      .reduce((acc, current) => acc + current, 0);
+
     return (
       <div className="Navigation">
         <div>상단배너</div>
@@ -50,7 +79,11 @@ export class Nav extends Component {
                 <ul className="navigationMenu">
                   <li className="navigationMenuList">마이페이지</li>
                   <li className="navigationMenuList">
-                    <i className="fas fa-shopping-cart"></i>
+                    <i className="fas fa-shopping-cart">
+                      <div className="countContainer">
+                        <span className="shoppingCount">{totalCount}</span>
+                      </div>
+                    </i>
                   </li>
                 </ul>
               ) : (
