@@ -4,6 +4,7 @@ export default class CouponList extends Component {
   seletcAndClose = () => {
     this.props.selectCoupon(this.props.couponValue, this.props.couponId);
     this.props.toggleCoupon();
+    console.log(this.props.couponId);
   };
   render() {
     return (

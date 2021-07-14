@@ -71,6 +71,7 @@ export class Cart extends Component {
       .then(data => {
         this.setState({
           cartData: data.cartItems,
+          isloaded: true,
         });
       });
 
@@ -217,7 +218,7 @@ export class Cart extends Component {
             </>
           )}
 
-          {this.state.cartData.length === 0 && (
+          {this.state.isloaded && this.state.cartData.length === 0 && (
             <section className="cartItemNone">
               <div className="emptyCart">장바구니에 담은 상품이 없습니다.</div>
               <div
