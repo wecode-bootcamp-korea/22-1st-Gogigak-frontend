@@ -4,8 +4,20 @@ import './Nav.scss';
 
 export class Nav extends Component {
   state = {
-    isLogin: '',
+    isLogin: false,
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      if (localStorage.getItem('token') !== null) {
+        this.setState({ isLogin: true });
+        // console.log(localStorage.getItem('token'), '컴디업 위');
+      } else if (localStorage.getItem('token') === null) {
+        this.setState({ isLogin: false });
+        // console.log(localStorage.getItem('token'), '컴디업 아래');
+      }
+    }
+  }
 
   render() {
     return (
@@ -50,11 +62,23 @@ export class Nav extends Component {
 
               <div className="navigationSubMenuSplit"></div>
 
-              {localStorage.getItem('token') ? (
+              {this.state.isLogin === true ? (
                 <ul className="navigationMenu">
-                  <li className="navigationMenuList">마이페이지</li>
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      this.props.history.push('/mypage');
+                    }}
+                  >
+                    마이페이지
+                  </li>
                   <li className="navigationMenuList">
-                    <i className="fas fa-shopping-cart"></i>
+                    <i
+                      className="fas fa-shopping-cart"
+                      onClick={() => {
+                        this.props.history.push('/cart');
+                      }}
+                    />
                   </li>
                 </ul>
               ) : (
