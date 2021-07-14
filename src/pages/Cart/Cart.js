@@ -87,9 +87,12 @@ export class Cart extends Component {
   doBuy = () => {
     fetch(`${API.PURCHASE}`, {
       method: 'POST',
-      body: { couponId: this.state.couponId, point: this.state.user.point },
+      body: JSON.stringify({
+        couponId: this.state.couponId,
+      }),
     });
   };
+
   render() {
     const { cartData } = this.state;
     const totalValue =
