@@ -9,13 +9,16 @@ export class Nav extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      if (localStorage.getItem('token') !== null) {
-        this.setState({ isLogin: true });
-        // console.log(localStorage.getItem('token'), '컴디업 위');
-      } else if (localStorage.getItem('token') === null) {
-        this.setState({ isLogin: false });
-        // console.log(localStorage.getItem('token'), '컴디업 아래');
-      }
+      this.setState({
+        isLogin: localStorage.getItem('token') !== null,
+      });
+      // if (localStorage.getItem('token') !== null) {
+      //   this.setState({ isLogin: true });
+      //   // console.log(localStorage.getItem('token'), '컴디업 위');
+      // } else if (localStorage.getItem('token') === null) {
+      //   this.setState({ isLogin: false });
+      //   // console.log(localStorage.getItem('token'), '컴디업 아래');
+      // }
     }
   }
 
