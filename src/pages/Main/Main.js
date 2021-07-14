@@ -21,10 +21,11 @@ export default class Main extends Component {
       .then(res => res.json())
       .then(result => this.setState({ mainSlideImage: result }));
 
-    setInterval(this.slideNext, 3000);
     fetch(`${API.LIST}?category=all&sort=sales`)
       .then(res => res.json())
       .then(result => this.setState({ items: result.results }));
+
+    setInterval(this.slideNext, 3000);
   }
 
   slideNext = () => {
@@ -40,22 +41,21 @@ export default class Main extends Component {
     }
   };
 
-  slidePrevious = () => {
-    if (this.state.slideIndex > 0) {
-      this.setState({ slideIndex: this.state.slideIndex - 1 }, () => {
-        this.slideContainer.current.style.transition = ' transform 1s';
-        this.slideContainer.current.style.transform = `translateX(-${
-          1184 * this.state.slideIndex
-        }px)`;
-      });
-    } else {
-      return;
-    }
-  };
+  // slidePrevious = () => {
+  //   if (this.state.slideIndex > 0) {
+  //     this.setState({ slideIndex: this.state.slideIndex - 1 }, () => {
+  //       this.slideContainer.current.style.transition = ' transform 1s';
+  //       this.slideContainer.current.style.transform = `translateX(-${
+  //         1184 * this.state.slideIndex
+  //       }px)`;
+  //     });
+  //   } else {
+  //     return;
+  //   }
+  // };
 
   render() {
     const { items } = this.state;
-
     return (
       <div className="mainPage">
         <div className="slideOverFlow">
