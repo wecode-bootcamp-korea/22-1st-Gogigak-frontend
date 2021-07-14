@@ -43,9 +43,6 @@ export class DetailTop extends Component {
     this.onClickToggleHandler();
   };
 
-  //setTimeOut
-  setTimeOut = () => {};
-
   addCart = () => {
     fetch('http://ambitiouskyle.iptime.org:6389/orders/cart', {
       method: 'POST',
@@ -63,6 +60,13 @@ export class DetailTop extends Component {
       .then(response => {
         alert('장바구니에 추가되었습니다.');
       });
+  };
+  //
+  goToCart = () => {
+    this.addCart();
+    setTimeout(() => {
+      window.location.href = 'http://localhost:3000/cart';
+    }, 1000);
   };
 
   render() {
@@ -140,17 +144,13 @@ export class DetailTop extends Component {
               </div>
               <div className="buy-wrap">
                 <ul>
-                  {/* <li>
-                    <Link to="/Login" className="btn btn-buy">
-                      바로구매
-                    </Link>
-                  </li> */}
                   <li>
-                    <button
-                      to="/Login"
-                      className="btn btn-cart"
-                      onClick={this.addCart}
-                    >
+                    <button className="btn btn-buy" onClick={this.goToCart}>
+                      바로구매
+                    </button>
+                  </li>
+                  <li>
+                    <button className="btn btn-cart" onClick={this.addCart}>
                       장바구니
                     </button>
                   </li>

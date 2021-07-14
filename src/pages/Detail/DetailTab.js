@@ -7,15 +7,9 @@ export class DetailTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabOn: false,
+      tabOn: true,
     };
   }
-  //종류 추가
-  onClickToggleHandler = () => {
-    this.setState({
-      tabOn: !this.state.tabOn,
-    });
-  };
   render() {
     return (
       <div className="detail-tab">
@@ -23,7 +17,7 @@ export class DetailTab extends Component {
           <li>
             <Link
               to="#!"
-              className={this.state.tabOn ? '' : 'active'}
+              className={this.state.tabOn ? 'active' : null}
               onClick={this.onClickToggleHandler}
             >
               상품설명
@@ -32,7 +26,7 @@ export class DetailTab extends Component {
           <li>
             <Link
               to="#!"
-              className={this.state.tabOn ? 'active' : ''}
+              className={!this.state.tabOn ? 'active' : null}
               onClick={this.onClickToggleHandler}
             >
               상품리뷰

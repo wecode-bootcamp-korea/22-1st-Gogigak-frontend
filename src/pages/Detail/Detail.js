@@ -27,6 +27,7 @@ export class Detail extends Component {
         });
       });
   }
+
   render() {
     const { productInfo } = this.state;
     // console.log('state', this.state);
