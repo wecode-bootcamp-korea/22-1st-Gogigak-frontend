@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import DetailTop from './DetailTop';
 import DetailTab from './DetailTab';
 import DetailDescContationer from './DetailDescContationer';
+import { API } from '../../config';
 
 import './Detail.scss';
 
@@ -11,7 +12,7 @@ export class Detail extends Component {
     super(props);
     //state생성
     this.state = {
-      productInfo: [],
+      productInfo: {},
     };
   }
   //mockdata받기
@@ -30,19 +31,26 @@ export class Detail extends Component {
       });
   }
   render() {
-    const productInfo = this.state;
-
+    const { productInfo } = this.state;
     return (
       <div className="detail-wrap">
-        <DetailTop
-          productImg={productInfo.productInfo.thumbnail}
-          productName={productInfo.productInfo.name}
-          productStandard={productInfo.productInfo.grams}
-          productPrice={productInfo.productInfo.price}
-          productOption={productInfo.productInfo.options}
-        />
-        <DetailTab />
-        <DetailDescContationer DesImg={productInfo.productInfo.images} />
+        {productInfo.name && (
+          <>
+            <DetailTop
+              productImg={productInfo.thumbnail}
+              productName={productInfo.name}
+              productStandard={productInfo.grams}
+              productPrice={productInfo.price}
+              productOption={productInfo.options}
+            />
+            <DetailTab />
+            <DetailDescContationer
+              DesImg={productInfo.images}
+              DesDate={productInfo.butcheredDate}
+              productCloseBtn={productInfo.isOrganic}
+            />
+          </>
+        )}
       </div>
     );
   }

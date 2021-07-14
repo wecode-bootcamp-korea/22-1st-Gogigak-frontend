@@ -11,7 +11,10 @@ export class CommnetList extends Component {
               <div className="detail-review-top-wrap">
                 <h6>{this.props.title}</h6>
                 <button
-                  onClick={() => this.props.deletedComment(this.props.key)}
+                  onClick={() =>
+                    this.props.deletedComment(this.props.commentId)
+                  }
+                  className={this.props.productCloseBtn ? '' : 'off'}
                 >
                   <i class="fas fa-times"></i>
                 </button>
