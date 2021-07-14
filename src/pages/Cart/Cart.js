@@ -51,7 +51,7 @@ export class Cart extends Component {
       body: cartItemId,
     });
 
-    const newCartData = [...this.state.cartData];
+    let newCartData = [...this.state.cartData];
     console.log(newCartData);
     newCartData = newCartData.filter(
       cartItem => cartItem.cartItemId !== cartItemId
