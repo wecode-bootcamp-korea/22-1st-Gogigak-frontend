@@ -41,19 +41,6 @@ export default class Main extends Component {
     }
   };
 
-  // slidePrevious = () => {
-  //   if (this.state.slideIndex > 0) {
-  //     this.setState({ slideIndex: this.state.slideIndex - 1 }, () => {
-  //       this.slideContainer.current.style.transition = ' transform 1s';
-  //       this.slideContainer.current.style.transform = `translateX(-${
-  //         1184 * this.state.slideIndex
-  //       }px)`;
-  //     });
-  //   } else {
-  //     return;
-  //   }
-  // };
-
   render() {
     const { items } = this.state;
     return (
@@ -66,15 +53,6 @@ export default class Main extends Component {
               ))}
           </div>
         </div>
-        {/* <div className="slideIndexBar">
-          <div className="slideBtn" onClick={() => this.slidePrevious()}>
-            <i className="fas fa-arrow-left"></i>
-          </div>
-          <div>{this.state.slideIndex}</div>
-          <div className="slideBtn" onClick={() => this.slideNext()}>
-            <i className="fas fa-arrow-right"></i>
-          </div>
-        </div> */}
 
         <section className="bestItemContainer">
           <div className="bestItemList">정육각 베스트 상품</div>
