@@ -85,6 +85,8 @@ class ShoppingList extends Component {
     const { items, selectedCategory } = this.state;
     const { name } = this.props.match.params;
 
+    console.log(items);
+
     return (
       <section className="shoppingList">
         <div className="categoryImg">
