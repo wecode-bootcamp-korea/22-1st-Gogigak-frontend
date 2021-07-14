@@ -15,7 +15,7 @@ export default class Main extends Component {
   btn = React.createRef();
 
   componentDidMount() {
-    fetch(`${API.MAIN}?category=all&sort=sales`)
+    fetch(`${API.LIST}?category=all&sort=sales`)
       .then(res => res.json())
       .then(result => this.setState({ items: result.results }));
   }
