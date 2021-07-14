@@ -90,7 +90,17 @@ export class Cart extends Component {
       body: JSON.stringify({
         couponId: this.state.couponId,
       }),
-    });
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
+
+    fetch(API.CART)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          cartData: data.cartItems,
+        });
+      });
   };
 
   render() {
@@ -100,7 +110,8 @@ export class Cart extends Component {
       cartData
         .map(cart => cart.price * cart.quantity)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const isFirstPayment = false;
+    const orderCount = this.state.user.orderCount;
+    const shippingFee = 2500;
     console.log(this.state.user);
     return (
       <div className="cart">
@@ -143,30 +154,34 @@ export class Cart extends Component {
                   <div className="shippingPrice">
                     <div className="shippingPrice-total">
                       <p>총 배송비</p>
-                      <p>0원</p>
+                      <p>{shippingFee}원</p>
                     </div>
                     <div className="shippingPrice-basic">
                       <span className="basic-text">기본 배송비</span>
-                      <span className="basic-price">2500원</span>
+                      <span className="basic-price">{shippingFee}원</span>
                     </div>
-                    {isFirstPayment && (
+                    {orderCount === 0 && (
                       <div className="firstPayment">
                         <span className="firstBuyText">첫구매 무료배송</span>
                         <span>-100%</span>
                       </div>
                     )}
                   </div>
-                  {isFirstPayment && (
+                  {orderCount === 0 && (
                     <p className="paymentMessage">
                       첫구매 무료배송 혜택이 적용되었습니다.
                     </p>
                   )}
-                  <div className="shippingPrice">
-                    <div className="shippingPrice-total">
-                      <p>쿠폰 적용금액</p>
-                      <p>{this.state.couponValue}원</p>
+
+                  {this.state.couponValue !== '' && (
+                    <div className="shippingPrice">
+                      <div className="shippingPrice-total">
+                        <p>쿠폰 적용금액</p>
+                        <p>{this.state.couponValue}원</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
+
                   <div className="useCoupon dropbtn">
                     <div onClick={this.toggleCoupon}>
                       쿠폰 사용하기 <i class="far fa-check-circle"></i>
@@ -183,7 +198,12 @@ export class Cart extends Component {
                   <div className="totalPrice">
                     <p className="totalPrice-text">예상 결제 금액</p>
                     <p className="totalPrice-won">
-                      {(totalValue - this.state.couponValue).toLocaleString()}원
+                      {(
+                        totalValue -
+                        this.state.couponValue +
+                        shippingFee
+                      ).toLocaleString()}
+                      원
                     </p>
                   </div>
                   <button className="paymentBtn" onClick={() => this.doBuy()}>
