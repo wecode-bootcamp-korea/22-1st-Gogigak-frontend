@@ -143,6 +143,20 @@ export class Register extends Component {
                 <input className="registerInputContentPhoneNumber"></input> */}
               </div>
             </div>
+            {/* <div className="registerInputLine">
+              <div className="registerInputTitle">
+                <p className="registerInput">주소</p>
+              </div>
+              <div className="registerInputContent">
+                <input
+                  className="registerInputContentInput"
+                  name="address"
+                  type="address"
+                  value={this.state.address}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div> */}
           </div>
           <div className="registerButtonArea">
             <button
