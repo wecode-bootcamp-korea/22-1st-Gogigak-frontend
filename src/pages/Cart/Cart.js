@@ -5,6 +5,8 @@ import CartList from './CartList';
 import CouponModal from '../../components/Modal/CouponModal';
 import { withRouter } from 'react-router-dom';
 
+const authToken = localStorage.getItem('Token');
+
 export class Cart extends Component {
   state = {
     cartData: '',
@@ -24,6 +26,9 @@ export class Cart extends Component {
 
       fetch(`${API.CART}/${cartItemId}`, {
         method: 'PATCH',
+        headers: {
+          authorization: authToken,
+        },
         body: JSON.stringify({
           changeQuantity: this.state.cartData[cartIndex].quantity,
         }),
@@ -39,6 +44,9 @@ export class Cart extends Component {
 
       fetch(`${API.CART}/${cartItemId}`, {
         method: 'PATCH',
+        headers: {
+          authorization: authToken,
+        },
         body: JSON.stringify({
           changeQuantity: newCartData[cartIndex].quantity,
         }),
@@ -49,6 +57,9 @@ export class Cart extends Component {
   deleteCartItem = cartItemId => {
     fetch(`${API.CART}/${cartItemId}`, {
       method: 'DELETE',
+      headers: {
+        authorization: authToken,
+      },
       body: cartItemId,
     });
 
@@ -89,20 +100,26 @@ export class Cart extends Component {
   doBuy = () => {
     fetch(`${API.PURCHASE}`, {
       method: 'POST',
+      headers: {
+        authorization: authToken,
+      },
       body: JSON.stringify({
         couponId: this.state.couponId,
       }),
-    })
-      .then(res => res.json())
-      .then(data => console.log(data));
+    }).then(res => res.json());
 
-    fetch(API.CART)
+    fetch(API.CART, {
+      headers: {
+        authorization: authToken,
+      },
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({
           cartData: data.cartItems,
         });
-      });
+      })
+      .then(console.log('카트 구매 뒤 셋스테이트 다시'));
   };
 
   render() {
