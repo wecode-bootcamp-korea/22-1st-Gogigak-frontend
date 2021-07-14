@@ -271,6 +271,7 @@
 
     .detail-desc-wrap{
       border-top:1px solid #979797;
+      display:none;
 
       article{
         max-width:1280px;
@@ -325,9 +326,12 @@
         }
       }
     }
+    .active{
+      display:block
+    }
 
     .detail-review{
-      display:flex;
+      display:none;
       justify-content: center;
       margin-top:39px;
       flex-direction:column;
@@ -352,7 +356,7 @@
             height:100%;
 
             .detail-review-box{
-              display:flex;
+              display:none;
               align-items: center;
               width:100%;
               .detail-review-top-wrap{
@@ -404,6 +408,7 @@
                 height:236px;
               }
             }
+            
 
             .detail-review-width-product{
               display:flex;
@@ -589,6 +594,9 @@
         width:39px;
         height:64px;
       }
+    }
+    .detail-review.active{
+      display:flex;
     }
   }
 }

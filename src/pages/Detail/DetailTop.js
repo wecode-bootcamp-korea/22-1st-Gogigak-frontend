@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { config } from '../../config';
 
 import AmountOption from './AmountOption';
@@ -55,7 +54,7 @@ export class DetailTop extends Component {
     })
       .then(response => {
         response.json();
-        console.log(response.status);
+        // console.log(response.status);
       })
       .then(response => {
         alert('장바구니에 추가되었습니다.');
@@ -106,7 +105,7 @@ export class DetailTop extends Component {
                     <ul>
                       {this.props.productOption &&
                         this.props.productOption.map(el => {
-                          console.log(this.props.productOption);
+                          //console.log(this.props.productOption);
                           return (
                             <AmountOption
                               key={el.id}
