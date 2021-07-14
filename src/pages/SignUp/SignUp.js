@@ -12,7 +12,7 @@ export class SignUp extends Component {
           <div>
             <button className="signUpWithKakao">
               <div>
-                <i class="fas fa-comment"></i>
+                <i className="fas fa-comment"></i>
                 <span>&nbsp; 카카오로 시작하기</span>
               </div>
             </button>
@@ -22,7 +22,7 @@ export class SignUp extends Component {
           <div>
             <button className="signUpWithNaver">
               <div>
-                <i class="fas fa-portrait"></i>
+                <i className="fas fa-portrait"></i>
                 <span>&nbsp;&nbsp;네이버로 시작하기</span>
               </div>
             </button>
