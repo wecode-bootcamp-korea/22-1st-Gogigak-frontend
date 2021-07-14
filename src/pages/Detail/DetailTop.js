@@ -40,7 +40,7 @@ export class DetailTop extends Component {
   };
 
   render() {
-    const selectedOption = this.state.selectedOption;
+    const { selectedOption } = this.state;
     return (
       <section className="detail-top-wrap">
         <div className="detail-top-container">

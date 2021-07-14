@@ -10,17 +10,33 @@ export class DetailTab extends Component {
       tabOn: false,
     };
   }
+  //종류 추가
+  onClickToggleHandler = () => {
+    this.setState({
+      tabOn: !this.state.tabOn,
+    });
+  };
   render() {
     return (
       <div className="detail-tab">
         <ul>
           <li>
-            <Link to="#!" className="active">
+            <Link
+              to="#!"
+              className={this.state.tabOn ? '' : 'active'}
+              onClick={this.onClickToggleHandler}
+            >
               상품설명
             </Link>
           </li>
           <li>
-            <Link to="#!">상품리뷰</Link>
+            <Link
+              to="#!"
+              className={this.state.tabOn ? 'active' : ''}
+              onClick={this.onClickToggleHandler}
+            >
+              상품리뷰
+            </Link>
           </li>
         </ul>
       </div>

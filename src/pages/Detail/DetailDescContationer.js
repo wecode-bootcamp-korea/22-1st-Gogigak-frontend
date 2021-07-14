@@ -24,7 +24,7 @@ export class DetailDescContationer extends Component {
     fetch('http://ambitiouskyle.iptime.org:6389/products/12/reviews', {
       method: 'POST',
       body: JSON.stringify({
-        image_url: '',
+        imageUrl: '',
         title: this.state.titleValue,
         content: this.state.textAreaValue,
       }),
@@ -72,10 +72,26 @@ export class DetailDescContationer extends Component {
       });
   };
   //deleteComment리뷰삭제
+  // deletedComment = id => {
+  //   console.log('id', id);
+  //   this.setState({
+  //     commentList: this.state.commentList.filter(el => el.id !== id),
+  //   });
+  // };
+  //deleteComment리뷰삭제
   deletedComment = id => {
-    this.setState({
-      commentList: this.state.commentList.filter(el => el.id !== id),
-    });
+    fetch(`http://ambitiouskyle.iptime.org:6389/products/reviews/${id}`, {
+      method: 'DELETE',
+    })
+      .then(response => {
+        response.json();
+      })
+      .then(response => {
+        alert('삭제성공');
+        this.setState({
+          commentList: this.state.commentList.filter(el => el.id !== id),
+        });
+      });
   };
   render() {
     const { DesImg } = this.props;
@@ -87,7 +103,7 @@ export class DetailDescContationer extends Component {
           <article>
             {DesImg && <img src={this.props.DesImg[0].imageUrl} />}
           </article>
-          <DetailDateDisplay />
+          <DetailDateDisplay DesDate={this.props.DesDate} />
           <article>
             {DesImg && <img src={this.props.DesImg[1].imageUrl} s />}
           </article>
@@ -138,7 +154,7 @@ export class DetailDescContationer extends Component {
                   </div>
                   <div className="product-name-num">초신선 돼지고기 x 3</div>
                   <div className="btn-wrap">
-                    <button onClick="addComment">후기 등록</button>
+                    <button onClick={this.state.addComment}>후기 등록</button>
                   </div>
                 </div>
               </li>
@@ -172,15 +188,18 @@ export class DetailDescContationer extends Component {
               {/* <CommnetList /> */}
               {commentList &&
                 commentList.map(el => {
-                  console.log(el.purchase_count);
+                  //console.log(this.props.title);
+                  // console.log(el.id);
                   return (
                     <CommnetList
                       key={el.id}
+                      commentId={el.id}
                       title={el.title}
                       comment={el.content}
                       created_at={el.created_at}
                       puserchase_count={el.purchase_count}
                       deletedComment={this.deletedComment}
+                      productCloseBtn={this.props.productCloseBtn}
                     />
                   );
                 })}
