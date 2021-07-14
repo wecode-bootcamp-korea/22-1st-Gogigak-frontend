@@ -22,8 +22,8 @@ export class Register extends Component {
       }),
     })
       .then(res => res.json())
-      .then(res => console.log(res))
-      .then(this.props.history.push('./login'));
+      .then(res => console.log(res));
+    // .then(this.props.history.push('./login'));
   };
 
   handleChange = e => {

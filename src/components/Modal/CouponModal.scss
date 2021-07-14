@@ -1,0 +1,145 @@
+@import '../../styles/variables.scss';
+.backgroundContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  .modalContainer {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 500px;
+    height: 390px;
+    color: black;
+    background-color: white;
+
+    .modalTitle {
+      margin: 18px 0 40px 0;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .countContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin: auto;
+      width: 398px;
+      height: 50px;
+      border: 1px solid #e1dedf;
+
+      .minusBox {
+        height: 100%;
+        width: 15%;
+        text-align: center;
+        border-right: 1px solid #e1dedf;
+        cursor: pointer;
+
+        i {
+          font-size: 18px;
+          color: $item-priceInfo-color;
+        }
+      }
+
+      .countNum {
+        width: 60%;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .plusBox {
+        height: 100%;
+        width: 15%;
+        text-align: center;
+        border-left: 1px solid #e1dedf;
+        cursor: pointer;
+
+        i {
+          font-size: 18px;
+          color: $item-priceInfo-color;
+        }
+      }
+    }
+
+    .optionText {
+      margin: 14px 0 0 51px;
+      font-weight: 700;
+      line-height: 24px;
+      font-size: 16px;
+    }
+
+    .dropdownBtn {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      margin: auto;
+      width: 398px;
+      height: 50px;
+      border: 1px solid #e1dedf;
+
+      .optionBtn {
+        margin: auto;
+        width: 100%;
+        font-size: $font-size;
+      }
+    }
+    .totalPrice {
+      margin: 20px 51px 20px 0;
+      text-align: right;
+      font-size: 24px;
+      font-weight: 800;
+    }
+    .buttonContainer {
+      margin: auto;
+      width: 80%;
+      height: 60px;
+
+      .modalBtn {
+        width: 50%;
+        height: 60px;
+        font-size: $item-priceInfo-size;
+        font-weight: 700;
+      }
+      .buy {
+        color: white;
+        background-color: #acacac;
+      }
+
+      .cart {
+        color: white;
+        background-color: #000;
+      }
+    }
+  }
+}
+
+.couponOption {
+  margin: 14px 0 24px 51px;
+  font-weight: 700;
+  line-height: 24px;
+  font-size: 20px;
+}
+
+.couponList {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  width: 398px;
+  height: 50px;
+
+  .coupons {
+    margin-right: 20px;
+  }
+
+  .useCoupon {
+    padding: 10px;
+    border: 1px solid black;
+  }
+}

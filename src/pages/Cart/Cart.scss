@@ -12,7 +12,7 @@
 
   .cartContainer {
     width: 860px;
-    height: 352px;
+    // height: 352px;
     border-top: 1px solid #000;
 
     .listHeader {
@@ -102,14 +102,14 @@
   .paymentContainer {
     display: block;
     width: 280px;
-    height: 401px;
+    // height: 401px;
     margin: 51px 0 0 39px;
     background-color: rgb(248, 248, 248);
     border-top: 1px solid #000;
 
     .paymentBox {
       width: 220px;
-      height: 394px;
+      // height: 394px;
       margin: 0 30px 0 30px;
 
       .productPrice {
@@ -216,5 +216,50 @@
       font-weight: 700;
       background-color: #acacac;
     }
+  }
+}
+
+.emptyCart {
+  margin-bottom: 120px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.cartItemNone {
+  width: 1180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-top: 1px solid black;
+
+  .emptyCart {
+    margin-top: 60px;
+    font-size: 58px;
+    color: gray;
+  }
+
+  .continueShopping {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 200px;
+    height: 50px;
+    background: #000;
+    color: white;
   }
 }
