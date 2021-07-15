@@ -58,8 +58,10 @@ export class DetailDescContationer extends Component {
   };
   //commentList목데이터
   componentDidMount = () => {
+    const reviewToken = localStorage.getItem('token');
     fetch('http://ambitiouskyle.iptime.org:6389/products/12/reviews', {
       method: 'GET',
+      headers: { authorization: reviewToken },
     })
       .then(results => {
         return results.json();
