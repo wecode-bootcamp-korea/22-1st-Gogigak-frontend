@@ -122,9 +122,11 @@ export class Cart extends Component {
         console.log(data);
         if (data.message === 'SOLD_OUT') {
           alert(`품절된 상품을 제거해주세요 (${data.soldOutProduct})`);
+        } else {
+          alert('구매가 완료되었습니다.');
+          this.props.history.push('/mypage');
         }
       });
-    // .then(this.props.history.push('/mypage'));
   };
 
   render() {
