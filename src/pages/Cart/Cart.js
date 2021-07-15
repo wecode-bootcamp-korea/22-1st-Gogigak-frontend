@@ -84,6 +84,7 @@ export class Cart extends Component {
           cartData: data.cartItems,
           isloaded: true,
         });
+        console.log(data);
       });
 
     fetch(`${API.USERS_ME}`)

@@ -18,10 +18,7 @@ export class Detail extends Component {
   //mockdata받기
   componentDidMount() {
     fetch(
-      `http://ambitiouskyle.iptime.org:6389/products/${this.props.match.params.product}`,
-      {
-        method: 'GET',
-      }
+      `http://ambitiouskyle.iptime.org:6389/products/${this.props.match.params.product}`
     )
       .then(results => results.json())
       .then(results => {
@@ -32,6 +29,8 @@ export class Detail extends Component {
   }
   render() {
     const { productInfo } = this.state;
+    // console.log('state', this.state);
+    console.log('options', this.state.productInfo.options);
     return (
       <div className="detail-wrap">
         {productInfo.name && (
@@ -42,6 +41,7 @@ export class Detail extends Component {
               productStandard={productInfo.grams}
               productPrice={productInfo.price}
               productOption={productInfo.options}
+              productId={this.props.match.params.product}
             />
             <DetailTab />
             <DetailDescContationer
