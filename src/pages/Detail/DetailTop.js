@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 import { config } from '../../config';
 
@@ -66,13 +68,16 @@ export class DetailTop extends Component {
       })
       .then(response => {
         this.onModal();
+        setTimeout(() => {
+          this.setState({ isModalOn: false });
+        }, 1500);
       });
   };
   //
   goToCart = () => {
     this.addCart();
     setTimeout(() => {
-      window.location.href = 'http://localhost:3000/cart';
+      this.props.history.push('/cart');
     }, 1000);
   };
 
@@ -177,4 +182,4 @@ export class DetailTop extends Component {
   }
 }
 
-export default DetailTop;
+export default withRouter(DetailTop);

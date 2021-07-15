@@ -204,7 +204,7 @@ export class DetailDescContationer extends Component {
                 })}
             </ul>
           </form>
-          <button className="detail-review-more"></button>
+          {/* <button className="detail-review-more"></button> */}
         </section>
         <section className="detail-info"></section>
       </div>
