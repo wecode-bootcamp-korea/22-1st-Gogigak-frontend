@@ -9,7 +9,7 @@ export class CartModal extends React.Component {
   state = {
     isMenu: false,
     itemCount: 1,
-    optionId: 1,
+    optionId: '',
     optionName: '',
   };
 
@@ -32,8 +32,15 @@ export class CartModal extends React.Component {
   };
 
   keepShoppingBtn = () => {
+    if (this.state.optionId === '') {
+      alert('옵션을 선택해주세요');
+    }
+
     fetch(`${API.CART}`, {
       method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
       body: JSON.stringify({
         productId: this.props.productId,
         optionId: this.state.optionId,
@@ -51,8 +58,14 @@ export class CartModal extends React.Component {
   };
 
   moveToCart = () => {
+    if (this.state.optionId === '') {
+      alert('옵션을 선택해주세요');
+    }
     fetch(`${API.CART}`, {
       method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
       body: JSON.stringify({
         productId: this.props.productId,
         optionId: this.state.optionId,
