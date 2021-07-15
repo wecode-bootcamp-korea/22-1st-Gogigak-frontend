@@ -86,7 +86,13 @@ export class Cart extends Component {
   };
 
   componentDidMount() {
-    fetch(API.CART)
+    const authToken = localStorage.getItem('token');
+    fetch(API.CART, {
+      method: 'GET',
+      headers: {
+        authorization: authToken,
+      },
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({
@@ -95,7 +101,12 @@ export class Cart extends Component {
         });
       });
 
-    fetch(`${API.USERS_ME}`)
+    fetch(`${API.USERS_ME}`, {
+      method: 'GET',
+      headers: {
+        authorization: authToken,
+      },
+    })
       .then(res => res.json())
       .then(data => {
         this.setState({ user: data.result });
