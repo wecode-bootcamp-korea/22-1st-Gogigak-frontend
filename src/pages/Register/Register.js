@@ -19,15 +19,14 @@ export class Register extends Component {
         password: this.state.password,
         name: this.state.name,
         phoneNumber: this.state.phone,
-        // zipCode:,
-        // address:
       }),
     })
       .then(res => res.json())
       .then(data => {
         if (data.message !== 'SUCCESS') {
-          alert('잘못된 회원정보입니다.');
-        } else {
+          alert('회원가입 정보가 잘못되었습니다.');
+        } else if (data.message === 'SUCCESS') {
+          alert('회원가입 완료');
           this.props.history.push('/login');
         }
       });
@@ -131,7 +130,6 @@ export class Register extends Component {
                   value={this.state.phone}
                   onChange={this.handleChange}
                 ></input>
-
                 {/* 추가 구현사항 */}
                 {/* <select className="phoneNumberSelect">
                   <option value="010">010</option>

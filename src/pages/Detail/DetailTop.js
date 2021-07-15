@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { config } from '../../config';
+import { withRouter } from 'react-router-dom';
 
 import AmountOption from './AmountOption';
 
@@ -10,6 +10,7 @@ export class DetailTop extends Component {
     this.state = {
       itemCountNumValue: 1,
       isLoginModalOn: false,
+      isModalOn: false,
       amountOption: [],
       selectedOption: this.props.productOption[0].name,
       selectedOptionId: this.props.productOption[0].id,
@@ -33,6 +34,12 @@ export class DetailTop extends Component {
       isLoginModalOn: !this.state.isLoginModalOn,
     });
   };
+  //modal on handler
+  onModal = () => {
+    this.setState({
+      isModalOn: !this.state.isModalOn,
+    });
+  };
 
   selectOption = (options, optionId) => {
     this.setState({
@@ -54,17 +61,20 @@ export class DetailTop extends Component {
     })
       .then(response => {
         response.json();
-        // console.log(response.status);
+        console.log(response.status);
       })
       .then(response => {
-        alert('장바구니에 추가되었습니다.');
+        this.onModal();
+        setTimeout(() => {
+          this.setState({ isModalOn: false });
+        }, 1500);
       });
   };
   //
   goToCart = () => {
     this.addCart();
     setTimeout(() => {
-      window.location.href = 'http://localhost:3000/cart';
+      this.props.history.push('/cart');
     }, 1000);
   };
 
@@ -105,7 +115,7 @@ export class DetailTop extends Component {
                     <ul>
                       {this.props.productOption &&
                         this.props.productOption.map(el => {
-                          //console.log(this.props.productOption);
+                          console.log(this.props.productOption);
                           return (
                             <AmountOption
                               key={el.id}
@@ -158,7 +168,9 @@ export class DetailTop extends Component {
             </article>
           </div>
         </div>
-        <div className={this.state.show ? 'modal-buy active' : 'modal-buy'}>
+        <div
+          className={this.state.isModalOn ? 'modal-buy active' : 'modal-buy'}
+        >
           <i className="fas fa-drumstick-bite"></i>
           <span>장바구니에 추가하였습니다.</span>
         </div>
@@ -167,4 +179,4 @@ export class DetailTop extends Component {
   }
 }
 
-export default DetailTop;
+export default withRouter(DetailTop);
