@@ -5,7 +5,6 @@ import CouponModal from '../../components/Modal/CouponModal';
 import { withRouter } from 'react-router-dom';
 
 import './Cart.scss';
-const authToken = localStorage.getItem('Token');
 
 export class Cart extends Component {
   state = {
@@ -23,6 +22,8 @@ export class Cart extends Component {
     if (newCartData[cartIndex].quantity < stock) {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity + 1;
       this.setState({ cartData: newCartData });
+
+      const authToken = localStorage.getItem('Token');
 
       fetch(`${API.CART}/${cartItemId}`, {
         method: 'PATCH',
@@ -46,6 +47,8 @@ export class Cart extends Component {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity - 1;
       this.setState({ cartData: newCartData });
 
+      const authToken = localStorage.getItem('Token');
+
       fetch(`${API.CART}/${cartItemId}`, {
         method: 'PATCH',
         headers: {
@@ -59,6 +62,8 @@ export class Cart extends Component {
   };
 
   deleteCartItem = cartItemId => {
+    const authToken = localStorage.getItem('Token');
+
     fetch(`${API.CART}/${cartItemId}`, {
       method: 'DELETE',
       headers: {
@@ -88,7 +93,6 @@ export class Cart extends Component {
           cartData: data.cartItems,
           isloaded: true,
         });
-        console.log(data);
       });
 
     fetch(`${API.USERS_ME}`)
@@ -103,6 +107,7 @@ export class Cart extends Component {
   };
 
   doBuy = () => {
+    const authToken = localStorage.getItem('Token');
     fetch(`${API.PURCHASE}`, {
       method: 'POST',
       headers: {
@@ -113,7 +118,13 @@ export class Cart extends Component {
       }),
     })
       .then(res => res.json())
-      .then(this.props.history.push('/mypage'));
+      .then(data => {
+        console.log(data);
+        if (data.message === 'SOLD_OUT') {
+          alert(`품절된 상품을 제거해주세요 (${data.soldOutProduct})`);
+        }
+      });
+    // .then(this.props.history.push('/mypage'));
   };
 
   render() {
