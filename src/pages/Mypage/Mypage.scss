@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .mypageWrapper {
-  height: 1171px;
+  height: 1000px;
   margin: 200px 11px 0 11px;
   display: flex;
   justify-content: center;
@@ -87,7 +87,9 @@
 
   .orderListContainer {
     width: 780px;
+    height: 500px;
     margin: 42px 0 0 42px;
+    overflow: scroll;
     text-align: center;
   }
 }
