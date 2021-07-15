@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { API } from '../../config';
-import './Cart.scss';
 import CartList from './CartList';
 import CouponModal from '../../components/Modal/CouponModal';
 import { withRouter } from 'react-router-dom';
+
+import './Cart.scss';
 
 export class Cart extends Component {
   state = {
@@ -13,20 +14,30 @@ export class Cart extends Component {
     isCoupon: false,
     couponValue: '',
     couponId: '',
+    isloaded: '',
   };
 
-  quantityPlus = (cartItemId, cartIndex) => {
+  quantityPlus = (cartItemId, cartIndex, stock) => {
     const newCartData = [...this.state.cartData];
-    if (newCartData[cartIndex].quantity < 100) {
+    if (newCartData[cartIndex].quantity < stock) {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity + 1;
       this.setState({ cartData: newCartData });
 
+      const authToken = localStorage.getItem('Token');
+
       fetch(`${API.CART}/${cartItemId}`, {
         method: 'PATCH',
+        headers: {
+          authorization: authToken,
+        },
         body: JSON.stringify({
           changeQuantity: this.state.cartData[cartIndex].quantity,
         }),
       });
+    }
+
+    if (newCartData[cartIndex].quantity === stock) {
+      alert('그만눌러');
     }
   };
 
@@ -36,8 +47,13 @@ export class Cart extends Component {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity - 1;
       this.setState({ cartData: newCartData });
 
+      const authToken = localStorage.getItem('Token');
+
       fetch(`${API.CART}/${cartItemId}`, {
         method: 'PATCH',
+        headers: {
+          authorization: authToken,
+        },
         body: JSON.stringify({
           changeQuantity: newCartData[cartIndex].quantity,
         }),
@@ -46,13 +62,18 @@ export class Cart extends Component {
   };
 
   deleteCartItem = cartItemId => {
+    const authToken = localStorage.getItem('Token');
+
     fetch(`${API.CART}/${cartItemId}`, {
       method: 'DELETE',
+      headers: {
+        authorization: authToken,
+      },
       body: cartItemId,
     });
 
     let newCartData = [...this.state.cartData];
-    console.log(newCartData);
+
     newCartData = newCartData.filter(
       cartItem => cartItem.cartItemId !== cartItemId
     );
@@ -70,8 +91,8 @@ export class Cart extends Component {
       .then(data => {
         this.setState({
           cartData: data.cartItems,
+          isloaded: true,
         });
-        console.log(data);
       });
 
     fetch(`${API.USERS_ME}`)
@@ -86,25 +107,26 @@ export class Cart extends Component {
   };
 
   doBuy = () => {
+    const authToken = localStorage.getItem('Token');
     fetch(`${API.PURCHASE}`, {
       method: 'POST',
+      headers: {
+        authorization: authToken,
+      },
       body: JSON.stringify({
         couponId: this.state.couponId,
       }),
     })
       .then(res => res.json())
-      .then(data => console.log(data));
-
-    fetch(API.CART)
-      .then(res => res.json())
       .then(data => {
-        this.setState({
-          cartData: data.cartItems,
-        });
         console.log(data);
+        if (data.message === 'SOLD_OUT') {
+          alert(`품절된 상품을 제거해주세요 (${data.soldOutProduct})`);
+        } else {
+          alert('구매가 완료되었습니다.');
+          this.props.history.push('/mypage');
+        }
       });
-
-    this.props.history.push('/my');
   };
 
   render() {
@@ -115,8 +137,8 @@ export class Cart extends Component {
         .map(cart => cart.price * cart.quantity)
         .reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const orderCount = this.state.user.orderCount;
-    const shippingFee = 2500;
-    console.log(this.state.user);
+    let shippingFee = 2500;
+    shippingFee = totalValue > 50000 || orderCount === 0 ? 0 : 2500;
 
     return (
       <div className="cart">
@@ -132,6 +154,7 @@ export class Cart extends Component {
                 </div>
                 {this.state.cartData.map((cartData, idx) => (
                   <CartList
+                    key={idx}
                     cartIndex={idx}
                     cartItemId={cartData.cartItemId}
                     cartData={cartData.thumbnail}
@@ -144,6 +167,7 @@ export class Cart extends Component {
                     quantityPlus={this.quantityPlus}
                     quantityMinus={this.quantityMinus}
                     deleteCartItem={this.deleteCartItem}
+                    stock={cartData.stock}
                   />
                 ))}
               </section>
@@ -159,18 +183,33 @@ export class Cart extends Component {
                   <div className="shippingPrice">
                     <div className="shippingPrice-total">
                       <p>총 배송비</p>
-                      <p>{shippingFee}원</p>
+                      <p>{shippingFee.toLocaleString()}원</p>
                     </div>
-                    <div className="shippingPrice-basic">
-                      <span className="basic-text">기본 배송비</span>
-                      <span className="basic-price">{shippingFee}원</span>
-                    </div>
+                    {totalValue < 50000 && (
+                      <div className="shippingPrice-basic">
+                        <span className="shippingFeeText">기본 배송비</span>
+                        <span className="basic-price">
+                          {shippingFee.toLocaleString()}원
+                        </span>
+                      </div>
+                    )}
+
+                    {totalValue && orderCount !== 0 > 50000 && (
+                      <div className="shippingPrice-basic">
+                        <span className="shippingFeeText">
+                          50,000 이상 구매시 배송비 무료
+                        </span>
+                      </div>
+                    )}
                     {orderCount === 0 && (
                       <div className="firstPayment">
                         <span className="firstBuyText">첫구매 무료배송</span>
                         <span>-100%</span>
                       </div>
                     )}
+                    <div className="canFresh">
+                      <i className="fas fa-rocket">신선배송이 가능합니다.</i>
+                    </div>
                   </div>
                   {orderCount === 0 && (
                     <p className="paymentMessage">
@@ -182,7 +221,7 @@ export class Cart extends Component {
                     <div className="shippingPrice">
                       <div className="shippingPrice-total">
                         <p>쿠폰 적용금액</p>
-                        <p>{this.state.couponValue}원</p>
+                        <p>{this.state.couponValue.toLocaleString()}원</p>
                       </div>
                     </div>
                   )}
@@ -220,7 +259,7 @@ export class Cart extends Component {
             </>
           )}
 
-          {this.state.cartData.length === 0 && (
+          {this.state.isloaded && this.state.cartData.length === 0 && (
             <section className="cartItemNone">
               <div className="emptyCart">장바구니에 담은 상품이 없습니다.</div>
               <div
