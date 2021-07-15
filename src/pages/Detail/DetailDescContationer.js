@@ -78,8 +78,10 @@ export class DetailDescContationer extends Component {
   };
   //deleteComment리뷰삭제
   deletedComment = id => {
+    const reviewToken = localStorage.getItem('token');
     fetch(`http://ambitiouskyle.iptime.org:6389/products/reviews/${id}`, {
       method: 'DELETE',
+      headers: { authorization: reviewToken },
     })
       .then(response => {
         response.json();
