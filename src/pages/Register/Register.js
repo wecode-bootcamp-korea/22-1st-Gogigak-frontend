@@ -22,7 +22,15 @@ export class Register extends Component {
         // zipCode:,
         // address:
       }),
-    }).then(res => res.json());
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message !== 'SUCCESS') {
+          alert('잘못된 회원정보입니다.');
+        } else {
+          this.props.history.push('/login');
+        }
+      });
   };
 
   handleChange = e => {
