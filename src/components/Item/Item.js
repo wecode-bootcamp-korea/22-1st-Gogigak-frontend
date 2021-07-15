@@ -13,9 +13,12 @@ class Item extends React.Component {
     e.stopPropagation();
   };
 
+  cancelModal = () => {
+    this.setState({ isModal: !this.state.isModal });
+  };
+
   goToDetail = () => {
     this.props.history.push(`/Detail/${this.props.id}`);
-    console.log('click');
   };
 
   render() {
@@ -33,6 +36,7 @@ class Item extends React.Component {
                 title={title}
                 options={options}
                 productId={id}
+                cancelModal={this.cancelModal}
               />
             )}
             <i className="fas fa-shopping-cart"></i>

@@ -53,6 +53,7 @@ export class CartModal extends React.Component {
           alert(
             `장바구니에 ${this.props.title}(${this.state.optionName}) 상품이 추가되었습니다.`
           );
+          this.props.cancelModal();
         }
       });
   };
