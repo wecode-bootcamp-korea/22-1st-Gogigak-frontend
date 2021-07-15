@@ -19,8 +19,12 @@ export class Login extends Component {
     })
       .then(res => res.json())
       .then(result => {
-        localStorage.setItem('token', result.token);
-        this.props.history.push('/');
+        if (result.message === 'INVALID_USER') {
+          alert('INVALID_USER');
+        } else {
+          localStorage.setItem('token', result.token);
+          this.props.history.push('/');
+        }
       });
   };
 
@@ -57,6 +61,7 @@ export class Login extends Component {
             <input
               className="LoginIdPw"
               name="password"
+              type="password"
               placeholder="비밀번호를 입력하세요"
               onChange={this.handleChange}
             />
@@ -94,7 +99,12 @@ export class Login extends Component {
         </article>
         <p className="firstRegister">
           정육각이 처음이신가요? &nbsp;
-          <span className="goTosignUp">회원가입하기</span>
+          <span
+            className="goTosignUp"
+            onClick={() => this.props.history.push('/sign-up')}
+          >
+            회원가입하기
+          </span>
         </p>
       </div>
     );

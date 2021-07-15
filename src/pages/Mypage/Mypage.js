@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import UserInfoCategory from './UserInfoCategory';
 import MyOrderList from './MyOrderList';
 import { API } from '../../config';
-import './Mypage.scss';
 import Coupon from './Coupon/Coupon';
+import { Link } from 'react-router-dom';
+
+import './Mypage.scss';
 
 class Mypage extends Component {
   state = {
@@ -13,7 +15,11 @@ class Mypage extends Component {
   };
 
   componentDidMount() {
-    fetch(`${API.USERS_ME}`)
+    fetch(`${API.USERS_ME}`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
       .then(res => res.json())
       .then(data => this.setState({ userInfo: data.result }));
   }
@@ -23,6 +29,9 @@ class Mypage extends Component {
 
     newArr[idx] = true;
     this.setState({ selectedCategory: newArr });
+  };
+  handleLogout = () => {
+    localStorage.removeItem('token');
   };
 
   render() {
@@ -37,7 +46,15 @@ class Mypage extends Component {
             <div className="userInfoData">
               <div className="userInfo-head">
                 <p className="userName"> Hello,{userInfo.name}</p>
-                <button className="logout"> 로그아웃</button>
+                {userInfo.isAvailable && (
+                  <i className="fas fa-rocket">신선배송 가능 지역</i>
+                )}
+
+                <Link to="/">
+                  <button className="logout" onClick={this.handleLogout}>
+                    로그아웃
+                  </button>
+                </Link>
               </div>
               <div className="splitLine"></div>
               <ul className="userInfoList">

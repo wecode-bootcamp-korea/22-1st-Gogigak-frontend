@@ -94,12 +94,14 @@ export class DetailDescContationer extends Component {
   render() {
     const { DesImg } = this.props;
     const { commentList } = this.state;
-
+    console.log('tabOn', this.props.tabToggle);
     return (
       <div className="detail-product-wrap">
         <section
           className={
-            this.state.tabOn ? 'detail-desc-wrap active' : 'detail-desc-wrap'
+            !this.props.tabToggle
+              ? 'detail-desc-wrap active'
+              : 'detail-desc-wrap'
           }
         >
           <article>
@@ -111,9 +113,8 @@ export class DetailDescContationer extends Component {
           </article>
         </section>
         <section
-          className="detail-review"
           className={
-            this.state.tabOn ? 'detail-review active' : 'detail-review'
+            this.props.tabToggle ? 'detail-review active' : 'detail-review'
           }
         >
           <form onSubmit={this.addComment}>

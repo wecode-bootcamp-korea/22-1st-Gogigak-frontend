@@ -7,12 +7,14 @@
   font-size: $bestItem-title-size;
 }
 .sectionWrap {
-  @include flex-center;
+  // @include flex-center;
+  display: flex;
+  justify-content: center;
   margin: 51px 147px 0 147px;
 
   .cartContainer {
     width: 860px;
-    height: 352px;
+    // height: 352px;
     border-top: 1px solid #000;
 
     .listHeader {
@@ -40,6 +42,7 @@
     .itemList {
       display: flex;
       align-items: center;
+      border-top: 1px solid #e1dedf;
       border-bottom: 1px solid #e1dedf;
 
       img {
@@ -102,14 +105,14 @@
   .paymentContainer {
     display: block;
     width: 280px;
-    height: 401px;
-    margin: 51px 0 0 39px;
+    // height: 401px;
+    margin: 0px 0px 0px 39px;
     background-color: rgb(248, 248, 248);
     border-top: 1px solid #000;
 
     .paymentBox {
       width: 220px;
-      height: 394px;
+      // height: 394px;
       margin: 0 30px 0 30px;
 
       .productPrice {
@@ -138,18 +141,6 @@
         height: 39px;
         margin-bottom: 5px;
         font-size: 15px;
-      }
-
-      .shippingPrice-basic {
-        height: 24px;
-        margin-bottom: 2px;
-        text-align: right;
-        font-size: 13px;
-        color: $item-priceInfo-color;
-
-        .basic-text {
-          margin-right: 12.5px;
-        }
       }
 
       .firstPayment {
@@ -204,6 +195,7 @@
       font-size: 15px;
       font-weight: 700;
       background-color: #d0021b;
+      cursor: pointer;
     }
 
     .keepShoppingBtn {
@@ -215,6 +207,83 @@
       font-size: 15px;
       font-weight: 700;
       background-color: #acacac;
+      cursor: pointer;
     }
   }
+}
+
+.emptyCart {
+  margin-bottom: 120px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover,
+.dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+.cartItemNone {
+  width: 1180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-top: 1px solid black;
+
+  .emptyCart {
+    margin-top: 60px;
+    font-size: 58px;
+    color: gray;
+  }
+
+  .continueShopping {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    width: 200px;
+    height: 50px;
+    background: #000;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.couponOptionContainer {
+  overflow: scroll;
+}
+
+.shippingPrice-basic {
+  // display: flex;
+  // align-items: center;
+  height: 24px;
+
+  text-align: right;
+  margin-bottom: 2px;
+  font-size: 14px;
+  color: $item-priceInfo-color;
+
+  .shippingFeeText {
+    text-align: right;
+  }
+}
+
+.canFresh {
+  font-weight: 400;
+  color: rgb(83, 86, 250);
+}
+
+.test {
+  // background-color: rgba(0, 0, 0, 0.8);
+  // z-index: 55;
+  opacity: 0.2;
 }

@@ -1,9 +1,36 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { API } from '../../config';
 import './Nav.scss';
 
 export class Nav extends Component {
+  state = { cartList: [], cartCount: 0, isLogin: false };
+
+  componentDidMount() {
+    fetch(`${API.CART}`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(result => this.setState({ cartList: result.cartItems }));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({
+        isLogin: localStorage.getItem('token') !== null,
+      });
+    }
+  }
+
   render() {
+    const { cartList } = this.state;
+
+    const totalCount = cartList
+      .map(e => e.quantity)
+      .reduce((acc, current) => acc + current, 0);
+
     return (
       <div className="Navigation">
         <div>상단배너</div>
@@ -46,11 +73,27 @@ export class Nav extends Component {
 
               <div className="navigationSubMenuSplit"></div>
 
-              {localStorage.getItem('token') ? (
+              {this.state.isLogin === true || localStorage.getItem('token') ? (
                 <ul className="navigationMenu">
-                  <li className="navigationMenuList">마이페이지</li>
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      this.props.history.push('/mypage');
+                    }}
+                  >
+                    마이페이지
+                  </li>
                   <li className="navigationMenuList">
-                    <i className="fas fa-shopping-cart"></i>
+                    <i
+                      className="fas fa-shopping-cart"
+                      onClick={() => {
+                        this.props.history.push('/cart');
+                      }}
+                    >
+                      <div className="countContainer">
+                        <span className="shoppingCount">{totalCount}</span>
+                      </div>
+                    </i>
                   </li>
                 </ul>
               ) : (
@@ -85,4 +128,4 @@ export class Nav extends Component {
   }
 }
 
-export default Nav;
+export default withRouter(Nav);
