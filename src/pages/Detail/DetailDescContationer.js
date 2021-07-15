@@ -21,14 +21,21 @@ export class DetailDescContationer extends Component {
 
   //버튼 클릭 이벤트와 함수 생성 서버 연결
   addComment = e => {
-    fetch('http://ambitiouskyle.iptime.org:6389/products/12/reviews', {
-      method: 'POST',
-      body: JSON.stringify({
-        imageUrl: '',
-        title: this.state.titleValue,
-        content: this.state.textAreaValue,
-      }),
-    })
+    const authToken = localStorage.getItem('token');
+    fetch(
+      `http://ambitiouskyle.iptime.org:6389/products/${this.props.match.params.product}/reviews`,
+      {
+        method: 'POST',
+        headers: {
+          authorization: authToken,
+        },
+        body: JSON.stringify({
+          imageUrl: '',
+          title: this.state.titleValue,
+          content: this.state.textAreaValue,
+        }),
+      }
+    )
       .then(res => res.json())
       .then(res => {
         e.preventDefault();
@@ -89,7 +96,7 @@ export class DetailDescContationer extends Component {
         response.json();
       })
       .then(response => {
-        alert('삭제성공');
+        alert('코멘티를 삭제하셨습니다.');
         this.setState({
           commentList: this.state.commentList.filter(el => el.id !== id),
         });
