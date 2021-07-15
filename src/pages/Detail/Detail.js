@@ -55,7 +55,6 @@ export class Detail extends Component {
               <ul>
                 <li>
                   <Link
-                    to="#!"
                     className={!this.state.isTabOn ? 'active' : null}
                     onClick={this.onClickToggleHandler}
                   >
@@ -64,7 +63,6 @@ export class Detail extends Component {
                 </li>
                 <li>
                   <Link
-                    to="#!"
                     className={this.state.isTabOn ? 'active' : null}
                     onClick={this.onClickToggleHandler}
                   >
