@@ -50,8 +50,12 @@ export class DetailTop extends Component {
   };
 
   addCart = () => {
+    const authToken = localStorage.getItem('token');
     fetch('http://ambitiouskyle.iptime.org:6389/orders/cart', {
       method: 'POST',
+      headers: {
+        authorization: authToken,
+      },
       body: JSON.stringify({
         productId: this.state.productId,
         optionId: this.state.selectedOptionId,
