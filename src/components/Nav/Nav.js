@@ -84,13 +84,13 @@ export class Nav extends Component {
                     마이페이지
                   </li>
                   <li className="navigationMenuList">
-                    <i className="fas fa-shopping-cart">
-                      <div
-                        className="countContainer"
-                        onClick={() => {
-                          this.props.history.push('/cart');
-                        }}
-                      >
+                    <i
+                      className="fas fa-shopping-cart"
+                      onClick={() => {
+                        this.props.history.push('/cart');
+                      }}
+                    >
+                      <div className="countContainer">
                         <span className="shoppingCount">{totalCount}</span>
                       </div>
                     </i>
