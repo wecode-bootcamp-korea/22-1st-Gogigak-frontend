@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import './Nav.scss';
 
 export class Nav extends Component {
+  state = {
+    isLogin: false,
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({
+        isLogin: localStorage.getItem('token') !== null,
+      });
+    }
+  }
+
   render() {
     return (
       <div className="Navigation">
@@ -46,11 +58,23 @@ export class Nav extends Component {
 
               <div className="navigationSubMenuSplit"></div>
 
-              {localStorage.getItem('token') ? (
+              {this.state.isLogin === true ? (
                 <ul className="navigationMenu">
-                  <li className="navigationMenuList">마이페이지</li>
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      this.props.history.push('/mypage');
+                    }}
+                  >
+                    마이페이지
+                  </li>
                   <li className="navigationMenuList">
-                    <i className="fas fa-shopping-cart"></i>
+                    <i
+                      className="fas fa-shopping-cart"
+                      onClick={() => {
+                        this.props.history.push('/cart');
+                      }}
+                    />
                   </li>
                 </ul>
               ) : (
@@ -85,4 +109,4 @@ export class Nav extends Component {
   }
 }
 
-export default Nav;
+export default withRouter(Nav);

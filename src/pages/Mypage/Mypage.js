@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import UserInfoCategory from './UserInfoCategory';
 import MyOrderList from './MyOrderList';
 import { API } from '../../config';
-import './Mypage.scss';
 import Coupon from './Coupon/Coupon';
+import { Link } from 'react-router-dom';
+
+import './Mypage.scss';
 
 class Mypage extends Component {
   state = {
@@ -28,6 +30,9 @@ class Mypage extends Component {
     newArr[idx] = true;
     this.setState({ selectedCategory: newArr });
   };
+  handleLogout = () => {
+    localStorage.removeItem('token');
+  };
 
   render() {
     const { userInfo, selectedCategory } = this.state;
@@ -45,7 +50,11 @@ class Mypage extends Component {
                   <i className="fas fa-rocket">신선배송 가능 지역</i>
                 )}
 
-                <button className="logout"> 로그아웃</button>
+                <Link to="/">
+                  <button className="logout" onClick={this.handleLogout}>
+                    로그아웃
+                  </button>
+                </Link>
               </div>
               <div className="splitLine"></div>
               <ul className="userInfoList">

@@ -18,24 +18,17 @@ export class Register extends Component {
         email: this.state.id,
         password: this.state.password,
         name: this.state.name,
-        phone_number: this.state.phone,
+        phoneNumber: this.state.phone,
+        // zipCode:,
+        // address:
       }),
-    })
-      .then(res => res.json())
-      .then(res => console.log(res));
-    // .then(this.props.history.push('./login'));
+    }).then(res => res.json());
   };
 
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-
-    return console.log(
-      this.validateEmail(this.state.id) &&
-        this.validatePassword(this.state.password) &&
-        this.validatephone(this.state.phone)
-    );
   };
 
   validateEmail = value => {
@@ -98,7 +91,7 @@ export class Register extends Component {
                 <input
                   className="registerInputContentInput"
                   name="passwordCheck"
-                  type="passwordCheck"
+                  type="password"
                   value={this.state.passwordCheck}
                   onChange={this.handleChange}
                 />
@@ -143,20 +136,6 @@ export class Register extends Component {
                 <input className="registerInputContentPhoneNumber"></input> */}
               </div>
             </div>
-            {/* <div className="registerInputLine">
-              <div className="registerInputTitle">
-                <p className="registerInput">주소</p>
-              </div>
-              <div className="registerInputContent">
-                <input
-                  className="registerInputContentInput"
-                  name="address"
-                  type="address"
-                  value={this.state.address}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div> */}
           </div>
           <div className="registerButtonArea">
             <button
