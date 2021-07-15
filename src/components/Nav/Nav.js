@@ -73,7 +73,7 @@ export class Nav extends Component {
 
               <div className="navigationSubMenuSplit"></div>
 
-              {this.state.isLogin === true ? (
+              {this.state.isLogin === true || localStorage.getItem('token') ? (
                 <ul className="navigationMenu">
                   <li
                     className="navigationMenuList"
