@@ -25,7 +25,7 @@ export class Nav extends Component {
   }
 
   render() {
-    const { cartList, cartCount } = this.state;
+    const { cartList } = this.state;
 
     const totalCount = cartList
       .map(e => e.quantity)
