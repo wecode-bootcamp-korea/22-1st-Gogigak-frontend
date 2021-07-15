@@ -113,6 +113,7 @@ export class Cart extends Component {
   };
 
   render() {
+    console.log(this.state);
     const { cartData } = this.state;
     const totalValue =
       cartData &&
@@ -138,6 +139,7 @@ export class Cart extends Component {
                 </div>
                 {this.state.cartData.map((cartData, idx) => (
                   <CartList
+                    key={idx}
                     cartIndex={idx}
                     cartItemId={cartData.cartItemId}
                     cartData={cartData.thumbnail}
@@ -181,9 +183,6 @@ export class Cart extends Component {
                         <span className="shippingFeeText">
                           50,000 이상 구매시 배송비 무료
                         </span>
-                        {/* <span className="basic-price">
-                        -{shippingFee.toLocaleString()}원
-                      </span> */}
                       </div>
                     )}
                     {orderCount === 0 && (
@@ -192,6 +191,9 @@ export class Cart extends Component {
                         <span>-100%</span>
                       </div>
                     )}
+                    <div className="canFresh">
+                      <i className="fas fa-rocket">신선배송이 가능합니다.</i>
+                    </div>
                   </div>
                   {orderCount === 0 && (
                     <p className="paymentMessage">
