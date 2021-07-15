@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 export class AmountOption extends Component {
   render() {
-    const amountOption = this.props.productOption;
+    const { optionId, productOption, selectOption } = this.props;
+    //console.log('this.props', this.props);
     return (
       <li>
-        <button onClick={() => this.props.selectOption(amountOption)}>
-          {amountOption}
+        <button onClick={() => selectOption(productOption, optionId)}>
+          {productOption}
         </button>
       </li>
     );

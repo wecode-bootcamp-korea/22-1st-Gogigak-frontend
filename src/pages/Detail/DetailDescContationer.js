@@ -4,7 +4,6 @@ import DetailDateDisplay from './DetailDateDisplay';
 import CommnetList from './CommnetList';
 
 export class DetailDescContationer extends Component {
-  //
   constructor(props) {
     super(props);
     this.state = {
@@ -72,13 +71,6 @@ export class DetailDescContationer extends Component {
       });
   };
   //deleteComment리뷰삭제
-  // deletedComment = id => {
-  //   console.log('id', id);
-  //   this.setState({
-  //     commentList: this.state.commentList.filter(el => el.id !== id),
-  //   });
-  // };
-  //deleteComment리뷰삭제
   deletedComment = id => {
     fetch(`http://ambitiouskyle.iptime.org:6389/products/reviews/${id}`, {
       method: 'DELETE',
@@ -105,7 +97,7 @@ export class DetailDescContationer extends Component {
           </article>
           <DetailDateDisplay DesDate={this.props.DesDate} />
           <article>
-            {DesImg && <img src={this.props.DesImg[1].imageUrl} s />}
+            {DesImg && <img src={this.props.DesImg[1].imageUrl} />}
           </article>
         </section>
         <section className="detail-review">

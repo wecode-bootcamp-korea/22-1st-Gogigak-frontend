@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { API } from '../../config';
 import './Nav.scss';
 
 export class Nav extends Component {
-  state = { cartList: [], cartCount: 0 };
+  state = { cartList: [], cartCount: 0, isLogin: false };
 
   componentDidMount() {
     fetch(`${API.CART}`, {
@@ -17,12 +17,10 @@ export class Nav extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.cartCount !== this.state.cartCount) {
-      for (let n of this.statecartList) {
-        console.log(n.quantity);
-
-        // return acc + current;
-      }
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      this.setState({
+        isLogin: localStorage.getItem('token') !== null,
+      });
     }
   }
 
@@ -75,12 +73,24 @@ export class Nav extends Component {
 
               <div className="navigationSubMenuSplit"></div>
 
-              {localStorage.getItem('token') ? (
+              {this.state.isLogin === true ? (
                 <ul className="navigationMenu">
-                  <li className="navigationMenuList">마이페이지</li>
+                  <li
+                    className="navigationMenuList"
+                    onClick={() => {
+                      this.props.history.push('/mypage');
+                    }}
+                  >
+                    마이페이지
+                  </li>
                   <li className="navigationMenuList">
                     <i className="fas fa-shopping-cart">
-                      <div className="countContainer">
+                      <div
+                        className="countContainer"
+                        onClick={() => {
+                          this.props.history.push('/cart');
+                        }}
+                      >
                         <span className="shoppingCount">{totalCount}</span>
                       </div>
                     </i>
@@ -118,4 +128,4 @@ export class Nav extends Component {
   }
 }
 
-export default Nav;
+export default withRouter(Nav);

@@ -71,6 +71,7 @@ export class Cart extends Component {
         this.setState({
           cartData: data.cartItems,
         });
+        console.log(data);
       });
 
     fetch(`${API.USERS_ME}`)
@@ -100,7 +101,10 @@ export class Cart extends Component {
         this.setState({
           cartData: data.cartItems,
         });
+        console.log(data);
       });
+
+    this.props.history.push('/my');
   };
 
   render() {
