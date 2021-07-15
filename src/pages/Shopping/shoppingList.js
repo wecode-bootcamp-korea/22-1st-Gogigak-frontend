@@ -4,7 +4,7 @@ import Item from '../../components/Item/Item';
 
 import { API } from '../../config';
 
-import './ShoppingList.scss';
+import './shoppingList.scss';
 
 const CATEGORY_LIST = [
   {

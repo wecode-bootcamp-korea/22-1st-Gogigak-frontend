@@ -21,7 +21,7 @@ export default class Main extends Component {
       .then(res => res.json())
       .then(result => this.setState({ mainSlideImage: result }));
 
-    fetch(`${API.LIST}?category=&sort=sales`)
+    fetch(`${API.LIST}?sort=sales`)
       .then(res => res.json())
       .then(result => this.setState({ items: result.results }));
 
