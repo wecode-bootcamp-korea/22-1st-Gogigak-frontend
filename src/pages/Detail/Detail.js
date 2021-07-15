@@ -17,8 +17,15 @@ export class Detail extends Component {
   }
   //mockdata받기
   componentDidMount() {
+    const authToken = localStorage.getItem('token');
     fetch(
-      `http://ambitiouskyle.iptime.org:6389/products/${this.props.match.params.product}`
+      `http://ambitiouskyle.iptime.org:6389/products/${this.props.match.params.product}`,
+      {
+        headers: {
+          method: 'GET',
+          authorization: authToken,
+        },
+      }
     )
       .then(results => results.json())
       .then(results => {
