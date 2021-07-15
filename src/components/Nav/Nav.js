@@ -6,16 +6,6 @@ import './Nav.scss';
 export class Nav extends Component {
   state = { cartList: [], cartCount: 0, isLogin: false };
 
-  componentDidMount() {
-    fetch(`${API.CART}`, {
-      headers: {
-        Authorization: localStorage.getItem('token'),
-      },
-    })
-      .then(res => res.json())
-      .then(result => this.setState({ cartList: result.cartItems }));
-  }
-
   componentDidUpdate(prevProps, prevState) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
       this.setState({
@@ -25,11 +15,11 @@ export class Nav extends Component {
   }
 
   render() {
-    const { cartList } = this.state;
+    // const { cartList } = this.state;
 
-    const totalCount = cartList
-      .map(e => e.quantity)
-      .reduce((acc, current) => acc + current, 0);
+    // const totalCount = cartList
+    //   .map(e => e.quantity)
+    //   .reduce((acc, current) => acc + current, 0);
 
     return (
       <div className="Navigation">
@@ -91,7 +81,7 @@ export class Nav extends Component {
                       }}
                     >
                       <div className="countContainer">
-                        <span className="shoppingCount">{totalCount}</span>
+                        {/* <span className="shoppingCount">{totalCount}</span> */}
                       </div>
                     </i>
                   </li>

@@ -23,7 +23,7 @@ export class Cart extends Component {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity + 1;
       this.setState({ cartData: newCartData });
 
-      const authToken = localStorage.getItem('Token');
+      const authToken = localStorage.getItem('token');
 
       fetch(`${API.CART}/${cartItemId}`, {
         method: 'PATCH',
@@ -37,7 +37,7 @@ export class Cart extends Component {
     }
 
     if (newCartData[cartIndex].quantity === stock) {
-      alert('그만눌러');
+      alert('구매할 수 있는 최대수량입니다.');
     }
   };
 
@@ -47,7 +47,7 @@ export class Cart extends Component {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity - 1;
       this.setState({ cartData: newCartData });
 
-      const authToken = localStorage.getItem('Token');
+      const authToken = localStorage.getItem('token');
 
       fetch(`${API.CART}/${cartItemId}`, {
         method: 'PATCH',
@@ -62,7 +62,7 @@ export class Cart extends Component {
   };
 
   deleteCartItem = cartItemId => {
-    const authToken = localStorage.getItem('Token');
+    const authToken = localStorage.getItem('token');
 
     fetch(`${API.CART}/${cartItemId}`, {
       method: 'DELETE',
@@ -118,11 +118,11 @@ export class Cart extends Component {
   };
 
   doBuy = () => {
-    const authToken = localStorage.getItem('Token');
+    const authToken = localStorage.getItem('token');
     fetch(`${API.PURCHASE}`, {
       method: 'POST',
       headers: {
-        authorization: authToken,
+        Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
         couponId: this.state.couponId,
@@ -150,7 +150,7 @@ export class Cart extends Component {
     const orderCount = this.state.user.orderCount;
     let shippingFee = 2500;
     shippingFee = totalValue > 50000 || orderCount === 0 ? 0 : 2500;
-
+    console.log(this.state);
     return (
       <div className="cart">
         <p className="cartTitle">장바구니</p>
@@ -218,16 +218,18 @@ export class Cart extends Component {
                         <span>-100%</span>
                       </div>
                     )}
+                  </div>
+                  {orderCount === 0 && (
+                    <div className="paymentMessage">
+                      첫구매 무료배송 혜택이 적용되었습니다.
+                    </div>
+                  )}
+
+                  {this.state.user.isAvailable && (
                     <div className="canFresh">
                       <i className="fas fa-rocket">신선배송이 가능합니다.</i>
                     </div>
-                  </div>
-                  {orderCount === 0 && (
-                    <p className="paymentMessage">
-                      첫구매 무료배송 혜택이 적용되었습니다.
-                    </p>
                   )}
-
                   {this.state.couponValue !== '' && (
                     <div className="shippingPrice">
                       <div className="shippingPrice-total">
@@ -253,18 +255,27 @@ export class Cart extends Component {
                   <div className="totalPrice">
                     <p className="totalPrice-text">예상 결제 금액</p>
                     <p className="totalPrice-won">
-                      {(
-                        totalValue -
-                        this.state.couponValue +
-                        shippingFee
-                      ).toLocaleString()}
+                      {totalValue - this.state.couponValue + shippingFee < 0
+                        ? 0
+                        : (
+                            totalValue -
+                            this.state.couponValue +
+                            shippingFee
+                          ).toLocaleString()}
                       원
                     </p>
                   </div>
                   <button className="paymentBtn" onClick={() => this.doBuy()}>
                     전체상품 주문하기
                   </button>
-                  <button className="keepShoppingBtn">쇼핑계속하기</button>
+                  <button
+                    className="keepShoppingBtn"
+                    onClick={() => {
+                      this.props.history.push('/list');
+                    }}
+                  >
+                    쇼핑계속하기
+                  </button>
                 </div>
               </section>
             </>
