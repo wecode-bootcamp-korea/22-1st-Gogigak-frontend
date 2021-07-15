@@ -18,7 +18,9 @@ export class Register extends Component {
         email: this.state.id,
         password: this.state.password,
         name: this.state.name,
-        phone_number: this.state.phone,
+        phoneNumber: this.state.phone,
+        // zipCode:,
+        // address:
       }),
     }).then(res => res.json());
   };
