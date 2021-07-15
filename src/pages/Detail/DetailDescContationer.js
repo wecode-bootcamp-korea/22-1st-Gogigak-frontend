@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 import DetailDateDisplay from './DetailDateDisplay';
 import CommnetList from './CommnetList';
@@ -58,12 +59,12 @@ export class DetailDescContationer extends Component {
   };
   //commentList목데이터
   componentDidMount = () => {
+    console.log(this.props.match.params.product);
     const reviewToken = localStorage.getItem('token');
     console.log(reviewToken);
     fetch(
-      `http://ambitiouskyle.iptime.org:6389/products/${this.props.id}/reviews`,
+      `http://ambitiouskyle.iptime.org:6389/products/${this.props.match.params.product}/reviews`,
       {
-        method: 'GET',
         headers: { authorization: reviewToken },
       }
     )
@@ -78,6 +79,7 @@ export class DetailDescContationer extends Component {
   };
   //deleteComment리뷰삭제
   deletedComment = id => {
+    console.log('id', id);
     const reviewToken = localStorage.getItem('token');
     fetch(`http://ambitiouskyle.iptime.org:6389/products/reviews/${id}`, {
       method: 'DELETE',
@@ -221,4 +223,4 @@ export class DetailDescContationer extends Component {
   }
 }
 
-export default DetailDescContationer;
+export default withRouter(DetailDescContationer);

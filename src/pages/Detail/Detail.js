@@ -23,7 +23,6 @@ export class Detail extends Component {
       `http://ambitiouskyle.iptime.org:6389/products/${this.props.match.params.product}`,
       {
         headers: {
-          method: 'GET',
           authorization: authToken,
         },
       }
