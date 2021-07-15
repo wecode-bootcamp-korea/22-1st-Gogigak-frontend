@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { API } from '../../config';
 import './Nav.scss';
 
 export class Nav extends Component {
-  state = {
-    isLogin: false,
-  };
+  state = { cartList: [], cartCount: 0, isLogin: false };
+
+  componentDidMount() {
+    fetch(`${API.CART}`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(result => this.setState({ cartList: result.cartItems }));
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
@@ -16,6 +25,12 @@ export class Nav extends Component {
   }
 
   render() {
+    const { cartList, cartCount } = this.state;
+
+    const totalCount = cartList
+      .map(e => e.quantity)
+      .reduce((acc, current) => acc + current, 0);
+
     return (
       <div className="Navigation">
         <div>상단배너</div>
@@ -69,12 +84,16 @@ export class Nav extends Component {
                     마이페이지
                   </li>
                   <li className="navigationMenuList">
-                    <i
-                      className="fas fa-shopping-cart"
-                      onClick={() => {
-                        this.props.history.push('/cart');
-                      }}
-                    />
+                    <i className="fas fa-shopping-cart">
+                      <div
+                        className="countContainer"
+                        onClick={() => {
+                          this.props.history.push('/cart');
+                        }}
+                      >
+                        <span className="shoppingCount">{totalCount}</span>
+                      </div>
+                    </i>
                   </li>
                 </ul>
               ) : (
