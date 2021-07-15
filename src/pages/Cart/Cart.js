@@ -64,7 +64,7 @@ export class Cart extends Component {
     });
 
     let newCartData = [...this.state.cartData];
-    console.log(newCartData);
+
     newCartData = newCartData.filter(
       cartItem => cartItem.cartItemId !== cartItemId
     );
@@ -108,12 +108,10 @@ export class Cart extends Component {
       }),
     })
       .then(res => res.json())
-      .then(data => console.log(data, '바이'));
-    // .then(this.props.history.push('/mypage'));
+      .then(this.props.history.push('/mypage'));
   };
 
   render() {
-    console.log(this.state);
     const { cartData } = this.state;
     const totalValue =
       cartData &&
@@ -123,7 +121,6 @@ export class Cart extends Component {
     const orderCount = this.state.user.orderCount;
     let shippingFee = 2500;
     shippingFee = totalValue > 50000 || orderCount === 0 ? 0 : 2500;
-    console.log(this.state.user);
 
     return (
       <div className="cart">
