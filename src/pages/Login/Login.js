@@ -61,6 +61,7 @@ export class Login extends Component {
             <input
               className="LoginIdPw"
               name="password"
+              type="password"
               placeholder="비밀번호를 입력하세요"
               onChange={this.handleChange}
             />

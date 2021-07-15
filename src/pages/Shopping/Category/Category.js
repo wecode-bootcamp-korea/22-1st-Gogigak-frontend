@@ -5,18 +5,19 @@ import './Category.scss';
 
 class Category extends React.Component {
   handleClick = () => {
-    this.props.history.push(`/List/${this.props.title}`);
+    this.props.history.push(`/List?category=${this.props.title}`);
   };
 
   render() {
-    const { title, name, selectedIdx, isSelected, handleCategoryClick } =
-      this.props;
+    const { title, name } = this.props;
+    const { search } = this.props.location;
 
     return (
       <li className={title} key={title} onClick={() => this.handleClick()}>
         <p
-          className={`${isSelected ? 'category-activated' : 'category'}`}
-          onClick={() => handleCategoryClick(selectedIdx)}
+          className={`${
+            title === search.slice(10) ? 'category-activated' : 'category'
+          }`}
         >
           {name}
         </p>
