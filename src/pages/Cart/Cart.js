@@ -18,9 +18,9 @@ export class Cart extends Component {
     isloaded: '',
   };
 
-  quantityPlus = (cartItemId, cartIndex) => {
+  quantityPlus = (cartItemId, cartIndex, stock) => {
     const newCartData = [...this.state.cartData];
-    if (newCartData[cartIndex].quantity < 100) {
+    if (newCartData[cartIndex].quantity < stock) {
       newCartData[cartIndex].quantity = newCartData[cartIndex].quantity + 1;
       this.setState({ cartData: newCartData });
 
@@ -33,6 +33,10 @@ export class Cart extends Component {
           changeQuantity: this.state.cartData[cartIndex].quantity,
         }),
       });
+    }
+
+    if (newCartData[cartIndex].quantity === stock) {
+      alert('그만눌러');
     }
   };
 
@@ -150,6 +154,7 @@ export class Cart extends Component {
                     quantityPlus={this.quantityPlus}
                     quantityMinus={this.quantityMinus}
                     deleteCartItem={this.deleteCartItem}
+                    stock={cartData.stock}
                   />
                 ))}
               </section>

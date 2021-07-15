@@ -9,10 +9,7 @@
 .sectionWrap {
   // @include flex-center;
   display: flex;
-<<<<<<< HEAD
   justify-content: center;
-=======
->>>>>>> main
   margin: 51px 147px 0 147px;
 
   .cartContainer {
@@ -45,6 +42,7 @@
     .itemList {
       display: flex;
       align-items: center;
+      border-top: 1px solid #e1dedf;
       border-bottom: 1px solid #e1dedf;
 
       img {
@@ -283,4 +281,10 @@
 
 .canFresh {
   font-weight: 400;
+}
+
+.test {
+  // background-color: rgba(0, 0, 0, 0.8);
+  // z-index: 55;
+  opacity: 0.2;
 }
