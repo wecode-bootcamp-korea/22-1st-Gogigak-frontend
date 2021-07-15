@@ -31,7 +31,7 @@ class Address extends React.Component {
       .then(res => res.json())
       .then(result =>
         this.setState({
-          isDelivery: result.message,
+          isDelivery: result.isAvailable,
           isPost: !this.state.isPost,
         })
       );
@@ -45,6 +45,7 @@ class Address extends React.Component {
 
   render() {
     const { isDelivery } = this.state;
+    console.log(isDelivery);
     return (
       <section className="delivery">
         <img
@@ -94,14 +95,16 @@ class Address extends React.Component {
             )}
           </div>
           <div className="searchResult">
-            {isDelivery && (
+            {isDelivery === true ? (
               <p>
                 고객님은 <span className="text-bold">당일배송</span>,
                 <span className="text-bold">새벽배송</span>으로
                 <br /> 받아보실 수 있습니다.
               </p>
+            ) : (
+              ''
             )}
-            {!isDelivery ? (
+            {isDelivery === false ? (
               <p>
                 <span className="text-bold">신선배송 불가지역이므로 </span>,
                 <span className="red">우체국 택배</span>로

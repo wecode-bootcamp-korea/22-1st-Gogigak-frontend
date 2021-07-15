@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import { API } from '../../config';
 import './Nav.scss';
 
 export class Nav extends Component {
-  state = {
-    isLogin: false,
-  };
+  state = { cartList: [], cartCount: 0, isLogin: false };
+
+  componentDidMount() {
+    fetch(`${API.CART}`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
+      .then(res => res.json())
+      .then(result => this.setState({ cartList: result.cartItems }));
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
@@ -16,6 +25,12 @@ export class Nav extends Component {
   }
 
   render() {
+    const { cartList } = this.state;
+
+    const totalCount = cartList
+      .map(e => e.quantity)
+      .reduce((acc, current) => acc + current, 0);
+
     return (
       <div className="Navigation">
         <div>상단배너</div>
@@ -58,7 +73,7 @@ export class Nav extends Component {
 
               <div className="navigationSubMenuSplit"></div>
 
-              {this.state.isLogin === true ? (
+              {this.state.isLogin === true || localStorage.getItem('token') ? (
                 <ul className="navigationMenu">
                   <li
                     className="navigationMenuList"
@@ -74,7 +89,11 @@ export class Nav extends Component {
                       onClick={() => {
                         this.props.history.push('/cart');
                       }}
-                    />
+                    >
+                      <div className="countContainer">
+                        <span className="shoppingCount">{totalCount}</span>
+                      </div>
+                    </i>
                   </li>
                 </ul>
               ) : (

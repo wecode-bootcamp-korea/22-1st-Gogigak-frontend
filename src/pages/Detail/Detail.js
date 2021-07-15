@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import DetailTop from './DetailTop';
-import DetailTab from './DetailTab';
 import DetailDescContationer from './DetailDescContationer';
 import { API } from '../../config';
 
@@ -13,6 +13,7 @@ export class Detail extends Component {
     //state생성
     this.state = {
       productInfo: {},
+      isTabOn: false,
     };
   }
   //mockdata받기
@@ -27,10 +28,17 @@ export class Detail extends Component {
         });
       });
   }
+  //tab toggle btn
+  onClickToggleHandler = () => {
+    this.setState({
+      isTabOn: !this.state.isTabOn,
+    });
+  };
   render() {
     const { productInfo } = this.state;
     // console.log('state', this.state);
-    console.log('options', this.state.productInfo.options);
+    //console.log('options', this.state.productInfo.options);
+    //console.log('tabOn', this.state.isTabOn);
     return (
       <div className="detail-wrap">
         {productInfo.name && (
@@ -43,11 +51,31 @@ export class Detail extends Component {
               productOption={productInfo.options}
               productId={this.props.match.params.product}
             />
-            <DetailTab />
+            <div className="detail-tab">
+              <ul>
+                <li>
+                  <Link
+                    className={!this.state.isTabOn ? 'active' : null}
+                    onClick={this.onClickToggleHandler}
+                  >
+                    상품설명
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={this.state.isTabOn ? 'active' : null}
+                    onClick={this.onClickToggleHandler}
+                  >
+                    상품리뷰
+                  </Link>
+                </li>
+              </ul>
+            </div>
             <DetailDescContationer
               DesImg={productInfo.images}
               DesDate={productInfo.butcheredDate}
               productCloseBtn={productInfo.isOrganic}
+              tabToggle={this.state.isTabOn}
             />
           </>
         )}

@@ -88,10 +88,16 @@ export class DetailDescContationer extends Component {
   render() {
     const { DesImg } = this.props;
     const { commentList } = this.state;
-
+    console.log('tabOn', this.props.tabToggle);
     return (
       <div className="detail-product-wrap">
-        <section className="detail-desc-wrap">
+        <section
+          className={
+            !this.props.tabToggle
+              ? 'detail-desc-wrap active'
+              : 'detail-desc-wrap'
+          }
+        >
           <article>
             {DesImg && <img src={this.props.DesImg[0].imageUrl} />}
           </article>
@@ -100,7 +106,11 @@ export class DetailDescContationer extends Component {
             {DesImg && <img src={this.props.DesImg[1].imageUrl} />}
           </article>
         </section>
-        <section className="detail-review">
+        <section
+          className={
+            this.props.tabToggle ? 'detail-review active' : 'detail-review'
+          }
+        >
           <form onSubmit={this.addComment}>
             <ul>
               <li className="detail-review-photo-container review-write">
@@ -180,8 +190,6 @@ export class DetailDescContationer extends Component {
               {/* <CommnetList /> */}
               {commentList &&
                 commentList.map(el => {
-                  //console.log(this.props.title);
-                  // console.log(el.id);
                   return (
                     <CommnetList
                       key={el.id}
