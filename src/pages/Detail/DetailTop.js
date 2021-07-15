@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { config } from '../../config';
 
 import AmountOption from './AmountOption';
 
@@ -11,9 +12,11 @@ export class DetailTop extends Component {
       itemCountNumValue: 1,
       isLoginModalOn: false,
       amountOption: [],
-      selectedOption: this.props.productOption,
+      selectedOption: this.props.productOption[0].name,
+      selectedOptionId: this.props.productOption[0].id,
       productOption: '',
       options: '',
+      productId: this.props.productId,
     };
   }
   //수량 증가 감소
@@ -32,11 +35,34 @@ export class DetailTop extends Component {
     });
   };
 
-  selectOption = options => {
+  selectOption = (options, optionId) => {
     this.setState({
       selectedOption: options,
+      selectedOptionId: optionId,
     });
     this.onClickToggleHandler();
+  };
+
+  //setTimeOut
+  setTimeOut = () => {};
+
+  addCart = () => {
+    fetch('http://ambitiouskyle.iptime.org:6389/orders/cart', {
+      method: 'POST',
+      body: JSON.stringify({
+        productId: this.state.productId,
+        optionId: this.state.selectedOptionId,
+        quantity: this.state.itemCountNumValue,
+        // selectedOptionId: this.state.selectedOptionId,
+      }),
+    })
+      .then(response => {
+        response.json();
+        console.log(response.status);
+      })
+      .then(response => {
+        alert('장바구니에 추가되었습니다.');
+      });
   };
 
   render() {
@@ -76,10 +102,12 @@ export class DetailTop extends Component {
                     <ul>
                       {this.props.productOption &&
                         this.props.productOption.map(el => {
+                          console.log(this.props.productOption);
                           return (
                             <AmountOption
-                              key={el.key}
-                              productOption={el}
+                              key={el.id}
+                              optionId={el.id}
+                              productOption={el.name}
                               selectOption={this.selectOption}
                             />
                           );
@@ -112,20 +140,28 @@ export class DetailTop extends Component {
               </div>
               <div className="buy-wrap">
                 <ul>
-                  <li>
+                  {/* <li>
                     <Link to="/Login" className="btn btn-buy">
                       바로구매
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
-                    <Link to="/Login" className="btn btn-cart">
+                    <button
+                      to="/Login"
+                      className="btn btn-cart"
+                      onClick={this.addCart}
+                    >
                       장바구니
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </div>
             </article>
           </div>
+        </div>
+        <div className={this.state.show ? 'modal-buy active' : 'modal-buy'}>
+          <i className="fas fa-drumstick-bite"></i>
+          <span>장바구니에 추가하였습니다.</span>
         </div>
       </section>
     );
