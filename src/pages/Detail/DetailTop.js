@@ -11,6 +11,7 @@ export class DetailTop extends Component {
     this.state = {
       itemCountNumValue: 1,
       isLoginModalOn: false,
+      isModalOn: false,
       amountOption: [],
       selectedOption: this.props.productOption[0].name,
       selectedOptionId: this.props.productOption[0].id,
@@ -32,6 +33,12 @@ export class DetailTop extends Component {
   onClickToggleHandler = () => {
     this.setState({
       isLoginModalOn: !this.state.isLoginModalOn,
+    });
+  };
+  //modal on handler
+  onModal = () => {
+    this.setState({
+      isModalOn: !this.state.isModalOn,
     });
   };
 
@@ -58,7 +65,7 @@ export class DetailTop extends Component {
         console.log(response.status);
       })
       .then(response => {
-        alert('장바구니에 추가되었습니다.');
+        this.onModal();
       });
   };
   //
@@ -159,7 +166,9 @@ export class DetailTop extends Component {
             </article>
           </div>
         </div>
-        <div className={this.state.show ? 'modal-buy active' : 'modal-buy'}>
+        <div
+          className={this.state.isModalOn ? 'modal-buy active' : 'modal-buy'}
+        >
           <i className="fas fa-drumstick-bite"></i>
           <span>장바구니에 추가하였습니다.</span>
         </div>
